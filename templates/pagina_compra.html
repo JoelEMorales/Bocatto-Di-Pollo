@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contacto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/estilosalfajor.css') }}" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Georgia, Serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+        }
+
+        .div-compra-informacion p {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
+            <a href="/" class="w3-button w3-bar-item w3-hover-white">
+                <img src="{{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg') }}" alt="Logo"
+                    style="height: 50px; width: 50px">
+            </a>
+            <div class="w3-right w3-hide-small w3-padding-large">
+                <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-xl"></i></a>
+            </div>
+        </nav>
+
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
+            <a href="#descripcion" class="w3-bar-item">Su carrito</a>
+            <hr>
+
+            <div id="div_lista_de_productos">
+            </div>
+
+            <div class="w3-padding-large">
+                <button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
+                    onclick="añadir()">Proceso de pago</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="w3-row w3-padding w3-content w3-white w3-main" style="max-width:1200px;">
+        <br><br><br>
+        <article class="w3-padding-top">
+            <div class="w3-half" style="max-width:500px">
+                <img class="mySlides" src="" style="width:100%;display:none" id="img1_principal">
+                <img class="mySlides" src="" style="width:100%" id="img2_principal">
+                <img class="mySlides" src="" style="width:100%;display:none" id="img3_principal">
+
+                <div class="w3-row-padding w3-section">
+                    <div class="w3-col s4">
+                        <img id="img1" class="demo w3-opacity w3-hover-opacity-off" src=""
+                            style="width:100%;cursor:pointer" onclick="currentDiv(1)">
+                    </div>
+                    <div class="w3-col s4">
+                        <img id="img2" class="demo w3-opacity w3-hover-opacity-off" src=""
+                            style="width:100%;cursor:pointer" onclick="currentDiv(2)">
+                    </div>
+                    <div class="w3-col s4">
+                        <img id="img3" class="demo w3-opacity w3-hover-opacity-off" src=""
+                            style="width:100%;cursor:pointer" onclick="currentDiv(3)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="w3-half w3-padding-large" id="div-compra-informacion">
+                <br>
+                <h1 id="nameproducto">Nombre</h1>
+                <h3>Precio</h3>
+                <hr style="color: black">
+                <button class="w3-button w3-border-black" type="button" onclick="precioalfajor6()">6 unidades</button>
+                <button class="w3-button w3-border-black" type="button" onclick="precioalfajor12()">12 unidades</button>
+                <br><br>
+                <div style="display: inline-block; vertical-align: top;">
+                    <p style="display: inline-block; margin: 0; vertical-align: left;" id="nombre_unidad"></p>
+                    <label id="unidad"></label>
+                </div>
+                <br>
+                <label id="precio">0 $</label>
+                <br><br>
+                <label for="numero">Cantidad:</label><input type="number" id="cant_box" name="numero" min="0" max="100"
+                    value="0">
+                <br><br>
+                <button id="boton_agregar_producto"
+                    class="w3-button w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
+                    onclick="agregarProductoALaLista()">Añadir al carrito</button>
+                <br>
+                <hr style="color: black">
+                <p style="text-align: left;" id="descripcion_compra">TEXTO DESCRIPTIVO</p>
+                <p style="text-align: left; white-space: pre-wrap;" id="ingredientes_compra">¿Que ingredientes lleva?
+                    <br><br>
+                    • Pollo<br>
+                    • Pan Rallado<br>
+                    • Huevo<br>
+                    • Condimentos (sal, provensal)<br>
+                </p>
+            </div>
+        </article>
+        <hr>
+    </section>
+
+    <footer class="w3-container w3-white" id="contact">
+        <br><br>
+        <!-- APPS -->
+        <div class="w3-half w3-padding-large w3-center">
+            <br><br><br>
+            <h3 class="w3-text-black">Siguenos</h3>
+            <br><br><br>
+            <a href="https://www.instagram.com/bocatto_di_pollo/"><i
+                    class="fa-brands fa-square-instagram w3-large w3-text-black">&nbsp;&nbsp;
+                    @bocatto_di_pollo</i></a>
+            <br><br><br>
+            <a href="www.facebook.com/Bocatto-Di-Pollo-188887745394197"><i
+                    class="fa-brands fa-facebook w3-large w3-text-black">&nbsp;&nbsp;
+                    Bocatto di Pollo</i></a>
+            <br><br><br>
+            <i class="fa-solid fa-envelope w3-large w3-text-black">&nbsp;&nbsp;
+                bocattodipollo@gmail.com</i>
+            <br><br><br><br>
+            <p><strong>lunes a sábado</strong> | 09:00 - 14:00 -- 17:30 - 22:00</p>
+            <br>
+            <p><strong>Domingo</strong> | Cerrado</p>
+            <br><br>
+            <p class="w3-text-blue-grey w3-medium">
+                <b>Si quieres saber más sobre nuesto productos, ingredientes o simplemente tienes alguna duda,
+                    rellena el formulario de contacto</b>
+            </p>
+            <br><br>
+            <!-- BOTON CONTACTO -->
+            <!-- Button to Open the Modal -->
+            <button class="w3-button w3-light-grey w3-section" data-toggle="modal" data-target="#myModal"
+                type="submit">CONTACTANOS</button>
+        </div>
+        <div class="w3-half w3-padding-large w3-hide-small">
+            <br><br>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.383045279537!2d-66.33778142659068!3d-33.3088000315649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d43b51d19c2103%3A0xff02940b25dcc3d1!2sBOCATTO%20DI%20POLLO!5e0!3m2!1ses-419!2ses!4v1690134814208!5m2!1ses-419!2ses"
+                width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </footer>
+
+    <!-- Tus scripts aquí -->
+    <script src="{{ url_for('static', filename='javascript/principal.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/paginacompra.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/carrito.js') }}"></script>
+</body>
+
+</html>

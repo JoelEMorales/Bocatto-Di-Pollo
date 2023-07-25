@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/estilosalfajor.css') }}" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Georgia, Serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
+        <a href="#home" class="w3-button w3-bar-item w3-hover-white">
+            <img src="{{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg') }}" alt="Logo"
+                style="height: 50px; width: 50px">
+        </a>
+        <div class="w3-right w3-hide-small w3-padding-large">
+            <a href="#descripcion" class="w3-bar-item w3-button">¿Quienes somos?</a>
+            <a href="#producto" class="w3-bar-item w3-button">Nuestro Producto</a>
+            <a href="#galeria" class="w3-bar-item w3-button">Galeria</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contactanos</a>
+            <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-lg"></i></a>
+        </div>
+
+        <!-- DIV SECCION CORREDISA -->
+        <div id="mySidebar" class="sidebar" style="z-index: 2">
+            <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
+            <a href="#descripcion" class="w3-bar-item">Su carrito</a>
+            <hr>
+            <!-- PRODUCTOS DEL CARRITO -->
+            <div id="div_lista_de_productos">
+                <!-- Aquí se mostrarán los productos seleccionados -->
+            </div>
+
+            <!-- Boton para acceder al pago -->
+            <div class="w3-padding-large">
+                <button class=" w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
+                    onclick="añadir()">Proceso de pago</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- welcome header -->
+    <div class="bg-image" id="home"></div>
+    <header class="bg-text">
+        <h1>Bocatto Di Pollo</h1>
+        <h2 style="font-size:25px">¡Bienvenido al hogar del pollo mas sabroso y fresco!.</h2>
+        <p>La mejor experiencia culinaria te espera.</p>
+    </header>
+
+    <article class="w3-main w3-content w3-padding" style="max-width:1200px;">
+        <!-- QUE ES? -->
+        <section class="w3-row w3-padding-top w3-white" id="descripcion">
+            <div class="w3-half w3-padding-large w3-hide-small">
+                <br>
+                <img src="{{ url_for('static', filename='fotosalfajores/mila-1.JPG') }}" class="w3-round w3-image"
+                    alt="Table" style="width:100%">
+            </div>
+
+            <div class="w3-half w3-padding-large">
+                <br>
+                <h1 class="w3-center w3-text-black">Sabor y Tradición</h1><br>
+                <h5 class="w3-center w3-text-black">Nos enorgullece ofrecerte una seleccion de productos donde el pollo
+                    es el protagonista:
+                    <hr>
+                </h5>
+                <p class="w3-large w3-text-black">
+                    Nuestra deliciosa oferta familiar se enfoca en el mundo del pollo y sus delicias. Desde nuestro
+                    pollo fresco y jugoso hasta una amplia selección de productos relacionados, nos esforzamos por
+                    brindarte lo mejor. Cada elemento es cuidadosamente seleccionado y preparado con amor para
+                    asegurarte una experiencia auténtica y sabrosa. Nuestro negocio familiar se enorgullece de ofrecer
+                    productos únicos y especiales, perfectos para acompañar cualquier momento del día, ya sea una comida
+                    rápida o un festín para toda la familia. ¡Ven y descubre los sabores que nos hacen destacar en el
+                    mundo del pollo!
+                </p>
+                <p class="w3-large w3-text-grey w3-hide-medium">
+                    En nuestro sitio web podrás conocer más acerca de nuestro amplio catalogo, nuestras
+                    técnicas de elaboración y los diferentes sabores que ofrecemos. Además, podrás realizar tus pedidos
+                    para que lo tengamos listo cuando llegues.
+                    <br>
+                    Te invitamos a probar nuestras deliciosas milanesas de pollo y a disfrutar de una experiencia
+                    única y auténtica de la gastronomía de Bocatto Di Pollo. <br>¡Haz tu pedido hoy mismo!
+                </p>
+            </div>
+        </section>
+
+        <!-- Historia e ingrediente -->
+        <section class="w3-row w3-padding-top w3-white" id="descripcion">
+            <div class="w3-half w3-padding-large">
+                <br><br><br>
+                <h1 class="w3-center w3-text-black">Nuestra Historia: Del Sueño a la Realidad</h1><br>
+                <p class="w3-large w3-text-black">
+                    Hace más de una década, la familia Morales tomó una valiente decisión al emigrar desde Mendoza a San
+                    Luis en busca de nuevas oportunidades. Fue aquí, en esta tierra llena de promesas, donde la señora
+                    Claudia Graciela Cordero inició una emocionante trayectoria en el apasionante mundo de la pollería.
+
+                    Con determinación y entusiasmo, Claudia se sumergió en el ámbito trabajando en una empresa de
+                    pollería durante 5 años. Durante ese tiempo, adquirió todos los conocimientos y habilidades
+                    necesarias para convertirse en una experta en el rubro.</p>
+                <p class="w3-large w3-text-grey w3-hide-medium">
+                    El destino les sonrió un día y junto a su familia tomaron la decisión de independizarse y dar vida a
+                    su propio sueño: "Bocatto Di Pollo". El comedor de su hogar se convirtió en el lugar donde comenzó
+                    esta hermosa aventura. Durante 2 largos años, con esfuerzo y dedicación, vieron crecer su pequeño
+                    negocio hasta que llegó el momento de dar un paso más.
+
+                    El siguiente capítulo fue un hito significativo en su historia. Decidieron abrir un local en una
+                    esquina del mismo barrio que los acogió desde su llegada a San Luis. Allí, con el respaldo de la
+                    comunidad, su amor por el pollo y una atención inigualable, el negocio floreció.
+                    <br><br>
+                    Hoy, "Bocatto Di Pollo" es sinónimo de calidad y tradición. Diez años de experiencia respaldan la
+                    excelencia en cada elaboracion que ofrecen. Es una historia de superación, esfuerzo y dedicación que
+                    continuará creciendo junto a todos aquellos que han sido parte de este delicioso viaje. ¡Gracias por
+                    ser parte de nuestra historia!"
+                </p>
+            </div>
+            <div class="w3-half w3-padding-large w3-hide-small">
+                <br>
+                <br>
+                <img src="{{ url_for('static', filename='fotosalfajores/arrollado.JPG') }}" class="w3-round w3-image"
+                    alt="Table" style="width:100%; height: 780px">
+            </div>
+        </section>
+
+        <!-- First Photo Grid-->
+        <section class="w3-row-padding w3-padding-16 w3-center w3-display-container" id="producto" style="height:800px">
+            <br><br><br><br>
+            <h2 class="w3-rest w3-padding">Productos Estrellas<br><br></h2>
+
+            <div class="w3-third hover-shadow w3-button w3-hover-white" onclick="abrir_pagina_producto1()"
+                id="producto1">
+                <img src="{{ url_for('static', filename='fotosalfajores/mila-elaboracion-1.JPG') }}"
+                    alt="Milanesa De Pollo" style="width:100%; height: 350px;" id="img-product-1">
+                <h3 class="w3-large w3-padding" id="tittle-1">Milanesa De Pollo</h3>
+                <p id="precio-product-1">$ 500 / kg</p>
+            </div>
+
+            <div class="w3-third hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+                onclick="abrir_pagina_producto2()" id="producto2">
+                <img src="{{ url_for('static', filename='fotosalfajores/arrollado-2.JPG') }}" alt="Arrollado De Pollo"
+                    style="width:100%; height: 350px">
+                <h3 class="w3-large w3-padding">Arrollado De Pollo</h3>
+                <p>$ 1000 / kg</p>
+            </div>
+
+            <div class="w3-third hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+                onclick="abrir_pagina_producto3()" id="producto3">
+                <img src="{{ url_for('static', filename='fotosalfajores/chupa-chups-1.JPG') }}"
+                    alt="Chupa Chups De Pollo" style="width:100%; height: 350px;">
+                <h3 class="w3-large w3-padding">Chupa Chups De Pollo</h3>
+                <p>$ 400 / kg</p>
+            </div>
+            <p class="w3-large w3-text-grey w3-hide-medium"><br><br><br>Actualmente solo disponemos de la venta de 6 o
+                12 unidades
+                en nuestra pagina web. Si desea otro tipo de cantidad, lo invitamos a que visite nuestro local fisico.
+            </p>
+        </section>
+
+        <!-- Photo Grid Alfajor -->
+        <section style="height: 900px" id="galeria">
+            <br><br><br>
+            <!-- First Grid Photo Grid Alfajor -->
+            <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                <div class="w3-quarter contenedor-img">
+                    <img src="{{ url_for('static', filename='fotosalfajores/pollo-1.JPG') }}" alt="Alfajor Negro">
+                </div>
+                <div class="w3-quarter contenedor-img">
+                    <img src="{{ url_for('static', filename='fotosalfajores/pata-1.JPG') }}" alt="Alfajor Blanco">
+                </div>
+                <div class="w3-quarter contenedor-img">
+                    <img src="{{ url_for('static', filename='fotosalfajores/mila-papa.JPG') }}" alt="Alfajor Blanco">
+                </div>
+                <div class="w3-quarter contenedor-img">
+                    <img src="{{ url_for('static', filename='fotosalfajores/arrollado-2.JPG') }}" alt="Alfajor Blanco">
+                </div>
+            </div>
+            <!-- Sequend Grid Photo Grid Alfajor -->
+            <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                <div class="w3-quarter contenedor-img">
+                    <img src="{{ url_for('static', filename='fotosalfajores/mila-1.JPG') }}" alt="Alfajor Negro">
+                </div>
+                <div class="w3-quarter contenedor-img">
+                    <img src="{{ url_for('static', filename='fotosalfajores/arrollado.JPG') }}" alt="Alfajor Blanco">
+                </div>
+                <div class="w3-quarter contenedor-img">
+                    <img src="{{ url_for('static', filename='fotosalfajores/mila-2.JPG') }}" alt="Alfajor Blanco">
+                </div>
+                <div class="w3-quarter contenedor-img">
+                    <img src="{{ url_for('static', filename='fotosalfajores/pechuga-1.JPG') }}" alt="Alfajor Blanco">
+                </div>
+            </div>
+            <!-- Three Grid Photo Grid Alfajor -->
+            <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                <div class="w3-quarter contenedor-img">
+                    <img src=" {{ url_for('static', filename='fotosalfajores/mila-3.JPG' ) }}" alt="Alfajor Negro">
+                </div>
+                <div class="w3-quarter contenedor-img">
+                    <img src=" {{ url_for('static', filename='fotosalfajores/mila-elaboracion-1.JPG' ) }}"
+                        alt="Alfajor Blanco">
+                </div>
+                <div class="w3-quarter contenedor-img">
+                    <img src=" {{ url_for('static', filename='fotosalfajores/mila-5.JPG' ) }}" alt="Alfajor Blanco">
+                </div>
+                <div class="w3-quarter contenedor-img">
+                    <img src="{{ url_for('static', filename='fotosalfajores/mila-4.JPG') }}" class="crop"
+                        alt="Alfajor Blanco">
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <footer class="w3-container w3-white" id="contact">
+        <br><br>
+        <!-- APPS -->
+        <div class="w3-half w3-padding-large w3-center">
+            <br><br><br>
+            <h3 class="w3-text-black">Siguenos</h3>
+            <br><br><br>
+            <a href="https://www.instagram.com/bocatto_di_pollo/"><i
+                    class="fa-brands fa-square-instagram w3-large w3-text-black">&nbsp;&nbsp;
+                    @bocatto_di_pollo</i></a>
+            <br><br><br>
+            <a href="www.facebook.com/Bocatto-Di-Pollo-188887745394197"><i
+                    class="fa-brands fa-facebook w3-large w3-text-black">&nbsp;&nbsp;
+                    Bocatto di Pollo</i></a>
+            <br><br><br>
+            <i class="fa-solid fa-envelope w3-large w3-text-black">&nbsp;&nbsp;
+                bocattodipollo@gmail.com</i>
+            <br><br><br><br>
+            <p><strong>lunes a sábado</strong> | 09:00 - 14:00 -- 17:30 - 22:00</p>
+            <br>
+            <p><strong>Domingo</strong> | Cerrado</p>
+            <br><br>
+            <p class="w3-text-blue-grey w3-medium">
+                <b>Si quieres saber más sobre nuesto productos, ingredientes o simplemente tienes alguna duda,
+                    rellena el formulario de contacto</b>
+            </p>
+            <br><br>
+            <!-- BOTON CONTACTO -->
+            <!-- Button to Open the Modal -->
+            <button class="w3-button w3-light-grey w3-section" data-toggle="modal" data-target="#myModal"
+                type="submit">CONTACTANOS</button>
+        </div>
+        <div class="w3-half w3-padding-large w3-hide-small">
+            <br><br>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.383045279537!2d-66.33778142659068!3d-33.3088000315649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d43b51d19c2103%3A0xff02940b25dcc3d1!2sBOCATTO%20DI%20POLLO!5e0!3m2!1ses-419!2ses!4v1690134814208!5m2!1ses-419!2ses"
+                width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </footer>
+</body>
+
+<script>var static_url = "{{ url_for('static', filename='') }}";</script>
+<script src="{{ url_for('static', filename='javascript/principal.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/paginacompra.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/carrito.js') }}"></script>
+
+</html>

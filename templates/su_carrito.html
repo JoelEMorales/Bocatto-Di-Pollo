@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/estilosalfajor.css' %}" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <style>
+        body {
+            font-family: "Times New Roman", Georgia, Serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
+        <a href="#home" class="w3-button w3-bar-item w3-hover-white">
+            <img src="{% static 'fotosalfajores/logo.png' %}" alt="Logo" style="height: 50px; width: 50px">
+        </a>
+        <div class="w3-right w3-hide-small w3-padding-large">
+            <a href="#descripcion" class="w3-bar-item w3-button">¿Que es?</a>
+            <a href="#producto" class="w3-bar-item w3-button">Producto</a>
+            <a href="#galeria" class="w3-bar-item w3-button">Galeria</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contacto</a>
+            <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-lg"></i></a>
+        </div>
+
+        <section>
+            <h1>Su carrito</h1>
+        </section>
+</body>
