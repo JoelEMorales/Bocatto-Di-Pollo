@@ -47,15 +47,7 @@ function closeNav() {
 }
 
 
-
-/*BOTONES DE COMPRA*/
-function precioalfajor6() {
-    document.getElementById("unidad").innerHTML = "6 unidades";
-    document.getElementById("precio").innerHTML = "13,00 €";
-    document.getElementById("cant_box").value = "1";
-}
-function precioalfajor12() {
-    document.getElementById("unidad").innerHTML = "12 unidades";
-    document.getElementById("precio").innerHTML = "24,00 €";
-    document.getElementById("cant_box").value = "1";
+function actilizar_cantidad() {
+    const numero = document.getElementById("cant_box").value;
+    document.getElementById("unidad").textContent = numero
 }

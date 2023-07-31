@@ -5,8 +5,6 @@ function agregarProductoALaLista() {
 
     // Obtener información del producto a agregar
     var nombreProducto = document.querySelector("#nameproducto").textContent;
-    var cantidad = parseFloat(document.querySelector("#unidad").textContent);
-    var valorUnidad = parseFloat(document.querySelector("#precio").textContent);
     var cantidad_de_box = parseFloat(document.querySelector("#cant_box").value);
 
     // Validar si la cantidad es mayor que cero
@@ -19,18 +17,12 @@ function agregarProductoALaLista() {
         for (var i = 0; i < productos.length; i++) {
             var nombreEnLista = productos[i].querySelector("#namecarrito").textContent;
             var cantidadEnLista = parseFloat(productos[i].querySelector("#cantidad_caja").textContent);
-            var cant_unidad_carrito = parseFloat(productos[i].querySelector("#cantidadcarrito").textContent);
 
-            if (nombreProducto === nombreEnLista && cantidad === cant_unidad_carrito) {
+            if (nombreProducto === nombreEnLista) {
                 productoYaEnLista = true;
                 var cantidadAnterior = cantidadEnLista;
                 var cantidadNueva = cantidadAnterior + cantidad_de_box;
                 productos[i].querySelector("#cantidad_caja").textContent = cantidadNueva;
-
-                var valorAnterior = parseFloat(productos[i].querySelector("#valorunidad").textContent);
-                var valorNuevo = valorUnidad * cantidadNueva;
-                productos[i].querySelector("#valorunidad").textContent = valorNuevo;
-                break;
             }
         }
 
@@ -68,7 +60,7 @@ function obtenerHtmlProducto() {
                 <br>
                 <a class="w3-left" id="cantidadcarrito"></a>
                 <br><br>
-                <a class="w3-left">Cant: </a><a class="w3-left" id="cantidad_caja"></a>
+                <a class="w3-left">Cant en kg: </a><a class="w3-left" id="cantidad_caja"></a>
                 <br><br>
                 <a class="w3-left" id="valorunidad"></a>
                 <button class="w3-button w3-text-white w3-right" type="button" onclick="eliminar_producto(this)">Quitar</button>

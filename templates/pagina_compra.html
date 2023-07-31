@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: "Times New Roman", Georgia, Serif;
@@ -43,11 +45,16 @@
                     style="height: 50px; width: 50px">
             </a>
             <div class="w3-right w3-hide-small w3-padding-large">
-                <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-xl"></i></a>
+                <a href="/" class="w3-bar-item w3-button">¿Quienes somos?</a>
+                <a href="/our-product" class="w3-bar-item w3-button">Productos</a>
+                <a href="/" class="w3-bar-item w3-button">Galeria</a>
+                <a href="/" class="w3-bar-item w3-button">Contactanos</a>
+                <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-lg"></i></a>
             </div>
         </nav>
 
-        <div id="mySidebar" class="sidebar">
+        <!-- DIV SECCION CORREDISA -->
+        <div id="mySidebar" class="sidebar" style="z-index: 2">
             <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
             <a href="#descripcion" class="w3-bar-item">Su carrito</a>
             <hr>
@@ -90,19 +97,15 @@
                 <br>
                 <h1 id="nameproducto">Nombre</h1>
                 <h3>Precio</h3>
-                <hr style="color: black">
-                <button class="w3-button w3-border-black" type="button" onclick="precioalfajor6()">6 unidades</button>
-                <button class="w3-button w3-border-black" type="button" onclick="precioalfajor12()">12 unidades</button>
+                <hr style="background-color: black; height: 0,5px;">
                 <br><br>
-                <div style="display: inline-block; vertical-align: top;">
+                <label for="numero" id="cantidad_producto">Cantidad:</label><input type="number" id="cant_box"
+                    name="numero" min="0" max="100" value="0" onchange="actilizar_cantidad()">
+                <br><br>
+                <div style="display: inline-block; vertical-align: top;" id="opcion">
                     <p style="display: inline-block; margin: 0; vertical-align: left;" id="nombre_unidad"></p>
-                    <label id="unidad"></label>
+                    <label id="unidad"></label><br>
                 </div>
-                <br>
-                <label id="precio">0 $</label>
-                <br><br>
-                <label for="numero">Cantidad:</label><input type="number" id="cant_box" name="numero" min="0" max="100"
-                    value="0">
                 <br><br>
                 <button id="boton_agregar_producto"
                     class="w3-button w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
@@ -122,8 +125,11 @@
         <hr>
     </section>
 
+    <!-- PIE DE PAGINA CON MAPA, HORARIOS, UBICACION Y CONTACTO -->
     <footer class="w3-container w3-white" id="contact">
         <br><br>
+        <hr style="background-color: black; height: 0,5px;">
+        <br>
         <!-- APPS -->
         <div class="w3-half w3-padding-large w3-center">
             <br><br><br>
@@ -140,25 +146,88 @@
             <i class="fa-solid fa-envelope w3-large w3-text-black">&nbsp;&nbsp;
                 bocattodipollo@gmail.com</i>
             <br><br><br><br>
-            <p><strong>lunes a sábado</strong> | 09:00 - 14:00 -- 17:30 - 22:00</p>
+            <p><strong>Lunes a Viernes</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
+            <br>
+            <p><strong>Sabados</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
             <br>
             <p><strong>Domingo</strong> | Cerrado</p>
             <br><br>
+            <p><strong>Ubicacion</strong></p>
+            <p>Balcarce 803
+                D5700GDH D5700GDG
+                San Luis
+                Argentina</p>
+            <br>
             <p class="w3-text-blue-grey w3-medium">
                 <b>Si quieres saber más sobre nuesto productos, ingredientes o simplemente tienes alguna duda,
                     rellena el formulario de contacto</b>
             </p>
             <br><br>
+
             <!-- BOTON CONTACTO -->
+
             <!-- Button to Open the Modal -->
-            <button class="w3-button w3-light-grey w3-section" data-toggle="modal" data-target="#myModal"
-                type="submit">CONTACTANOS</button>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+                CONTACTANOS
+            </button>
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal" style="text-align: left;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Fomulario de contacto</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form action="/action_page.php" class="was-validated">
+                                <div class="mb-3 mt-3">
+                                    <input type="text" class="form-control" id="uname" placeholder="Nombre" name="uname"
+                                        required>
+                                    <div class="valid-feedback">Valido.</div>
+                                    <div class="invalid-feedback">Porfavor introduzca su nombre.</div>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <input type="text" class="form-control" id="uname" placeholder="Apellido"
+                                        name="uname" required>
+                                    <div class="valid-feedback">Valido.</div>
+                                    <div class="invalid-feedback">Porfavor introduzca su apellidio.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                                        required>
+                                    <div class="valid-feedback">Valido.</div>
+                                    <div class="invalid-feedback">Porfafor introduzca un email correcto.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="consult">Dejenos su consulta</label>
+                                    <textarea class="form-control" id="consult" name="text"
+                                        placeholder="Consulta"></textarea>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- GOOGLE MAPS -->
         <div class="w3-half w3-padding-large w3-hide-small">
             <br><br>
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.383045279537!2d-66.33778142659068!3d-33.3088000315649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d43b51d19c2103%3A0xff02940b25dcc3d1!2sBOCATTO%20DI%20POLLO!5e0!3m2!1ses-419!2ses!4v1690134814208!5m2!1ses-419!2ses"
-                width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                width="600" height="800" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </footer>

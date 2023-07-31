@@ -28,48 +28,40 @@ window.onscroll = function () {
 }
 
 
-//BOTON COMPRA PRODUCTO 1
-function abrir_pagina_producto1() {
+//BOTON COMPRA PRODUCTO
+function abrir_pagina_producto(prodctID) {
 
     // Obtener el título del producto de la página principal
-    var div_producto1 = document.getElementById("producto1");
-    var titulo = div_producto1.querySelector("h3");
+    var div_producto = document.getElementById(prodctID);
+    var titulo = div_producto.querySelector("h3");
     var contenido_titulo = titulo.textContent;
 
     // Obtener el precio del producto de la página principal
-    var precio = div_producto1.querySelector("p");
+    var precio = div_producto.querySelector("p");
     var contenido_precio = precio.textContent;
-    var nombre_cantidad = "Milanesas:";
-    var descripcion_producto1 = "La milanesa de pollo es un plato sabroso y versátil que se prepara a partir de filetes de pechuga de pollo finamente empanizados y fritos hasta obtener una textura crujiente por fuera y jugosa por dentro.Su deliciosa base está compuesta por la tierna carne de pollo, que es sazonada con una combinación de especias y hierbas para realzar su sabor. Luego, se sumerge en una mezcla de huevo batido que le aporta un toque de suavidad y adherencia. <br>La milanesa de pollo casera destaca por su versatilidad, ya que se puede servir como plato principal acompañada de ensaladas, arroz o papas, o incluso como un delicioso sándwich en pan fresco con ingredientes como lechuga, tomate y mayonesa.Su exquisito relleno de pollo y su textura crujiente hacen que sea una opción popular y apetitosa para disfrutar en diversas ocasiones y con diferentes acompañamientos.Sin duda, es una opción irresistible para aquellos que buscan un plato casero delicioso y reconfortante.";
-    var ingredientes_producto1 = "<p>¿Qué ingredientes lleva?</p><ul><li>Pollo</li><li>Pan Rallado</li><li>Huevo</li><li>Condimentos (sal, provensal)</li></ul>";
 
-    //CAJA IMAGEN COMPRA
-    //imagen principal
-    var imgPrincipal1_producto3 = "/static/fotosalfajores/mila-1.JPG";
-    var imgPrincipal2_producto3 = "/static/fotosalfajores/mila-2.JPG";
-    var imgPrincipal3_producto3 = "/static/fotosalfajores/mila-3.JPG";
-
-    //imgaen secundaria
-    var imagen1_producto3 = "/static/fotosalfajores/mila-1.JPG";
-    var imagen2_producto3 = "/static/fotosalfajores/mila-2.JPG";
-    var imagen3_producto3 = "/static/fotosalfajores/mila-3.JPG";
+    // Obtener información del producto según el ID
+    var producto_info = contenido_producto(prodctID);
 
 
 
-    // Almacenar informacion de producto a transferir en localStorage
+    // Almacenar información del producto a transferir en localStorage
+    localStorage.setItem('cantidad_transferir', producto_info.tipo_producto);
+    localStorage.setItem('opcion_transferir', producto_info.opcion_producto);
+
     localStorage.setItem('titulo_transferir', contenido_titulo);
     localStorage.setItem('precio_transferir', contenido_precio);
-    localStorage.setItem('nombre_cantidad_transferir', nombre_cantidad);
-    localStorage.setItem('descripcion_transferir', descripcion_producto1);
-    localStorage.setItem('ingredientes_transferir', ingredientes_producto1);
+    localStorage.setItem('nombre_cantidad_transferir', producto_info.nombre_cantidad);
+    localStorage.setItem('descripcion_transferir', producto_info.descripcion_producto);
+    localStorage.setItem('ingredientes_transferir', producto_info.ingredientes_producto);
 
-    localStorage.setItem('imgPrincipal1_transferir', imgPrincipal1_producto3);
-    localStorage.setItem('imgPrincipal2_transferir', imgPrincipal2_producto3);
-    localStorage.setItem('imgPrincipal3_transferir', imgPrincipal3_producto3);
+    localStorage.setItem('imgPrincipal1_transferir', producto_info.imgPrincipal1_producto);
+    localStorage.setItem('imgPrincipal2_transferir', producto_info.imgPrincipal2_producto);
+    localStorage.setItem('imgPrincipal3_transferir', producto_info.imgPrincipal3_producto);
 
-    localStorage.setItem('imgaen1_transferir', imagen1_producto3);
-    localStorage.setItem('imgaen2_transferir', imagen2_producto3);
-    localStorage.setItem('imgaen3_transferir', imagen3_producto3);
+    localStorage.setItem('imgaen1_transferir', producto_info.imagen1_producto);
+    localStorage.setItem('imgaen2_transferir', producto_info.imagen2_producto);
+    localStorage.setItem('imgaen3_transferir', producto_info.imagen3_producto);
 
     // Redireccionar a la nueva página
     window.location.href = "/product";
@@ -79,217 +71,201 @@ function abrir_pagina_producto1() {
 window.addEventListener("load", function () {
 
     // Recuperar el contenido almacenado en localStorage
-    const titulo_producto1 = localStorage.getItem('titulo_transferir');
-    const precio_producto1 = localStorage.getItem('precio_transferir');
+    const cantidad_producto_transferir = localStorage.getItem('cantidad_transferir');
+    const opcion_producto_transferir = localStorage.getItem('opcion_transferir');
+
+    const titulo_producto = localStorage.getItem('titulo_transferir');
+    const precio_producto = localStorage.getItem('precio_transferir');
     const nombre_cantidad = localStorage.getItem('nombre_cantidad_transferir');
-    const descripcion_producto1 = localStorage.getItem('descripcion_transferir');
-    const ingredientes_producto1 = localStorage.getItem('ingredientes_transferir');
+    const descripcion_producto = localStorage.getItem('descripcion_transferir');
+    const ingredientes_producto = localStorage.getItem('ingredientes_transferir');
 
-    const imgPrincipal1_producto3 = localStorage.getItem('imgPrincipal1_transferir');
-    const imgPrincipal2_producto3 = localStorage.getItem('imgPrincipal2_transferir');
-    const imgPrincipal3_producto3 = localStorage.getItem('imgPrincipal3_transferir');
+    const imgPrincipal1_producto = localStorage.getItem('imgPrincipal1_transferir');
+    const imgPrincipal2_producto = localStorage.getItem('imgPrincipal2_transferir');
+    const imgPrincipal3_producto = localStorage.getItem('imgPrincipal3_transferir');
 
-    const imagen1_producto3 = localStorage.getItem('imgaen1_transferir');
-    const imagen2_producto3 = localStorage.getItem('imgaen2_transferir');
-    const imagen3_producto3 = localStorage.getItem('imgaen3_transferir');
+    const imagen1_producto = localStorage.getItem('imgaen1_transferir');
+    const imagen2_producto = localStorage.getItem('imgaen2_transferir');
+    const imagen3_producto = localStorage.getItem('imgaen3_transferir');
 
     // Verificar si existe el elemento con el ID "titulo"
     if (document.getElementById("nameproducto")) {
+
+        // Actualizar el contenido del label según el tipo de producto
+        var label_cantidad = document.getElementById("cantidad_producto");
+
+        if (cantidad_producto_transferir === "kilo") {
+            label_cantidad.textContent = "Cantidad en kilo:";
+        } else {
+            label_cantidad.textContent = "Cantidad:";
+        }
+
+        // Agregar opcion segun producto
+        var contenido_div_id_opcion = document.getElementById("opcion").innerHTML
+        if (opcion_producto_transferir === "opcion") {
+
+            contenido_new = "<br><label>Elija el producto que desea:</label><select class='form-select form-select-sm'><option>Filet de Pechuga</option><option>Filet de Muslo</option></select>"
+
+            document.getElementById("opcion").innerHTML = contenido_div_id_opcion + contenido_new
+
+        } else {
+            document.getElementById("opcion").innerHTML = document.getElementById("opcion").innerHTML
+        }
+
         // Asignar la informacion guardada al elemento con el ID "nameproducto"
-        document.getElementById('div-compra-informacion').querySelector('h1').textContent = titulo_producto1
-        document.getElementById('div-compra-informacion').querySelector('h3').textContent = precio_producto1
+        document.getElementById('div-compra-informacion').querySelector('h1').textContent = titulo_producto
+        document.getElementById('div-compra-informacion').querySelector('h3').textContent = precio_producto
         document.getElementById('nombre_unidad').textContent = nombre_cantidad
-        document.getElementById('descripcion_compra').textContent = descripcion_producto1
-        document.getElementById('ingredientes_compra').innerHTML = ingredientes_producto1
+        document.getElementById('descripcion_compra').innerHTML = descripcion_producto
+        document.getElementById('ingredientes_compra').innerHTML = ingredientes_producto
 
-        document.getElementById('img1_principal').setAttribute('src', imgPrincipal1_producto3)
-        document.getElementById('img2_principal').setAttribute('src', imgPrincipal2_producto3)
-        document.getElementById('img3_principal').setAttribute('src', imgPrincipal3_producto3)
+        document.getElementById('img1_principal').setAttribute('src', imgPrincipal1_producto)
+        document.getElementById('img2_principal').setAttribute('src', imgPrincipal2_producto)
+        document.getElementById('img3_principal').setAttribute('src', imgPrincipal3_producto)
 
-        document.getElementById('img1').setAttribute('src', imagen1_producto3)
-        document.getElementById('img2').setAttribute('src', imagen2_producto3)
-        document.getElementById('img3').setAttribute('src', imagen3_producto3)
+        document.getElementById('img1').setAttribute('src', imagen1_producto)
+        document.getElementById('img2').setAttribute('src', imagen2_producto)
+        document.getElementById('img3').setAttribute('src', imagen3_producto)
     }
 });
 
 
+function contenido_producto(prodctID) {
+    var producto_info = {};
 
+    if (prodctID === "producto1") {
+        producto_info.tipo_producto = "kilo";
+        producto_info.nombre_cantidad = "Milanesas:";
 
-//BOTON COMPRA PRODUCTO 2
-function abrir_pagina_producto2() {
+        producto_info.descripcion_producto = "<p style='text-align: left;'>La milanesa de pollo es un plato sabroso y versátil que se prepara a partir de filetes de pechuga de pollo finamente empanizados y fritos hasta obtener una textura crujiente por fuera y jugosa por dentro. Su deliciosa base está compuesta por la tierna carne de pollo, que es sazonada con una combinación de especias y hierbas para realzar su sabor. Luego, se sumerge en una mezcla de huevo batido que le aporta un toque de suavidad y adherencia. La milanesa de pollo casera destaca por su versatilidad, ya que se puede servir como plato principal acompañada de ensaladas, arroz o papas, o incluso como un delicioso sándwich en pan fresco con ingredientes como lechuga, tomate y mayonesa. Su exquisito relleno de pollo y su textura crujiente hacen que sea una opción popular y apetitosa para disfrutar en diversas ocasiones y con diferentes acompañamientos. Sin duda, es una opción irresistible para aquellos que buscan un plato casero delicioso y reconfortante.<p>";
 
-    // Obtener el título del producto de la página principal
-    var div_producto2 = document.getElementById("producto2");
-    var titulo = div_producto2.querySelector("h3");
-    var contenido_titulo = titulo.textContent;
-    var nombre_cantidad = "Box Alfajor: ";
+        producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pollo</li><li>Pan Rallado</li><li>Huevo</li><li>Condimentos (sal, provensal)</li></ul>";
+        producto_info.imgPrincipal1_producto = "/static/fotosalfajores/mila-1.JPG";
+        producto_info.imgPrincipal2_producto = "/static/fotosalfajores/mila-2.JPG";
+        producto_info.imgPrincipal3_producto = "/static/fotosalfajores/mila-3.JPG";
+        producto_info.imagen1_producto = "/static/fotosalfajores/mila-1.JPG";
+        producto_info.imagen2_producto = "/static/fotosalfajores/mila-2.JPG";
+        producto_info.imagen3_producto = "/static/fotosalfajores/mila-3.JPG";
 
-    // Obtener el precio del producto de la página principal
-    var precio = div_producto2.querySelector("p");
-    var contenido_precio = precio.textContent;
-    var descripcion_producto2 = "El arrollado de pollo es un platillo delicioso que consiste en una fina capa de pechuga de pollo rellena con una mezcla de ingredientes sabrosos, como jamon, queso, espinacas, zanahorias u otros vegetal. Una vez relleno, el pollo se enrolla y se cocina al horno o en agua, lo que le da una textura jugosa y tierna. El arrollaado de pollo es una opcion popular para ocasiones especiales, ya que su presentacion es elegante y su sabor es exquisito. Es una preparacion creativa y deliciosa que permite disfrutar del pollo de una manera diferente y sabrosa. Su versatilidad y sabor lo convierte en una opcion popular para complacer a familiares y amigos en diversas ocasiones culinarias.";
-    var ingredientes_producto2 = "<p>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li><li>Zanahorias</li><li>Vegetales</li><li>Huevo</li><li>Especias y Condimentos</li><li>(El relleno puede ser a su gusto)</li></ul>";
+    } else if (prodctID === "producto2") {
+        producto_info.tipo_producto = "kilo";
+        producto_info.nombre_cantidad = "Arrollado:";
 
-    //CAJA IMAGEN COMPRA
-    //imagen principal
-    var imgPrincipal1_producto3 = "/static/fotosalfajores/arrollado-2.JPG"
-    var imgPrincipal2_producto3 = "/static/fotosalfajores/arrollado.JPG"
-    var imgPrincipal3_producto3 = "/static/fotosalfajores/arrollado-3.JPG"
-    //imgaen secundaria
-    var imagen1_producto3 = "/static/fotosalfajores/arrollado-2.JPG"
-    var imagen2_producto3 = "/static/fotosalfajores/arrollado.JPG"
-    var imagen3_producto3 = "/static/fotosalfajores/arrollado-3.JPG"
+        producto_info.descripcion_producto = "<p style='text-align: left;'>El arrollado de pollo es un platillo delicioso que consiste en una fina capa de pechuga de pollo rellena con una mezcla de ingredientes sabrosos, como jamon, queso, espinacas, zanahorias u otros vegetales. Una vez relleno, el pollo se enrolla y se cocina al horno o en agua, lo que le da una textura jugosa y tierna. El arrollaado de pollo es una opcion popular para ocasiones especiales, ya que su presentacion es elegante y su sabor es exquisito. Es una preparacion creativa y deliciosa que permite disfrutar del pollo de una manera diferente y sabrosa. Su versatilidad y sabor lo convierte en una opcion popular para complacer a familiares y amigos en diversas ocasiones culinarias.</p>";
 
+        producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li><li>Zanahorias</li><li>Vegetales</li><li>Huevo</li><li>Especias y Condimentos</li><li>(El relleno puede ser a su gusto)</li></ul>";
+        producto_info.imgPrincipal1_producto = "/static/fotosalfajores/arrollado-2.JPG";
+        producto_info.imgPrincipal2_producto = "/static/fotosalfajores/arrollado.JPG";
+        producto_info.imgPrincipal3_producto = "/static/fotosalfajores/arrollado-3.JPG";
+        producto_info.imagen1_producto = "/static/fotosalfajores/arrollado-2.JPG";
+        producto_info.imagen2_producto = "/static/fotosalfajores/arrollado.JPG";
+        producto_info.imagen3_producto = "/static/fotosalfajores/arrollado-3.JPG";
 
-    // Almacenar el titulo de producto a transferir en localStorage
-    localStorage.setItem('titulo_transferir', contenido_titulo);
-    localStorage.setItem('precio_transferir', contenido_precio);
-    localStorage.setItem('nombre_cantidad_transferir', nombre_cantidad);
-    localStorage.setItem('descripcion_transferir', descripcion_producto2);
-    localStorage.setItem('ingredientes_transferir', ingredientes_producto2);
+    } else if (prodctID === "producto3") {
+        producto_info.tipo_producto = "kilo";
+        producto_info.nombre_cantidad = "Milanesa Rellena:";
 
-    localStorage.setItem('imgPrincipal1_transferir', imgPrincipal1_producto3);
-    localStorage.setItem('imgPrincipal2_transferir', imgPrincipal2_producto3);
-    localStorage.setItem('imgPrincipal3_transferir', imgPrincipal3_producto3);
+        producto_info.descripcion_producto = "<p style='text-align: left;'>Nuestra Milanesa de Pollo Rellena de jamón, queso y morrón es una verdadera delicia para el paladar. Cada porción está cuidadosamente preparada a mano, con filetes de pechuga de pollo de primera calidad, rellenos generosos de jamón, queso fundido y tiras de morrón, que le aportan un toque de color y sabor único. El proceso artesanal y el amor con el que elaboramos este platillo se reflejan en cada bocado. Nuestro objetivo es ofrecerte una experiencia culinaria auténtica y deliciosa, donde la tradición de nuestra familia se mezcla con ingredientes frescos y sabrosos.</p>";
 
-    localStorage.setItem('imgaen1_transferir', imagen1_producto3);
-    localStorage.setItem('imgaen2_transferir', imagen2_producto3);
-    localStorage.setItem('imgaen3_transferir', imagen3_producto3);
+        producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li></ul>";
+        producto_info.imgPrincipal1_producto = "/static/fotosalfajores/mila.elaboracion-7.JPG";
+        producto_info.imgPrincipal2_producto = "/static/fotosalfajores/mila-elaboracion-3.JPG";
+        producto_info.imgPrincipal3_producto = "/static/fotosalfajores/mila.elaboracion-8.JPG";
+        producto_info.imagen1_producto = "/static/fotosalfajores/mila.elaboracion-7.JPG";
+        producto_info.imagen2_producto = "/static/fotosalfajores/mila-elaboracion-3.JPG";
+        producto_info.imagen3_producto = "/static/fotosalfajores/mila.elaboracion-8.JPG";
 
-    // Redireccionar a la nueva página
-    window.location.href = "/product";
+    } else if (prodctID === "producto4") {
+        producto_info.tipo_producto = "kilo";
+        producto_info.nombre_cantidad = "Hamburguesa Simple:";
+
+        producto_info.descripcion_producto = "<p style='text-align: left;'>Disfruta de nuestra jugosa Hamburguesa Simple, preparada con carne de pollo cuidadosamente seleccionada, molida y sazonada en el momento para garantizar su frescura, jugosidad y sabor inigualables. <br>¡Sencilla y deliciosa, perfecta para satisfacer tu antojo!</p>";
+
+        producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo molida</li><li>Pan Rallado</li><li>Huevo</li><li>Especias y Condimentos</li></ul>";
+        producto_info.imgPrincipal1_producto = "/static/fotosalfajores/burger-1.JPG";
+        producto_info.imgPrincipal2_producto = "/static/fotosalfajores/burger-2.JPG";
+        producto_info.imgPrincipal3_producto = "/static/fotosalfajores/burger-3.JPG";
+        producto_info.imagen1_producto = "/static/fotosalfajores/burger-1.JPG";
+        producto_info.imagen2_producto = "/static/fotosalfajores/burger-2.JPG";
+        producto_info.imagen3_producto = "/static/fotosalfajores/burger-3.JPG";
+
+    } else if (prodctID === "producto5") {
+        producto_info.tipo_producto = "kilo";
+        producto_info.nombre_cantidad = "Hamburguesa Rellena:";
+
+        producto_info.descripcion_producto = "<p style='text-align: left;'>Sumérgete en el placer de nuestra Hamburguesa Rellena, con un corazón de queso fundido que se derrite al cocinarse y junto al jamon, se convierten en una explosión de sabores y texturas que te deleitarán en cada mordisco. ¡Una combinación irresistible de sabores que te sorprenderá!<br><br>Preparada con carne de pollo cuidadosamente seleccionada, molida y sazonada en el momento para garantizar su frescura, jugosidad y sabor inigualables.</p>";
+
+        producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo Molida</li><li>Jamon</li><li>Queso</li><li>Pan Rallado</li><li>Huevo</li><li>Especias y Condimentos</li></ul>";
+        producto_info.imgPrincipal1_producto = "/static/fotosalfajores/arrollado-2.JPG";
+        producto_info.imgPrincipal2_producto = "/static/fotosalfajores/arrollado.JPG";
+        producto_info.imgPrincipal3_producto = "/static/fotosalfajores/arrollado-3.JPG";
+        producto_info.imagen1_producto = "/static/fotosalfajores/arrollado-2.JPG";
+        producto_info.imagen2_producto = "/static/fotosalfajores/arrollado.JPG";
+        producto_info.imagen3_producto = "/static/fotosalfajores/arrollado-3.JPG";
+
+    } else if (prodctID === "producto6") {
+        producto_info.tipo_producto = "otro";
+        producto_info.nombre_cantidad = "Arrolladito J/Q:";
+
+        producto_info.descripcion_producto = "<p style='text-align: left;'>Nuestros Arrolladitos de Jamón y Queso son una delicia artesanal, creada con la pasión y la dedicación de nuestras recetas familiares. Elaborados con finas capas de pollo, jamón y queso. ¡Una opción perfecta para compartir y disfrutar en cualquier ocasión!</P>";
+
+        producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li><li>Especias y Condimentos</li></ul>";
+        producto_info.imgPrincipal1_producto = "/static/fotosalfajores/arrollado-2.JPG";
+        producto_info.imgPrincipal2_producto = "/static/fotosalfajores/arrollado.JPG";
+        producto_info.imgPrincipal3_producto = "/static/fotosalfajores/arrollado-3.JPG";
+        producto_info.imagen1_producto = "/static/fotosalfajores/arrollado-2.JPG";
+        producto_info.imagen2_producto = "/static/fotosalfajores/arrollado.JPG";
+        producto_info.imagen3_producto = "/static/fotosalfajores/arrollado-3.JPG";
+
+    } else if (prodctID === "producto7") {
+        producto_info.tipo_producto = "otro";
+        producto_info.nombre_cantidad = "Pata Muslo:";
+
+        producto_info.descripcion_producto = "<p style='text-align: left;'>En nuestra pollería, seleccionamos minuciosamente las patas y muslos de pollo provenientes de nuestros confiables proveedores. Cada pieza es elegida con cuidado para asegurarnos de brindar a nuestros clientes la mejor calidad. Nuestras Patas Muslos son frescas y jugosas, ideales para preparar platillos sabrosos y reconfortantes. Al cocinarlas, podrás disfrutar de la suculencia y el sabor auténtico que solo un producto fresco puede ofrecer. <br><br>Ven y descubre el placer de saborear pollo de primera calidad que ha sido seleccionado con esmero para garantizar una experiencia culinaria excepcional.</p>";
+
+        producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pata Muslo</li></ul>";
+        producto_info.imgPrincipal1_producto = "/static/fotosalfajores/pata.muslo-1.JPG";
+        producto_info.imgPrincipal2_producto = "/static/fotosalfajores/pata.muslo-2.JPG";
+        producto_info.imgPrincipal3_producto = "/static/fotosalfajores/pata.muslo-3.JPG";
+        producto_info.imagen1_producto = "/static/fotosalfajores/pata.muslo-1.JPG";
+        producto_info.imagen2_producto = "/static/fotosalfajores/pata.muslo-2.JPG";
+        producto_info.imagen3_producto = "/static/fotosalfajores/pata.muslo-3.JPG";
+
+    } else if (prodctID === "producto8") {
+        producto_info.tipo_producto = "kilo";
+        producto_info.nombre_cantidad = "Filet de Pechuga y Muslo:";
+
+        producto_info.descripcion_producto = "<p style='text-align: left;'>Un clásico de la cocina familiar.<br><br>Nuestros Filetes de Pechuga son el resultado de una selección cuidadosa de pechugas de pollo frescas y de la más alta calidad. Nos aseguramos de que cada filete sea tierno y jugoso, para que disfrutes de su sabor natural en cualquier receta que elijas preparar. Al adquirir nuestros Filetes de Pechuga, te garantizamos que estás obteniendo un producto fresco y delicioso, elaborado con pasión y dedicación para que tu experiencia culinaria sea siempre inolvidable.<br><br>Para nuestros Filetes de Muslo, escogemos meticulosamente las piezas de muslo de pollo más jugosas y sabrosas. Estos filetes son ideales para dar un toque extra de sabor a tus preparaciones. Al ser productos frescos y de primera calidad, podrás apreciar la diferencia en su textura y sabor al cocinarlos. Estamos comprometidos con brindarte los mejores productos para que disfrutes de una experiencia gastronómica única en cada platillo que prepares.</p>";
+
+        producto_info.opcion_producto = "opcion"
+        producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de Pechuga</li><li>Filet de Muslo</li></ul>";
+        producto_info.imgPrincipal1_producto = "/static/fotosalfajores/pechuga-1.JPG";
+        producto_info.imgPrincipal2_producto = "/static/fotosalfajores/pechuga-2.JPG";
+        producto_info.imgPrincipal3_producto = "/static/fotosalfajores/pechuga-3.JPG";
+        producto_info.imagen1_producto = "/static/fotosalfajores/pechuga-1.JPG";
+        producto_info.imagen2_producto = "/static/fotosalfajores/pechuga-2.JPG";
+        producto_info.imagen3_producto = "/static/fotosalfajores/pechuga-3.JPG";
+
+    } else if (prodctID === "producto9") {
+        producto_info.tipo_producto = "otro";
+        producto_info.nombre_cantidad = "Pollo Entero:";
+
+        producto_info.descripcion_producto = "<p style='text-align: left;'>Nuestro Pollo Entero es el resultado de una rigurosa selección de aves frescas y de óptima calidad. Queremos asegurarnos de que nuestros clientes reciban un producto que refleje nuestro compromiso con la frescura y el sabor. Al adquirir un Pollo Entero en nuestra pollería, tendrás la confianza de estar llevando a casa una ave fresca y lista para ser cocinada. Sea cual sea la receta que decidas preparar, te garantizamos que este pollo será la base perfecta para platos jugosos y deliciosos que toda tu familia disfrutará. Ven y descubre el auténtico sabor del pollo fresco y de calidad que tenemos para ti.</p>";
+
+        producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p></ul>";
+        producto_info.imgPrincipal1_producto = "/static/fotosalfajores/pollo-1.JPG";
+        producto_info.imgPrincipal2_producto = "/static/fotosalfajores/pollo-2.JPG";
+        producto_info.imgPrincipal3_producto = "/static/fotosalfajores/pollo-3.JPG";
+        producto_info.imagen1_producto = "/static/fotosalfajores/pollo-1.JPG";
+        producto_info.imagen2_producto = "/static/fotosalfajores/pollo-2.JPG";
+        producto_info.imagen3_producto = "/static/fotosalfajores/pollo-3.JPG";
+
+    }
+
+    // Puedes agregar más "elif" para otros productos
+
+    return producto_info;
 }
-
-// Verificar si se cargó la página completamente
-window.addEventListener("load", function () {
-
-    // Recuperar el contenido almacenado en localStorage
-    const titulo_producto2 = localStorage.getItem('titulo_transferir');
-    const precio_producto2 = localStorage.getItem('precio_transferir');
-    const nombre_cantidad = localStorage.getItem('nombre_cantidad_transferir');
-    const descripcion_producto2 = localStorage.getItem('descripcion_transferir');
-    const ingredientes_producto2 = localStorage.getItem('ingredientes_transferir');
-
-    const imgPrincipal1_producto3 = localStorage.getItem('imgPrincipal1_transferir');
-    const imgPrincipal2_producto3 = localStorage.getItem('imgPrincipal2_transferir');
-    const imgPrincipal3_producto3 = localStorage.getItem('imgPrincipal3_transferir');
-
-    const imagen1_producto3 = localStorage.getItem('imgaen1_transferir');
-    const imagen2_producto3 = localStorage.getItem('imgaen2_transferir');
-    const imagen3_producto3 = localStorage.getItem('imgaen3_transferir');
-
-    // Verificar si existe el elemento con el ID "titulo"
-    if (document.getElementById("nameproducto")) {
-        // Asignar la informacion guardada al elemento con el ID "nameproducto"
-        document.getElementById('div-compra-informacion').querySelector('h1').textContent = titulo_producto2
-        document.getElementById('div-compra-informacion').querySelector('h3').textContent = precio_producto2
-        document.getElementById('nombre_unidad').textContent = nombre_cantidad
-        document.getElementById('descripcion_compra').textContent = descripcion_producto2
-        document.getElementById('ingredientes_compra').innerHTML = ingredientes_producto2
-
-        document.getElementById('img1_principal').setAttribute('src', imgPrincipal1_producto3)
-        document.getElementById('img2_principal').setAttribute('src', imgPrincipal2_producto3)
-        document.getElementById('img3_principal').setAttribute('src', imgPrincipal3_producto3)
-
-        document.getElementById('img1').setAttribute('src', imagen1_producto3)
-        document.getElementById('img2').setAttribute('src', imagen2_producto3)
-        document.getElementById('img3').setAttribute('src', imagen3_producto3)
-    }
-});
-
-
-
-
-//BOTON COMPRA PRODUCTO 3
-function abrir_pagina_producto3() {
-
-    // Obtener el título del producto de la página principal
-    var div_producto3 = document.getElementById("producto3");
-    var titulo = div_producto3.querySelector("h3");
-    var contenido_titulo = titulo.textContent;
-    var nombre_cantidad = "Conitos de dulce de leche: ";
-
-    // Obtener el precio del producto de la página principal
-    var precio = div_producto3.querySelector("p");
-    var contenido_precio = precio.textContent;
-    var descripcion_producto3 = "Una base de galleta sabor cacao aromatizado con naranja con un \n\
-exquisito y cremoso relleno de  dulce de leche bañado en chocolate negro o blanco, es el dulce perfecto \n\
-para aquellos que buscan una combinación exquisita de sabores. La textura crujiente de la galleta se combina con \n\
-la cremosidad del dulce de leche y la intensidad del chocolate para crear una experiencia única y deliciosa. Ya sea como \n\
-un regalo para un ser querido o simplemente como un capricho para ti mismo, estas deliciosas galletas son una excelente opción \n\
-para satisfacer cualquier antojo dulce.";
-    var ingredientes_producto3 = "<p>¿Qué ingredientes lleva?</p><ul><li>Harina de trigo</li><li>Mantequilla</li><li>Azucar</li><li>Huevo</li><li>Cacao</li><li>Chocolate negro</li><li>Dulce de leche</li></ul>";
-
-    //CAJA IMAGEN COMPRA
-    //imagen principal
-    var imgPrincipal1_producto3 = "/static/fotosalfajores/Dulce-de-Leche-Cones-2.jpg"
-    var imgPrincipal2_producto3 = "/static/fotosalfajores/Dulce-de-Leche-Cones-1.jpg"
-    var imgPrincipal3_producto3 = "/static/fotosalfajores/Cone-before-chocolate-coating.jpg"
-    //imgaen secundaria
-    var imagen1_producto3 = "/static/fotosalfajores/Dulce-de-Leche-Cones-2.jpg"
-    var imagen2_producto3 = "/static/fotosalfajores/Dulce-de-Leche-Cones-1.jpg"
-    var imagen3_producto3 = "/static/fotosalfajores/Cone-before-chocolate-coating.jpg"
-
-
-
-    // Almacenar el titulo de producto a transferir en localStorage
-    localStorage.setItem('titulo_transferir', contenido_titulo);
-    localStorage.setItem('precio_transferir', contenido_precio);
-    localStorage.setItem('nombre_cantidad_transferir', nombre_cantidad);
-    localStorage.setItem('descripcion_transferir', descripcion_producto3);
-    localStorage.setItem('ingredientes_transferir', ingredientes_producto3);
-
-    localStorage.setItem('imgPrincipal1_transferir', imgPrincipal1_producto3);
-    localStorage.setItem('imgPrincipal2_transferir', imgPrincipal2_producto3);
-    localStorage.setItem('imgPrincipal3_transferir', imgPrincipal3_producto3);
-
-    localStorage.setItem('imgaen1_transferir', imagen1_producto3);
-    localStorage.setItem('imgaen2_transferir', imagen2_producto3);
-    localStorage.setItem('imgaen3_transferir', imagen3_producto3);
-
-    // Redireccionar a la nueva página
-    window.location.href = "/product";
-}
-
-// Verificar si se cargó la página completamente
-window.addEventListener("load", function () {
-
-    // Recuperar el contenido almacenado en localStorage
-    const titulo_producto3 = localStorage.getItem('titulo_transferir');
-    const precio_producto3 = localStorage.getItem('precio_transferir');
-    const nombre_cantidad = localStorage.getItem('nombre_cantidad_transferir');
-    const descripcion_producto3 = localStorage.getItem('descripcion_transferir');
-    const ingredientes_producto3 = localStorage.getItem('ingredientes_transferir');
-
-    const imgPrincipal1_producto3 = localStorage.getItem('imgPrincipal1_transferir');
-    const imgPrincipal2_producto3 = localStorage.getItem('imgPrincipal2_transferir');
-    const imgPrincipal3_producto3 = localStorage.getItem('imgPrincipal3_transferir');
-
-    const imagen1_producto3 = localStorage.getItem('imgaen1_transferir');
-    const imagen2_producto3 = localStorage.getItem('imgaen2_transferir');
-    const imagen3_producto3 = localStorage.getItem('imgaen3_transferir');
-
-
-    // Verificar si existe el elemento con el ID "titulo"
-    if (document.getElementById("nameproducto")) {
-        // Asignar la informacion guardada al elemento con el ID "nameproducto"
-        document.getElementById('div-compra-informacion').querySelector('h1').textContent = titulo_producto3
-        document.getElementById('div-compra-informacion').querySelector('h3').textContent = precio_producto3
-        document.getElementById('nombre_unidad').textContent = nombre_cantidad
-        document.getElementById('descripcion_compra').textContent = descripcion_producto3
-        document.getElementById('ingredientes_compra').innerHTML = ingredientes_producto3
-
-        document.getElementById('img1_principal').setAttribute('src', imgPrincipal1_producto3)
-        document.getElementById('img2_principal').setAttribute('src', imgPrincipal2_producto3)
-        document.getElementById('img3_principal').setAttribute('src', imgPrincipal3_producto3)
-
-        document.getElementById('img1').setAttribute('src', imagen1_producto3)
-        document.getElementById('img2').setAttribute('src', imagen2_producto3)
-        document.getElementById('img3').setAttribute('src', imagen3_producto3)
-    }
-});
-
-
 
 
 

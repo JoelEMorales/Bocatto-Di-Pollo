@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: "Times New Roman", Georgia, Serif;
@@ -36,7 +38,7 @@
         </a>
         <div class="w3-right w3-hide-small w3-padding-large">
             <a href="#descripcion" class="w3-bar-item w3-button">¿Quienes somos?</a>
-            <a href="#producto" class="w3-bar-item w3-button">Nuestro Producto</a>
+            <a href="/our-product" class="w3-bar-item w3-button">Productos</a>
             <a href="#galeria" class="w3-bar-item w3-button">Galeria</a>
             <a href="#contact" class="w3-bar-item w3-button">Contactanos</a>
             <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-lg"></i></a>
@@ -82,7 +84,7 @@
                 <h1 class="w3-center w3-text-black">Sabor y Tradición</h1><br>
                 <h5 class="w3-center w3-text-black">Nos enorgullece ofrecerte una seleccion de productos donde el pollo
                     es el protagonista:
-                    <hr>
+                    <hr style="background-color: gray; height: 0,5px;">
                 </h5>
                 <p class="w3-large w3-text-black">
                     Nuestra deliciosa oferta familiar se enfoca en el mundo del pollo y sus delicias. Desde nuestro
@@ -109,6 +111,7 @@
             <div class="w3-half w3-padding-large">
                 <br><br><br>
                 <h1 class="w3-center w3-text-black">Nuestra Historia: Del Sueño a la Realidad</h1><br>
+                <hr style="background-color: gray; height: 0,5px;">
                 <p class="w3-large w3-text-black">
                     Hace más de una década, la familia Morales tomó una valiente decisión al emigrar desde Mendoza a San
                     Luis en busca de nuevas oportunidades. Fue aquí, en esta tierra llena de promesas, donde la señora
@@ -139,97 +142,91 @@
                 <img src="{{ url_for('static', filename='fotosalfajores/arrollado.JPG') }}" class="w3-round w3-image"
                     alt="Table" style="width:100%; height: 780px">
             </div>
-        </section>
 
-        <!-- First Photo Grid-->
-        <section class="w3-row-padding w3-padding-16 w3-center w3-display-container" id="producto" style="height:800px">
-            <br><br><br><br>
-            <h2 class="w3-rest w3-padding">Productos Estrellas<br><br></h2>
+            <!-- Photo Grid Alfajor -->
+            <section style="height: 900px" id="galeria">
 
-            <div class="w3-third hover-shadow w3-button w3-hover-white" onclick="abrir_pagina_producto1()"
-                id="producto1">
-                <img src="{{ url_for('static', filename='fotosalfajores/mila-elaboracion-1.JPG') }}"
-                    alt="Milanesa De Pollo" style="width:100%; height: 350px;" id="img-product-1">
-                <h3 class="w3-large w3-padding" id="tittle-1">Milanesa De Pollo</h3>
-                <p id="precio-product-1">$ 500 / kg</p>
-            </div>
-
-            <div class="w3-third hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                onclick="abrir_pagina_producto2()" id="producto2">
-                <img src="{{ url_for('static', filename='fotosalfajores/arrollado-2.JPG') }}" alt="Arrollado De Pollo"
-                    style="width:100%; height: 350px">
-                <h3 class="w3-large w3-padding">Arrollado De Pollo</h3>
-                <p>$ 1000 / kg</p>
-            </div>
-
-            <div class="w3-third hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                onclick="abrir_pagina_producto3()" id="producto3">
-                <img src="{{ url_for('static', filename='fotosalfajores/chupa-chups-1.JPG') }}"
-                    alt="Chupa Chups De Pollo" style="width:100%; height: 350px;">
-                <h3 class="w3-large w3-padding">Chupa Chups De Pollo</h3>
-                <p>$ 400 / kg</p>
-            </div>
-            <p class="w3-large w3-text-grey w3-hide-medium"><br><br><br>Actualmente solo disponemos de la venta de 6 o
-                12 unidades
-                en nuestra pagina web. Si desea otro tipo de cantidad, lo invitamos a que visite nuestro local fisico.
-            </p>
-        </section>
-
-        <!-- Photo Grid Alfajor -->
-        <section style="height: 900px" id="galeria">
-            <br><br><br>
-            <!-- First Grid Photo Grid Alfajor -->
-            <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
-                <div class="w3-quarter contenedor-img">
-                    <img src="{{ url_for('static', filename='fotosalfajores/pollo-1.JPG') }}" alt="Alfajor Negro">
+                <!-- First Grid Photo Grid Alfajor -->
+                <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                    <br><br><br><br><br><br>
+                    <h1>Galeria</h1><br><br><br>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/pollo-1.JPG') }}" alt="Pollo">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/pata-1.JPG') }}" alt="Pata de pollo">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/mila-papa.JPG') }}" alt="Milanesa">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/arrollado-2.JPG') }}" alt="Arrollado">
+                    </div>
                 </div>
-                <div class="w3-quarter contenedor-img">
-                    <img src="{{ url_for('static', filename='fotosalfajores/pata-1.JPG') }}" alt="Alfajor Blanco">
+                <!-- Sequend Grid Photo Grid Alfajor -->
+                <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/mila-1.JPG') }}" alt="Alfajor Negro">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/mila.elaboracion-4.JPG') }}"
+                            alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/arrollado-3.JPG') }}"
+                            alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/pechuga-1.JPG') }}"
+                            alt="Alfajor Blanco">
+                    </div>
                 </div>
-                <div class="w3-quarter contenedor-img">
-                    <img src="{{ url_for('static', filename='fotosalfajores/mila-papa.JPG') }}" alt="Alfajor Blanco">
+                <!-- Three Grid Photo Grid Alfajor -->
+                <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                    <div class="w3-quarter contenedor-img">
+                        <img src=" {{ url_for('static', filename='fotosalfajores/burger-1.JPG' ) }}"
+                            alt="Alfajor Negro">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src=" {{ url_for('static', filename='fotosalfajores/mila-elaboracion-1.JPG' ) }}"
+                            alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src=" {{ url_for('static', filename='fotosalfajores/mila-3.JPG' ) }}" alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/mila-4.JPG') }}" class="crop"
+                            alt="Alfajor Blanco">
+                    </div>
                 </div>
-                <div class="w3-quarter contenedor-img">
-                    <img src="{{ url_for('static', filename='fotosalfajores/arrollado-2.JPG') }}" alt="Alfajor Blanco">
+                <!-- Four Grid Photo Grid Alfajor -->
+                <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                    <div class="w3-quarter contenedor-img">
+                        <img src=" {{ url_for('static', filename='fotosalfajores/pata.muslo-3.JPG' ) }}"
+                            alt="Alfajor Negro">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src=" {{ url_for('static', filename='fotosalfajores/albondiga-2.JPG' ) }}"
+                            alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src=" {{ url_for('static', filename='fotosalfajores/pollo-2.JPG' ) }}"
+                            alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="{{ url_for('static', filename='fotosalfajores/pechuga-5.JPG') }}" class="crop"
+                            alt="Alfajor Blanco">
+                    </div>
                 </div>
-            </div>
-            <!-- Sequend Grid Photo Grid Alfajor -->
-            <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
-                <div class="w3-quarter contenedor-img">
-                    <img src="{{ url_for('static', filename='fotosalfajores/mila-1.JPG') }}" alt="Alfajor Negro">
-                </div>
-                <div class="w3-quarter contenedor-img">
-                    <img src="{{ url_for('static', filename='fotosalfajores/arrollado.JPG') }}" alt="Alfajor Blanco">
-                </div>
-                <div class="w3-quarter contenedor-img">
-                    <img src="{{ url_for('static', filename='fotosalfajores/mila-2.JPG') }}" alt="Alfajor Blanco">
-                </div>
-                <div class="w3-quarter contenedor-img">
-                    <img src="{{ url_for('static', filename='fotosalfajores/pechuga-1.JPG') }}" alt="Alfajor Blanco">
-                </div>
-            </div>
-            <!-- Three Grid Photo Grid Alfajor -->
-            <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
-                <div class="w3-quarter contenedor-img">
-                    <img src=" {{ url_for('static', filename='fotosalfajores/mila-3.JPG' ) }}" alt="Alfajor Negro">
-                </div>
-                <div class="w3-quarter contenedor-img">
-                    <img src=" {{ url_for('static', filename='fotosalfajores/mila-elaboracion-1.JPG' ) }}"
-                        alt="Alfajor Blanco">
-                </div>
-                <div class="w3-quarter contenedor-img">
-                    <img src=" {{ url_for('static', filename='fotosalfajores/mila-5.JPG' ) }}" alt="Alfajor Blanco">
-                </div>
-                <div class="w3-quarter contenedor-img">
-                    <img src="{{ url_for('static', filename='fotosalfajores/mila-4.JPG') }}" class="crop"
-                        alt="Alfajor Blanco">
-                </div>
-            </div>
-        </section>
+            </section>
     </article>
 
+
+    <!-- PIE DE PAGINA CON MAPA, HORARIOS, UBICACION Y CONTACTO -->
     <footer class="w3-container w3-white" id="contact">
         <br><br>
+        <hr style="background-color: black; height: 0,5px;">
+        <br>
         <!-- APPS -->
         <div class="w3-half w3-padding-large w3-center">
             <br><br><br>
@@ -246,25 +243,88 @@
             <i class="fa-solid fa-envelope w3-large w3-text-black">&nbsp;&nbsp;
                 bocattodipollo@gmail.com</i>
             <br><br><br><br>
-            <p><strong>lunes a sábado</strong> | 09:00 - 14:00 -- 17:30 - 22:00</p>
+            <p><strong>Lunes a Viernes</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
+            <br>
+            <p><strong>Sabados</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
             <br>
             <p><strong>Domingo</strong> | Cerrado</p>
             <br><br>
+            <p><strong>Ubicacion</strong></p>
+            <p>Balcarce 803
+                D5700GDH D5700GDG
+                San Luis
+                Argentina</p>
+            <br>
             <p class="w3-text-blue-grey w3-medium">
                 <b>Si quieres saber más sobre nuesto productos, ingredientes o simplemente tienes alguna duda,
                     rellena el formulario de contacto</b>
             </p>
             <br><br>
+
             <!-- BOTON CONTACTO -->
+
             <!-- Button to Open the Modal -->
-            <button class="w3-button w3-light-grey w3-section" data-toggle="modal" data-target="#myModal"
-                type="submit">CONTACTANOS</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                CONTACTANOS
+            </button>
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal" style="text-align: left;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Fomulario de contacto</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form action="/action_page.php" class="was-validated">
+                                <div class="mb-3 mt-3">
+                                    <input type="text" class="form-control" id="uname" placeholder="Nombre" name="uname"
+                                        required>
+                                    <div class="valid-feedback">Valido.</div>
+                                    <div class="invalid-feedback">Porfavor introduzca su nombre.</div>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <input type="text" class="form-control" id="uname" placeholder="Apellido"
+                                        name="uname" required>
+                                    <div class="valid-feedback">Valido.</div>
+                                    <div class="invalid-feedback">Porfavor introduzca su apellidio.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                                        required>
+                                    <div class="valid-feedback">Valido.</div>
+                                    <div class="invalid-feedback">Porfafor introduzca un email correcto.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="consult">Dejenos su consulta</label>
+                                    <textarea class="form-control" id="consult" name="text"
+                                        placeholder="Consulta"></textarea>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- GOOGLE MAPS -->
         <div class="w3-half w3-padding-large w3-hide-small">
             <br><br>
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.383045279537!2d-66.33778142659068!3d-33.3088000315649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d43b51d19c2103%3A0xff02940b25dcc3d1!2sBOCATTO%20DI%20POLLO!5e0!3m2!1ses-419!2ses!4v1690134814208!5m2!1ses-419!2ses"
-                width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                width="600" height="800" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </footer>
