@@ -32,35 +32,85 @@
 
 <body>
     <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
-        <a href="#home" class="w3-button w3-bar-item w3-hover-white">
-            <img src="{{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg') }}" alt="Logo"
-                style="height: 50px; width: 50px">
+
+        <a href="/" class="w3-button w3-bar-item w3-hover-white d-none d-md-block"">
+            <img src=" {{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg' ) }}" alt="Logo"
+            style="height: 50px; width: 50px">
         </a>
-        <div class="w3-right w3-hide-small w3-padding-large">
+
+
+        <!-- MENU PANTALLAS GRANDES -->
+        <div class="w3-right w3-padding-large d-none d-md-block">
             <a href="#descripcion" class="w3-bar-item w3-button">¿Quienes somos?</a>
             <a href="/our-product" class="w3-bar-item w3-button">Productos</a>
             <a href="#galeria" class="w3-bar-item w3-button">Galeria</a>
             <a href="#contact" class="w3-bar-item w3-button">Contactanos</a>
-            <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-lg"></i></a>
+            <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                    id="carrito-icono"></i></a>
         </div>
 
-        <!-- DIV SECCION CORREDISA -->
-        <div id="mySidebar" class="sidebar" style="z-index: 2">
-            <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
-            <a href="#descripcion" class="w3-bar-item">Su carrito</a>
-            <hr>
-            <!-- PRODUCTOS DEL CARRITO -->
-            <div id="div_lista_de_productos">
-                <!-- Aquí se mostrarán los productos seleccionados -->
+        <!-- MENU PANTALLAS MOVILES -->
+        <!-- Button to open the offcanvas sidebar -->
+        <div class="navbar d-block d-md-none">
+
+            <div class="container-fluid">
+
+                <a class="nav-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#nav_movil">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
+
+                <a class="navbar-brand" href="#">
+                    <img href="#home" src="{{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg') }}"
+                        alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+                </a>
+
+                <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                        id="carrito-icono"></i></a>
+
             </div>
 
-            <!-- Boton para acceder al pago -->
-            <div class="w3-padding-large">
-                <button class=" w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
-                    onclick="añadir()">Proceso de pago</button>
+
+        </div>
+
+        <!-- Offcanvas Sidebar -->
+        <div class="offcanvas offcanvas-start bg-dark text-white" id="nav_movil">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close text-reset ms-4" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <li class="nav-item">
+                    <a href="#descripcion" class="nav-link ms-4">¿Quienes somos?</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/our-product" class="nav-link ms-4">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#galeria" class="nav-link ms-4">Galeria</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link ms-4">Contactanos</a>
+                </li>
             </div>
         </div>
     </nav>
+
+    <!-- DIV SECCION CORREDISA -->
+    <div id="mySidebar" class="sidebar" style="z-index: 2">
+        <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
+        <a href="#descripcion" class="w3-bar-item">Su carrito</a>
+        <hr>
+        <!-- PRODUCTOS DEL CARRITO -->
+        <div id="div_lista_de_productos">
+            <!-- Aquí se mostrarán los productos seleccionados -->
+        </div>
+
+        <!-- Boton para acceder al pago -->
+        <div class="w3-padding-large">
+            <button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
+                onclick="añadir()">Proceso de pago</button>
+        </div>
+    </div>
+
 
     <!-- welcome header -->
     <div class="bg-image" id="home"></div>
@@ -71,6 +121,7 @@
     </header>
 
     <article class="w3-main w3-content w3-padding" style="max-width:1200px;">
+
         <!-- QUE ES? -->
         <section class="w3-row w3-padding-top w3-white" id="descripcion">
             <div class="w3-half w3-padding-large w3-hide-small">
@@ -143,12 +194,54 @@
                     alt="Table" style="width:100%; height: 780px">
             </div>
 
+
+            <!-- SECTION CAROUSEL -->
+            <section class="w3-row w3-padding-top w3-white" id="carousel">
+                <br><br><br>
+                <!-- Carousel -->
+                <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+                    <!-- Indicators/dots -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                    </div>
+
+                    <!-- The slideshow/carousel -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ url_for('static', filename='fotosalfajores/work-1.jpeg') }}" alt="Los Angeles"
+                                class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ url_for('static', filename='fotosalfajores/work-2.jpeg') }}" alt="Chicago"
+                                class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ url_for('static', filename='fotosalfajores/work-3.jpeg') }}" alt="New York"
+                                class="d-block w-100">
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls/icons -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+                <br>
+            </section>
+
+
             <!-- Photo Grid Alfajor -->
             <section style="height: 900px" id="galeria">
 
                 <!-- First Grid Photo Grid Alfajor -->
                 <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
-                    <br><br><br><br><br><br>
+                    <br><br><br><br>
                     <h1>Galeria</h1><br><br><br>
                     <div class="w3-quarter contenedor-img">
                         <img src="{{ url_for('static', filename='fotosalfajores/pollo-1.JPG') }}" alt="Pollo">
@@ -264,9 +357,11 @@
             <!-- BOTON CONTACTO -->
 
             <!-- Button to Open the Modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
                 CONTACTANOS
             </button>
+
+
 
             <!-- The Modal -->
             <div class="modal" id="myModal" style="text-align: left;">

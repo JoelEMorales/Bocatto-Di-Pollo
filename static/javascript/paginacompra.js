@@ -47,7 +47,7 @@ function closeNav() {
 }
 
 
-function actilizar_cantidad() {
+function actualizar_cantidad() {
     const numero = document.getElementById("cant_box").value;
     document.getElementById("unidad").textContent = numero
 }

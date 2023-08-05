@@ -100,11 +100,11 @@ window.addEventListener("load", function () {
             label_cantidad.textContent = "Cantidad:";
         }
 
-        // Agregar opcion segun producto
+        // Agregar aclaracion segun producto
         var contenido_div_id_opcion = document.getElementById("opcion").innerHTML
         if (opcion_producto_transferir === "opcion") {
 
-            contenido_new = "<br><label>Elija el producto que desea:</label><select class='form-select form-select-sm'><option>Filet de Pechuga</option><option>Filet de Muslo</option></select>"
+            contenido_new = "<br><label>Elija el producto que desea:</label><select class='form-select form-select-sm' id='opcion_producto'><option>Filet de Pechuga</option><option>Filet de Muslo</option></select>"
 
             document.getElementById("opcion").innerHTML = contenido_div_id_opcion + contenido_new
 

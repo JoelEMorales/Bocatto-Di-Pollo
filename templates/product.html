@@ -62,20 +62,71 @@
 
 <body>
 
-    <!-- BARRA CONTROL MENU-->
-    <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
-        <a href="/" class="w3-button w3-bar-item w3-hover-white">
-            <img src="{{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg') }}" alt="Logo"
-                style="height: 50px; width: 50px">
-        </a>
-        <div class="w3-right w3-hide-small w3-padding-large">
-            <a href="/" class="w3-bar-item w3-button">¿Quienes somos?</a>
-            <a href="/" class="w3-bar-item w3-button">Galeria</a>
-            <a href="/" class="w3-bar-item w3-button">Contactanos</a>
-            <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-lg"></i></a>
-        </div>
+    <header>
+        <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
 
-        <!-- DIV SECCION CORREDISA CARRITO -->
+            <a href="/" class="w3-button w3-bar-item w3-hover-white d-none d-md-block"">
+                <img src=" {{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg' ) }}" alt="Logo"
+                style="height: 50px; width: 50px">
+            </a>
+
+
+            <!-- MENU PANTALLAS GRANDES -->
+            <div class="w3-right w3-padding-large d-none d-md-block">
+                <a href="/" class="w3-bar-item w3-button">¿Quienes somos?</a>
+                <a href="/our-product" class="w3-bar-item w3-button">Productos</a>
+                <a href="/" class="w3-bar-item w3-button">Galeria</a>
+                <a href="/" class="w3-bar-item w3-button">Contactanos</a>
+                <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                        id="carrito-icono"></i></a>
+            </div>
+
+            <!-- MENU PANTALLAS MOVILES -->
+            <!-- Button to open the offcanvas sidebar -->
+            <div class="navbar d-block d-md-none">
+
+                <div class="container-fluid">
+
+                    <a class="nav-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#nav_movil">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+
+                    <a class="navbar-brand" href="#">
+                        <img href="#home" src="{{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg') }}"
+                            alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+                    </a>
+
+                    <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                            id="carrito-icono"></i></a>
+
+                </div>
+
+
+            </div>
+
+            <!-- Offcanvas Sidebar -->
+            <div class="offcanvas offcanvas-start bg-dark text-white" id="nav_movil">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close text-reset ms-4" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <li class="nav-item">
+                        <a href="#descripcion" class="nav-link ms-4">¿Quienes somos?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/our-product" class="nav-link ms-4">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#galeria" class="nav-link ms-4">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link ms-4">Contactanos</a>
+                    </li>
+                </div>
+            </div>
+        </nav>
+
+        <!-- DIV SECCION CORREDISA -->
         <div id="mySidebar" class="sidebar" style="z-index: 2">
             <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
             <a href="#descripcion" class="w3-bar-item">Su carrito</a>
@@ -87,11 +138,11 @@
 
             <!-- Boton para acceder al pago -->
             <div class="w3-padding-large">
-                <button class=" w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
+                <button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
                     onclick="añadir()">Proceso de pago</button>
             </div>
         </div>
-    </nav>
+    </header>
 
     <article class="w3-main w3-content w3-padding" style="max-width:1200px;">
 
@@ -269,9 +320,13 @@
             <!-- BOTON CONTACTO -->
 
             <!-- Button to Open the Modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+            <button type="button" class="btn btn-dark data-bs-toggle=" modal" data-bs-target="#myModal">
                 CONTACTANOS
             </button>
+
+
+
+
 
             <!-- The Modal -->
             <div class="modal" id="myModal" style="text-align: left;">

@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         body {
             font-family: "Times New Roman", Georgia, Serif;
@@ -40,16 +41,65 @@
 <body>
     <header>
         <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
-            <a href="/" class="w3-button w3-bar-item w3-hover-white">
-                <img src="{{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg') }}" alt="Logo"
-                    style="height: 50px; width: 50px">
+
+            <a href="/" class="w3-button w3-bar-item w3-hover-white d-none d-md-block"">
+                <img src=" {{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg' ) }}" alt="Logo"
+                style="height: 50px; width: 50px">
             </a>
-            <div class="w3-right w3-hide-small w3-padding-large">
+
+
+            <!-- MENU PANTALLAS GRANDES -->
+            <div class="w3-right w3-padding-large d-none d-md-block">
                 <a href="/" class="w3-bar-item w3-button">¿Quienes somos?</a>
                 <a href="/our-product" class="w3-bar-item w3-button">Productos</a>
                 <a href="/" class="w3-bar-item w3-button">Galeria</a>
                 <a href="/" class="w3-bar-item w3-button">Contactanos</a>
-                <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-lg"></i></a>
+                <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                        id="carrito-icono"></i></a>
+            </div>
+
+            <!-- MENU PANTALLAS MOVILES -->
+            <!-- Button to open the offcanvas sidebar -->
+            <div class="navbar d-block d-md-none">
+
+                <div class="container-fluid">
+
+                    <a class="nav-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#nav_movil">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+
+                    <a class="navbar-brand" href="#">
+                        <img href="#home" src="{{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg') }}"
+                            alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+                    </a>
+
+                    <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                            id="carrito-icono"></i></a>
+
+                </div>
+
+
+            </div>
+
+            <!-- Offcanvas Sidebar -->
+            <div class="offcanvas offcanvas-start bg-dark text-white" id="nav_movil">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close text-reset ms-4" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <li class="nav-item">
+                        <a href="#descripcion" class="nav-link ms-4">¿Quienes somos?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/our-product" class="nav-link ms-4">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#galeria" class="nav-link ms-4">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link ms-4">Contactanos</a>
+                    </li>
+                </div>
             </div>
         </nav>
 
@@ -58,10 +108,12 @@
             <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
             <a href="#descripcion" class="w3-bar-item">Su carrito</a>
             <hr>
-
+            <!-- PRODUCTOS DEL CARRITO -->
             <div id="div_lista_de_productos">
+                <!-- Aquí se mostrarán los productos seleccionados -->
             </div>
 
+            <!-- Boton para acceder al pago -->
             <div class="w3-padding-large">
                 <button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
                     onclick="añadir()">Proceso de pago</button>
@@ -100,7 +152,7 @@
                 <hr style="background-color: black; height: 0,5px;">
                 <br><br>
                 <label for="numero" id="cantidad_producto">Cantidad:</label><input type="number" id="cant_box"
-                    name="numero" min="0" max="100" value="0" onchange="actilizar_cantidad()">
+                    name="numero" min="0" max="100" value="0" onchange="actualizar_cantidad()">
                 <br><br>
                 <div style="display: inline-block; vertical-align: top;" id="opcion">
                     <p style="display: inline-block; margin: 0; vertical-align: left;" id="nombre_unidad"></p>
@@ -122,7 +174,6 @@
                 </p>
             </div>
         </article>
-        <hr>
     </section>
 
     <!-- PIE DE PAGINA CON MAPA, HORARIOS, UBICACION Y CONTACTO -->

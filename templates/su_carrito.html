@@ -1,24 +1,21 @@
-{% load static %}
-
 <!DOCTYPE html>
-
 <html>
 
 <head>
+    <title>Contacto</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/estilosalfajor.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/estilosalfajor.css') }}" />
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
         body {
@@ -34,23 +31,262 @@
             font-family: "Playfair Display";
             letter-spacing: 5px;
         }
+
+        .div-compra-informacion p {
+            text-align: left;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
-        <a href="#home" class="w3-button w3-bar-item w3-hover-white">
-            <img src="{% static 'fotosalfajores/logo.png' %}" alt="Logo" style="height: 50px; width: 50px">
-        </a>
-        <div class="w3-right w3-hide-small w3-padding-large">
-            <a href="#descripcion" class="w3-bar-item w3-button">¿Que es?</a>
-            <a href="#producto" class="w3-bar-item w3-button">Producto</a>
-            <a href="#galeria" class="w3-bar-item w3-button">Galeria</a>
-            <a href="#contact" class="w3-bar-item w3-button">Contacto</a>
-            <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-bag-shopping fa-lg"></i></a>
+    <header>
+        <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
+
+            <a href="/" class="w3-button w3-bar-item w3-hover-white d-none d-md-block"">
+                <img src=" {{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg' ) }}" alt="Logo"
+                style="height: 50px; width: 50px">
+            </a>
+
+
+            <!-- MENU PANTALLAS GRANDES -->
+            <div class="w3-right w3-padding-large d-none d-md-block">
+                <a href="/" class="w3-bar-item w3-button">¿Quienes somos?</a>
+                <a href="/our-product" class="w3-bar-item w3-button">Productos</a>
+                <a href="/" class="w3-bar-item w3-button">Galeria</a>
+                <a href="/" class="w3-bar-item w3-button">Contactanos</a>
+                <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                        id="carrito-icono"></i></a>
+            </div>
+
+            <!-- MENU PANTALLAS MOVILES -->
+            <!-- Button to open the offcanvas sidebar -->
+            <div class="navbar d-block d-md-none">
+
+                <div class="container-fluid">
+
+                    <a class="nav-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#nav_movil">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+
+                    <a class="navbar-brand" href="#">
+                        <img href="#home" src="{{ url_for('static', filename='fotosalfajores/logo-bocatto.jpg') }}"
+                            alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+                    </a>
+
+                    <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                            id="carrito-icono"></i></a>
+
+                </div>
+
+
+            </div>
+
+            <!-- Offcanvas Sidebar -->
+            <div class="offcanvas offcanvas-start bg-dark text-white" id="nav_movil">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close text-reset ms-4" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <li class="nav-item">
+                        <a href="#descripcion" class="nav-link ms-4">¿Quienes somos?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/our-product" class="nav-link ms-4">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#galeria" class="nav-link ms-4">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link ms-4">Contactanos</a>
+                    </li>
+                </div>
+            </div>
+        </nav>
+
+        <!-- DIV SECCION CORREDISA -->
+        <div id="mySidebar" class="sidebar" style="z-index: 2">
+            <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
+            <a href="#descripcion" class="w3-bar-item">Su carrito</a>
+            <hr>
+            <!-- PRODUCTOS DEL CARRITO -->
+            <div id="div_lista_de_productos">
+                <!-- Aquí se mostrarán los productos seleccionados -->
+            </div>
+
+            <!-- Boton para acceder al pago -->
+            <div class="w3-padding-large">
+                <button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" type="button"
+                    onclick="añadir()">Proceso de pago</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="w3-row w3-padding w3-content w3-white w3-main" style="max-width:1200px;">
+        <br><br><br>
+        <br><br><br>
+        <h2 style="text-align: center;">CARRITO</h2>
+        <br><br><br>
+        <article>
+
+            <div>
+                <div id="factura">
+                    <div class="row">
+                        <div class="col-8 d-md-block d-none">
+                            <p style="text-align: left;">PRODUCTO</p>
+                        </div>
+                        <div class="col-2 d-md-block d-none">
+                            <p>Cantidad</p>
+                        </div>
+                        <div class="col-2 d-md-block d-none">
+                            <p>Peso en Kg</p>
+                        </div>
+                        <hr style="background-color: gray; height: 0,5px;">
+                    </div>
+
+                    <div class="row" id="contenido">
+                        <div class="col-4 col-md-2">
+                            <img src="{{ url_for('static', filename='fotosalfajores/mila-1.JPG') }}"
+                                class="w3-round w3-image" alt="Table" style="width:100%">
+                        </div>
+
+                        <div class="col-8 col-md-4">
+                            <p class="pt-md-5" style="text-align: left;">Nombre Titulo</p>
+                        </div>
+
+                        <div class="col-4 col-sm-2">
+                            <p class="pt-3 pt-md-5">hola</p>
+                        </div>
+                        <div class="col-4 col-sm-2">
+                            <p class="pt-3 pt-md-5"><input type="number" id="cantidad_final" name="numero" min="0"
+                                    max="100" value="0"></p>
+                        </div>
+                        <div class="col-4 col-sm-2">
+                            <p class="pt-3 pt-md-5">Quitar</p>
+                        </div>
+                    </div>
+                    <hr style="background-color: gray; height: 0,5px;">
+                </div>
+                <p style="text-align: left;">Instrucciones especiales</p><textarea class="form-control" id="consult"
+                    name="text" placeholder="Consulta"></textarea>
+            </div>
+
+        </article>
+    </section>
+
+    <!-- PIE DE PAGINA CON MAPA, HORARIOS, UBICACION Y CONTACTO -->
+    <footer class="w3-container w3-white" id="contact">
+        <br><br>
+        <hr style="background-color: black; height: 0,5px;">
+        <br>
+        <!-- APPS -->
+        <div class="w3-half w3-padding-large w3-center">
+            <br><br><br>
+            <h3 class="w3-text-black">Siguenos</h3>
+            <br><br><br>
+            <a href="https://www.instagram.com/bocatto_di_pollo/"><i
+                    class="fa-brands fa-square-instagram w3-large w3-text-black">&nbsp;&nbsp;
+                    @bocatto_di_pollo</i></a>
+            <br><br><br>
+            <a href="www.facebook.com/Bocatto-Di-Pollo-188887745394197"><i
+                    class="fa-brands fa-facebook w3-large w3-text-black">&nbsp;&nbsp;
+                    Bocatto di Pollo</i></a>
+            <br><br><br>
+            <i class="fa-solid fa-envelope w3-large w3-text-black">&nbsp;&nbsp;
+                bocattodipollo@gmail.com</i>
+            <br><br><br><br>
+            <p><strong>Lunes a Viernes</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
+            <br>
+            <p><strong>Sabados</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
+            <br>
+            <p><strong>Domingo</strong> | Cerrado</p>
+            <br><br>
+            <p><strong>Ubicacion</strong></p>
+            <p>Balcarce 803
+                D5700GDH D5700GDG
+                San Luis
+                Argentina</p>
+            <br>
+            <p class="w3-text-blue-grey w3-medium">
+                <b>Si quieres saber más sobre nuesto productos, ingredientes o simplemente tienes alguna duda,
+                    rellena el formulario de contacto</b>
+            </p>
+            <br><br>
+
+            <!-- BOTON CONTACTO -->
+
+            <!-- Button to Open the Modal -->
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+                CONTACTANOS
+            </button>
+
+
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal" style="text-align: left;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Fomulario de contacto</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form action="/action_page.php" class="was-validated">
+                                <div class="mb-3 mt-3">
+                                    <input type="text" class="form-control" id="uname" placeholder="Nombre" name="uname"
+                                        required>
+                                    <div class="valid-feedback">Valido.</div>
+                                    <div class="invalid-feedback">Porfavor introduzca su nombre.</div>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <input type="text" class="form-control" id="uname" placeholder="Apellido"
+                                        name="uname" required>
+                                    <div class="valid-feedback">Valido.</div>
+                                    <div class="invalid-feedback">Porfavor introduzca su apellidio.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                                        required>
+                                    <div class="valid-feedback">Valido.</div>
+                                    <div class="invalid-feedback">Porfafor introduzca un email correcto.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="consult">Dejenos su consulta</label>
+                                    <textarea class="form-control" id="consult" name="text"
+                                        placeholder="Consulta"></textarea>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <section>
-            <h1>Su carrito</h1>
-        </section>
+        <!-- GOOGLE MAPS -->
+        <div class="w3-half w3-padding-large w3-hide-small">
+            <br><br>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.383045279537!2d-66.33778142659068!3d-33.3088000315649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d43b51d19c2103%3A0xff02940b25dcc3d1!2sBOCATTO%20DI%20POLLO!5e0!3m2!1ses-419!2ses!4v1690134814208!5m2!1ses-419!2ses"
+                width="600" height="800" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </footer>
+
 </body>
+
+<script>var static_url = "{{ url_for('static', filename='') }}";</script>
+<script src="{{ url_for('static', filename='javascript/principal.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/paginacompra.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/carrito.js') }}"></script>
+
+</html>
