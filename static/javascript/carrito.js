@@ -1,23 +1,261 @@
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// CODIGOS PARA ELIMINAR PRODUCTO DEL LOCAL STORAGE
+
+
+
+// Función para obtener el carrito desde Local Storage o crear uno nuevo
+function obtenerCarrito() {
+  const carritoJSON = localStorage.getItem("carrito");
+
+  if (carritoJSON) {
+    try {
+      const carrito = JSON.parse(carritoJSON);
+      return carrito;
+    } catch (error) {
+      console.error("Error al analizar el JSON del carrito:", error);
+      return [];
+    }
+  } else {
+    return [];
+  }
+}
+
+// Función para actualizar el carrito en el almacenamiento local compartido
+function actualizarCarrito(carrito) {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+// FUNCION - Borrar producto desde pagina pagina_compra.html
+function quitarProductoDeProductoHTML(boton) {
+  
+  // Obtener el producto
+  var productoAEliminar = boton.closest(".w3-row");
+
+  // Obtener el nombre del producto
+  var nombreProducto = productoAEliminar.querySelector("#namecarrito").textContent;
+
+  // Eliminar el elemento del producto del DOM
+  productoAEliminar.remove();
+
+  eliminarProductoDelCarrito(nombreProducto);
+  
+  actualizarIconoCarrito();
+
+  // Actualiza la vista del carrito en la página de productos
+  actualizarContenidoCarrito();
+}
+
+function quitarProducto(nombreProducto) {
+  // Recupera el carrito del LocalStorage
+  var carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  // Busca el índice del producto a eliminar
+  var indice = -1;
+  for (var i = 0; i < carrito.length; i++) {
+    if (carrito[i].nombre === nombreProducto) {
+      indice = i;
+      break;
+    }
+  }
+
+  // Si se encontró el producto, lo elimina del carrito
+  if (indice !== -1) {
+    carrito.splice(indice, 1);
+
+    // Actualiza el carrito en el LocalStorage
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    // Recarga la página de resumen para reflejar los cambios
+    cargar_resumen();
+  }
+}
+
+// FUNCION COMUN PARA LA ELIMINACION DE PRODUCTO
+function eliminarProductoDelCarrito(nombreProducto) {
+  var carrito = obtenerCarrito();
+
+  // Busca el índice del producto a eliminar
+  var indice = -1;
+  for (var i = 0; i < carrito.length; i++) {
+    if (carrito[i].nombre === nombreProducto) {
+      indice = i;
+      break;
+    }
+  }
+
+  // Si se encontró el producto, lo elimina del carrito
+  if (indice !== -1) {
+    carrito.splice(indice, 1);
+
+    // Actualiza el carrito en el LocalStorage
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    // Actualiza el contenido del carrito en la página de productos
+    actualizarContenidoCarrito(); // Implementa esta función para actualizar el contenido del carrito en la página de productos
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// CODIGO PARA TERMINAR COMPRA Y ENVIAR EMAIL
+
+function enviar_email() {
+  alert("Enviando el pedido");
+
+  // Configura Email.js con tus credenciales
+  emailjs.init("bZL7G9gX0CBh9EfQH");
+
+  // Recopila los datos del comprador
+  var nombreCliente = document.getElementById("namecliente").value;
+
+  // Recopila los intrucciones especiales
+  var special_instructions = document.getElementById("special").value;
+
+  // Recopila los intrucciones especiales
+  var telefono = document.getElementById("telefono").value;
+
+  // Recopila los datos de productos desde el resumen_compra
+  var productos = obtenerProductosDesdeResumen();
+
+  // Prepara el contenido del correo
+  var correoContenido = "Nombre del comprador: " + nombreCliente + "\n\n";
+
+  correoContenido += "Telefono del cliente: " + telefono + "\n\n";
+  
+  correoContenido += "Aclaracion: " + special_instructions + "\n\n";
+
+  productos.forEach(function (producto) {
+    correoContenido += "Producto: " + producto.nombre + "\n";
+    correoContenido += "Cantidad: " + producto.cantidad + "\n";
+    correoContenido += "Precio: $ " + producto.valor + "\n\n\n";
+  });
+
+  // Configura el mensaje del correo
+  var email = {
+    to: "joelelianmorales@gmail.com",
+    subject: "Nuevo pedido de Bocatto Di Pollo",
+    message: correoContenido,
+  };
+
+  // Envía el correo
+  emailjs.send("service_3s9yg03", "template_Bocatto", email).then(
+    function (response) {
+      alert("Correo enviado con éxito");
+
+      // Aquí puedes agregar el código para borrar los productos del Local Storage y del carrito
+      borrarProductos();
+    },
+    function (error) {
+      alert("Error al enviar el correo: " + error);
+    }
+  );
+
+  // Aquí puedes agregar el código para borrar los productos del local estore y del carrito
+  // ...
+
+  // Recarga la página de resumen para reflejar los cambios
+  cargar_resumen();
+}
+
+function borrarProductos() {
+  // Borra los productos del Local Storage
+  localStorage.removeItem("carrito");
+
+  // Borra los productos del carrito en la página
+  var carritoDiv = document.getElementById("contenido_resumen");
+  carritoDiv.innerHTML = ""; // Limpia el contenido del carrito en la página
+
+  // Opcional: Actualiza cualquier otro estado relacionado con el carrito que puedas tener en tu aplicación
+}
+
+function obtenerProductosDesdeResumen() {
+  var productos = [];
+  var productosDivs = document.querySelectorAll(".filaResumen"); // Suponiendo que los productos se almacenan en elementos con la clase 'row'
+
+  productosDivs.forEach(function (productoDiv) {
+    var nombre = productoDiv.querySelector(".nombreProducto").textContent; // Suponiendo que el nombre se encuentra en un elemento con la clase 'nombreProducto'
+    var cantidad = parseInt(
+      productoDiv.querySelector(".cantidadProducto").textContent
+    ); // Suponiendo que la cantidad se encuentra en un elemento con la clase 'cantidadProducto'
+    var valor = productoDiv.querySelector(".valorProducto").textContent; // Suponiendo que el valor se encuentra en un elemento con la clase 'valorProducto'
+
+    productos.push({
+      nombre: nombre,
+      cantidad: cantidad,
+      valor: valor,
+    });
+  });
+
+  return productos;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+// CODIGO DE LA PAGINA PRODUCT.HTML y pagina_compra.html
 // CARRITO DE COMPRA
+
+
+
+function inicializarCarrito() {
+  var carrito = obtenerCarrito();
+  if (!carrito || carrito.length === 0) {
+    localStorage.setItem("carrito", JSON.stringify([]));
+  }
+}
+
+document.addEventListener("DOMContentLoaded", inicializarCarrito);
 
 var productIdCounter = 1; // Inicializar el contador
 
-
 // Función para actualizar el ícono del carrito
 function actualizarIconoCarrito() {
-    var listaDeProductos = document.getElementById("div_lista_de_productos");
-    var productosEnCarrito = listaDeProductos.querySelectorAll(".w3-row");
+  var listaDeProductos = document.getElementById("div_lista_de_productos");
+  var productosEnCarrito = listaDeProductos.querySelectorAll(".w3-row");
 
-    // Verificar si el carrito contiene al menos un producto
-    if (productosEnCarrito.length > 0) {
-        // Cambiar el ícono a un ícono diferente (por ejemplo, un ícono de carrito lleno)
-        document.getElementById("carrito-icono").classList.remove("fa-cart-shopping");
-        document.getElementById("carrito-icono").classList.add("fa-cart-plus");
-    } else {
-        // Si el carrito está vacío, restaurar el ícono original (fa-shopping-cart)
-        document.getElementById("carrito-icono").classList.remove("fa-cart-plus");
-        document.getElementById("carrito-icono").classList.add("fa-cart-shopping");
-    }
+  // Verificar si el carrito contiene al menos un producto
+  if (productosEnCarrito.length > 0) {
+    // Cambiar el ícono a un ícono diferente (por ejemplo, un ícono de carrito lleno)
+    document
+      .getElementById("carrito-icono")
+      .classList.remove("fa-cart-shopping");
+    document.getElementById("carrito-icono").classList.add("fa-cart-plus");
+  } else {
+    // Si el carrito está vacío, restaurar el ícono original (fa-shopping-cart)
+    document.getElementById("carrito-icono").classList.remove("fa-cart-plus");
+    document.getElementById("carrito-icono").classList.add("fa-cart-shopping");
+  }
 }
 
 // Llamar a la función para actualizar el ícono del carrito cuando la página cargue
@@ -26,240 +264,282 @@ document.addEventListener("DOMContentLoaded", actualizarIconoCarrito);
 // Llamar a la función para actualizar el ícono del carrito cada vez que se agregue o elimine un producto del carrito
 document.getElementById("div_lista_de_productos").addEventListener("DOMNodeInserted", actualizarIconoCarrito);
 document.getElementById("div_lista_de_productos").addEventListener("DOMNodeRemoved", function () {
-    // Esperar un corto período de tiempo para asegurarnos de que el elemento se haya eliminado completamente
-    setTimeout(actualizarIconoCarrito, 100);
+  // Esperar un corto período de tiempo para asegurarnos de que el elemento se haya eliminado completamente
+setTimeout(actualizarIconoCarrito, 100);
 });
 
 
-// Función para agregar un producto al carrito
-function agregarProductoALaLista() {
 
-    // Obtener información del producto a agregar
-    var nombreProducto = document.querySelector("#nameproducto").textContent;
-    var cantidad_de_box = parseFloat(document.querySelector("#cant_box").value);
 
-    // Validar si la cantidad es mayor que cero
-    if (cantidad_de_box > 0) {
 
-        // Obtener la opción seleccionada (solo si el producto es "Filet De Pechuga y Muslo")
-        var opcionSeleccionada = "";
-        if (nombreProducto === "Filet De Pechuga y Muslo") {
-            var miaclaracion = document.getElementById("opcion_producto");
-            opcionSeleccionada = miaclaracion.options[miaclaracion.selectedIndex].textContent;
-        }
 
-        // Buscar si el producto ya está en la lista
-        var listaDeProductos = document.getElementById("div_lista_de_productos");
-        var productos = listaDeProductos.querySelectorAll(".w3-row");
-        var productoYaEnLista = false;
 
-        for (var i = 0; i < productos.length; i++) {
-            var nombreEnLista = productos[i].querySelector("#namecarrito").textContent;
-            var opcionEnLista = productos[i].querySelector("#aclaracion").textContent;
-            var cantidadEnLista = parseFloat(productos[i].querySelector("#cantidad_caja").textContent);
 
-            if (nombreProducto === nombreEnLista && opcionSeleccionada === opcionEnLista) {
-                productoYaEnLista = true;
-                var cantidadAnterior = cantidadEnLista;
-                var cantidadNueva = cantidadAnterior + cantidad_de_box;
-                productos[i].querySelector("#cantidad_caja").textContent = cantidadNueva;
-            }
-        }
 
-        // Si el producto no está en la lista, agregarlo
-        if (!productoYaEnLista) {
-            var nuevoProducto = crearNuevoProducto();
-            listaDeProductos.appendChild(nuevoProducto);
-            actualizarInfoProducto(nuevoProducto, opcionSeleccionada); // Pasa la opción seleccionada como argumento
-        }
+
+
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------
+
+// CODIGO DE LA PAGINA RESUMEN_COMPRA.HTML
+// PAGINA FINAL - RESUMEN COMPRA
+
+function redirigir_resumen() {
+  // Redireccionar al usuario a la página de resumen de compra
+  alert("Redirigiendo a la página de resumen de compra");
+  window.location.href = "/resumen_compra";
+}
+
+function cargar_resumen() {
+  // Recupera el carrito del LocalStorage
+  var carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  // Objeto para rastrear la cantidad de cada producto
+  var productosAgrupados = {};
+
+  // Agrupa los productos y suma sus cantidades
+  carrito.forEach(function (producto) {
+    var clave = producto.nombre + (producto.aclaracion || ""); // Usamos una clave única basada en el nombre y aclaración (si existe)
+    if (!productosAgrupados[clave]) {
+      productosAgrupados[clave] = {
+        nombre: producto.nombre,
+        cantidad: producto.cantidad,
+        aclaracion: producto.aclaracion,
+        imagen: producto.imagen,
+        valor: producto.total,
+      };
     } else {
-        // Mostrar mensaje de error
-        alert("Debes selecionar una cantidad.");
+      productosAgrupados[clave].cantidad += producto.cantidad;
+    }
+  });
+
+  // Actualizar el contenido dentro del div 'contenido_resumen'
+  var contenidoDiv = document.getElementById("contenido_resumen");
+  contenidoDiv.innerHTML = ""; // Limpia cualquier contenido previo
+
+  // Recorre los productos agrupados y muestra la cantidad total
+  for (var clave in productosAgrupados) {
+    var producto = productosAgrupados[clave];
+    var productoDiv = document.createElement("div");
+    productoDiv.className = "row filaResumen";
+
+    // Agrega la imagen
+    var imgDiv = document.createElement("div");
+    imgDiv.className = "col";
+    var img = document.createElement("img");
+    img.src = producto.imagen; // Utiliza la ruta de la imagen del producto desde el carrito
+    img.style.width = "100%"; // Utiliza el 100% del ancho disponible
+    imgDiv.appendChild(img);
+    productoDiv.appendChild(imgDiv);
+
+    // Agrega el campo de nombre y aclaración (si existe)
+    var nombreDiv = document.createElement("div");
+    nombreDiv.style.paddingTop = "10px"; // Ajusta el espaciado superior
+    nombreDiv.className = "col";
+    nombreDiv.innerHTML =
+      '<p style="text-align: left;" class="nombreProducto">' +
+      producto.nombre +
+      (producto.aclaracion ? " | " + producto.aclaracion : "") +
+      "</p>";
+    productoDiv.appendChild(nombreDiv);
+
+    // Agrega la cantidad del producto
+    var cantidadDiv = document.createElement("div");
+    cantidadDiv.style.paddingTop = "10px"; // Ajusta el espaciado superior
+    cantidadDiv.className = "col";
+    cantidadDiv.innerHTML = '<p><span class="cantidadProducto">' + producto.cantidad + "</span> kg</p>";
+    productoDiv.appendChild(cantidadDiv);
+
+    // Agrega la valor del producto
+    var valorDiv = document.createElement("div");
+    valorDiv.style.paddingTop = "10px"; // Ajusta el espaciado superior
+    valorDiv.className = "col";
+
+    // Utiliza parseFloat para convertir producto.valor en un número (asegurándote de que producto.valor sea una cadena)
+    var valorNumerico = parseFloat(producto.valor);
+
+    // Verifica si valorNumerico es un número válido (no es NaN)
+    if (!isNaN(valorNumerico)) {
+    // Si es un número válido, muestra el valor con el signo de "$" en el párrafo
+    valorDiv.innerHTML = '<p>$<span class="valorProducto">' + valorNumerico + "</span></p>";
+    }else {
+      // Si no es un número válido, muestra un mensaje de error o un valor predeterminado
+      valorDiv.innerHTML = '<p class="valorProducto">Valor no válido</p>';
     }
 
-    // Guardar la lista de productos en localStorage
-    localStorage.setItem("listaDeProductos", listaDeProductos.innerHTML);
-}
+    productoDiv.appendChild(valorDiv);
+
+    // Agrega un botón para quitar el producto
+    var quitarDiv = document.createElement("div");
+    quitarDiv.style.paddingTop = "10px"; // Ajusta el espaciado superior
+    quitarDiv.className = "col";
+    quitarDiv.innerHTML = "<p><button onclick=\"quitarProducto('" + clave + "')\">Quitar</button></p>";
+    productoDiv.appendChild(quitarDiv);
+
+    contenidoDiv.appendChild(productoDiv);
+
+    // Agrega una línea horizontal
+    var hr = document.createElement("hr");
+    hr.style.backgroundColor = "gray";
+    hr.style.height = "0.5px";
+    contenidoDiv.appendChild(hr);
+  }
+
+  // Fila para instrucciones, pago y recogida
+  var divGlobal = document.createElement("div");
+  divGlobal.className = "row";
+  contenidoDiv.appendChild(divGlobal);
+
+  // Columna para instrucciones especiales
+  var colDivInstruccionesEspeciales = document.createElement("div");
+  colDivInstruccionesEspeciales.className = "col";
+  divGlobal.appendChild(colDivInstruccionesEspeciales);
+
+  // Agrega un campo para instrucciones especiales
+  var instruccionesLabel = document.createElement("p");
+  instruccionesLabel.style.textAlign = "left";
+  instruccionesLabel.textContent = "Instrucciones especiales";
+  colDivInstruccionesEspeciales.appendChild(instruccionesLabel);
+
+  var instruccionesTextarea = document.createElement("textarea");
+  instruccionesTextarea.className = "form-control";
+  instruccionesTextarea.style.width = "100%"; // Utilizamos el 100% del ancho disponible
+  instruccionesTextarea.style.height = "100%"; // Utilizamos el 100% del alto disponible
+  instruccionesTextarea.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
+  instruccionesTextarea.id = "special";
+  instruccionesTextarea.name = "text";
+  instruccionesTextarea.placeholder = "Escribe aquí las instrucciones especiales";
+  colDivInstruccionesEspeciales.appendChild(instruccionesTextarea);
+
+  // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
+  instruccionesTextarea.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
 
 
+  // Columna para precesar pedido
+  var colDivProcesar = document.createElement("div");
+  colDivProcesar.className = "col";
+  divGlobal.appendChild(colDivProcesar);
 
-// Función para crear el nuevo elemento de producto
-function crearNuevoProducto() {
-    var nuevoProducto = document.createElement("div");
-    nuevoProducto.innerHTML = obtenerHtmlProducto();
-    actualizarInfoProducto(nuevoProducto);
-    return nuevoProducto;
-}
+  // Intrucciones de pago y recogida
+  var fraseInformacion = document.createElement("p");
+  fraseInformacion.style.textAlign = "right";
+  fraseInformacion.style.paddingTop = "10px";
+  fraseInformacion.textContent = "Pago realizado en el local fisico";
+  colDivProcesar.appendChild(fraseInformacion);
 
-// Función para obtener el HTML del nuevo producto
-function obtenerHtmlProducto() {
-    var productId = productIdCounter++; // Obtener el valor actual del contador y luego incrementarlo
-    return `
-        <div class="w3-row w3-content" data-product-id="${productId}">
-            <div style="max-width: 100px; max-height: 150px;" class="w3-padding-small w3-half">
-                <img src="" style="width: 100%; height: 100%" id="imgproductocarrito"/>
-            </div>
-            <div class="w3-half">
-                <a class="w3-left" id="namecarrito"></a>
-                <br>
-                <a class="w3-left" id="cantidadcarrito"></a>
-                <br><br>
-                <a class="w3-left" id="aclaracion"></a>
-                <br><br>
-                <a class="w3-left">Cant en kg: </a><a class="w3-left" id="cantidad_caja"> </a>
-                <br><br>
-                <a class="w3-left" id="valorunidad"></a>
-                <button class="w3-button w3-text-white w3-right" type="button" onclick="eliminar_producto(this)">Quitar</button>
-            </div>
-        </div>`;
-}
+  // Intrucciones de recogida
+  var DivIntrucciones = document.createElement("div");
+  DivIntrucciones.style =
+    "border: black solid 1px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 200px; height: 100px;";
+  colDivProcesar.appendChild(DivIntrucciones);
 
-// Función para actualizar la información del nuevo producto
-function actualizarInfoProducto(nuevoProducto, opcionSeleccionada) {
+  var divIcono = document.createElement("div");
+  divIcono.innerHTML = '<i class="fa-solid fa-shop fa-2xl"></i>';
+  DivIntrucciones.appendChild(divIcono);
 
-    if (document.querySelector("#nameproducto").textContent == "Filet De Pechuga y Muslo") {
-        var miaclaracionProducto = nuevoProducto.querySelector("#aclaracion");
+  var divText = document.createElement("div");
+  divText.style.paddingTop = "10px";
+  divText.innerHTML = "Recogida en la tienda";
+  DivIntrucciones.appendChild(divText);
 
-        var miproductocarrito = nuevoProducto.querySelector("#namecarrito");
-        var miproducto = document.querySelector("#nameproducto");
-        var micantidadcarrito = nuevoProducto.querySelector("#cantidadcarrito");
-        var micantidad = document.querySelector("#unidad");
-        var micantidad_cajas_carrito = nuevoProducto.querySelector("#cantidad_caja");
-        var micantidad_cajas = document.querySelector("#cant_box");
-        var mivalornidadcarrito = nuevoProducto.querySelector("#valorunidad");
-        var mivalorunidad = document.querySelector("#precio");
-        var miimgcarrito = nuevoProducto.querySelector("#imgproductocarrito");
-        var miimg = document.getElementById("img2_principal");
-        var miimgsrc = miimg.getAttribute("src");
+  // Instrucciones para el clietne
+  var textclient = document.createElement("p");
+  textclient.style.textAlign = "left";
+  textclient.style.paddingTop = "10px";
+  textclient.innerHTML = "Recoge tu pedido en Bocatto Di Pollo";
+  colDivProcesar.appendChild(textclient);
 
-        // Comprobar que existen
-        // Asigna la opción seleccionada al elemento correspondiente solo si es "Filet De Pechuga y Muslo"
-        if (miaclaracionProducto && opcionSeleccionada) {
-            miaclaracionProducto.textContent = opcionSeleccionada;
-        }
-        if (miproductocarrito && miproducto) {
-            miproductocarrito.textContent = miproducto.textContent;
-        }
-        if (micantidad_cajas_carrito && micantidad_cajas) {
-            micantidad_cajas_carrito.textContent = micantidad_cajas.value;
-        }
-        if (micantidadcarrito && micantidad) {
-            micantidadcarrito.textContent = micantidad.textContent;
-        }
-        if (mivalornidadcarrito && mivalorunidad) {
-            mivalornidadcarrito.textContent = parseFloat(mivalorunidad.textContent) * parseFloat(micantidad_cajas.value);
-        }
-        if (miimgcarrito) {
-            miimgcarrito.setAttribute("src", miimgsrc);
-        }
+  // Mas instrucciones
+  var masInformacion = document.createElement("p");
+  masInformacion.style.textAlign = "left";
+  masInformacion.style.paddingTop = "10px";
+  masInformacion.innerHTML =
+    "- Dias de semana: entre las 7:30 a 14:30 y de 17:30 a 22:00<br>- Sabados: entre las 7:30 a 14:30 y de 17:30 a 22:00";
+  colDivProcesar.appendChild(masInformacion);
 
-        // Guardar la lista de productos en localStorage
-        var listaDeProductos = document.getElementById("div_lista_de_productos");
-        localStorage.setItem("listaDeProductos", listaDeProductos.innerHTML);
+  // Ubicacion
+  var masInformacion = document.createElement("p");
+  masInformacion.style.textAlign = "left";
+  masInformacion.style.paddingTop = "10px";
+  masInformacion.innerHTML = "Balcarce, 803, San Luis, Argentina";
+  colDivProcesar.appendChild(masInformacion);
 
-    } else {
-        var miproductocarrito = nuevoProducto.querySelector("#namecarrito");
-        var miproducto = document.querySelector("#nameproducto");
-        var micantidadcarrito = nuevoProducto.querySelector("#cantidadcarrito");
-        var micantidad = document.querySelector("#unidad");
-        var micantidad_cajas_carrito = nuevoProducto.querySelector("#cantidad_caja");
-        var micantidad_cajas = document.querySelector("#cant_box");
-        var mivalornidadcarrito = nuevoProducto.querySelector("#valorunidad");
-        var mivalorunidad = document.querySelector("#precio");
-        var miimgcarrito = nuevoProducto.querySelector("#imgproductocarrito");
-        var miimg = document.getElementById("img2_principal");
-        var miimgsrc = miimg.getAttribute("src");
+  // Nombre del comprador
+  var name = document.createElement("input");
+  name.style.paddingTop = "10px";
+  name.style.width = "100%"; // Utilizamos el 100% del ancho disponible
+  name.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
+  name.type = "text";
+  name.placeholder = "Indique su nombre completo para preparar su pedido";
+  name.id = "namecliente";
+  colDivProcesar.appendChild(name);
 
-        // Comprobar que existen
-        if (miproductocarrito && miproducto) {
-            miproductocarrito.textContent = miproducto.textContent;
-        }
-        if (micantidad_cajas_carrito && micantidad_cajas) {
-            micantidad_cajas_carrito.textContent = micantidad_cajas.value;
-        }
-        if (micantidadcarrito && micantidad) {
-            micantidadcarrito.textContent = micantidad.textContent;
-        }
-        if (mivalornidadcarrito && mivalorunidad) {
-            mivalornidadcarrito.textContent = parseFloat(mivalorunidad.textContent) * parseFloat(micantidad_cajas.value);
-        }
-        if (miimgcarrito) {
-            miimgcarrito.setAttribute("src", miimgsrc);
-        }
+  // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
+  name.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
 
-        // Guardar la lista de productos en localStorage
-        var listaDeProductos = document.getElementById("div_lista_de_productos");
-        localStorage.setItem("listaDeProductos", listaDeProductos.innerHTML);
+
+  // Agregar un evento de escucha al campo de entrada del nombre
+  name.addEventListener("blur", function () {
+    if (name.value.trim() === "") {
+      alert("Por favor, ingrese su nombre para continuar.");
     }
+  });
+
+  // Numero de telefono del comprador
+  var tel = document.createElement("input");
+  tel.style.paddingTop = "10px";
+  tel.style.marginTop = "10px";
+  tel.style.width = "100%"; // Utilizamos el 100% del ancho disponible
+  tel.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
+  tel.type = "text";
+  tel.placeholder = "Indique su número de teléfono";
+  tel.id = "telefono";
+  colDivProcesar.appendChild(tel);
+
+  // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
+  tel.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
+
+  // Agregar un evento de escucha al campo de entrada de telefono
+  tel.addEventListener("blur", function () {
+    if (tel.value.trim() === "") {
+      alert("Por favor, ingrese su telefono para continuar.");
+    }
+  });
+
+  // Boton finalizar compra
+  var finalizarCompra = document.createElement("button");
+  finalizarCompra.style.paddingTop = "5px";
+  finalizarCompra.style.marginTop = "30px";
+  finalizarCompra.style.backgroundColor = "green";
+  finalizarCompra.style.width = "200px";
+  finalizarCompra.innerHTML = "<p>Finalizar pedido</p";
+  colDivProcesar.appendChild(finalizarCompra);
+
+  // Función para verificar el nombre y enviar el correo electrónico
+  function finalizarCompraClick() {
+    var nameCliente = document.getElementById("namecliente");
+
+    if (nameCliente.value.trim() === "") {
+      alert("Por favor, ingrese su nombre para continuar.");
+    } else {
+      enviar_email(); // Llama a la función enviar_email si el nombre no está en blanco
+    }
+  }
+
+  // Asigna la función finalizarCompraClick como el manejador del evento onclick
+  finalizarCompra.onclick = finalizarCompraClick;
 }
 
 
 
 
-// Función para eliminar un producto del carrito
-function eliminar_producto(boton) {
-    // Obtener el elemento del producto que se va a eliminar
-    var productoAEliminar = boton.closest(".w3-row");
-
-    // Eliminar el elemento del producto del DOM
-    productoAEliminar.remove();
-
-    // Obtener la lista de productos actualizada
-    var listaDeProductos = document.getElementById("div_lista_de_productos");
-
-    // Guardar la lista de productos en localStorage
-    localStorage.setItem("listaDeProductos", listaDeProductos.innerHTML);
-}
-
-// Obtener la lista de productos del localStorage y mostrarla en el carrito
-var listaDeProductosGuardada = localStorage.getItem("listaDeProductos");
-if (listaDeProductosGuardada) {
-    var listaDeProductos = document.getElementById("div_lista_de_productos");
-    listaDeProductos.innerHTML = listaDeProductosGuardada;
-}
 
 
 
-// PAGINA FINAL CARRITO
-function añadir() {
-    console.log("Button 'Proceso de pago' clicked");
-    var productosEnCarrito = document.querySelectorAll(".w3-row");
 
-    var productos = [];
-    productosEnCarrito.forEach(function (producto) {
-        var nombreElement = producto.querySelector("#namecarrito");
-        var cantidadCajaElement = producto.querySelector("#cantidad_caja");
-        var aclaracionElement = producto.querySelector("#aclaracion");
 
-        if (nombreElement && cantidadCajaElement && aclaracionElement) {
-            var nombre = nombreElement.textContent;
-            var cantidadCaja = cantidadCajaElement.textContent;
-            var aclaracion = aclaracionElement.textContent;
 
-            productos.push({
-                nombre: nombre,
-                cantidadCaja: cantidadCaja,
-                aclaracion: aclaracion
-            });
-        } else {
-            console.error("Algunos elementos son nulos");
-        }
-    });
-
-    // Realizar la solicitud POST al servidor
-    fetch('/buy', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(productos)
-    })
-        .then(response => response.json())
-        .then(data => {
-            // Redireccionar al usuario a la página de carrito una vez que se complete la inserción
-            window.location.href = '/su_carrito';
-        })
-        .catch(error => {
-            console.error('Error al enviar la solicitud:', error);
-        });
-}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------

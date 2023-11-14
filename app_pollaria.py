@@ -26,40 +26,34 @@ def pag_producto():
     return render_template('pagina_compra.html')
 
 
-# @app.route('/buy', methods=['POST'])
-# def buy():
-#     try:
-#         print("Received POST request to /buy")
-#         productos = request.json  # Obtiene los datos enviados en el cuerpo de la solicitud
 
-#         print("Received products:", productos)
-
-#         # Aquí puedes manejar la inserción en la base de datos
-#         for producto in productos:
-#             #img = producto['imgSrc']
-#             nombre = producto['nombre']
-#             cantidadCaja = producto['cantidadCaja']
-#             aclaracion = producto['aclaracion']
-
-#             # Realiza la inserción en tu base de datos aquí
-#             misencargos.insert_one({
-#                 # "imagen": img,
-#                 "producto": nombre,
-#                 "cantidad": cantidadCaja,
-#                 "opcion": aclaracion
-#             })
-
-#         # Redirige al usuario a la página su_carrito.html después de la inserción
-#         return redirect(url_for('su_carrito'))
-#     except Exception as e:
-#         print("Error:", str(e))
-#         return jsonify({'error': str(e)})
-
-
-@app.route('/su_carrito')
+@app.route('/resumen_compra')
 def pag_carrito():
     # Puedes hacer aquí cualquier proceso necesario antes de renderizar la página su_carrito.html
-    return render_template('su_carrito.html')
+    return render_template('resumen_compra.html')
+    
+
+
+# Redirigir a galeria
+@app.route("/principal_galeria")
+def pag_principal_galeria():
+    return redirect(url_for('galeria', _anchor='galeria'))
+
+@app.route("/galeria")
+def galeria():
+    return render_template('pagina.html')
+
+
+
+# Redirigir a contacto
+@app.route("/principal_contacto")
+def pag_principal_contacto():
+    return redirect(url_for('contact', _anchor='contact'))
+
+@app.route("/contact")
+def contacto():
+    return render_template('pagina.html')
+
 
 
 
