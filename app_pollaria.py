@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, jsonify, url_for, s
 from bson import ObjectId
 from pymongo import MongoClient
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder='static', template_folder='docs')
 
 client = MongoClient("mongodb://localhost:27017")
 basedatos = client.paginas
