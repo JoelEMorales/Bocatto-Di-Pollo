@@ -41,7 +41,7 @@ def pag_principal_galeria():
 
 @app.route("/galeria")
 def galeria():
-    return send_from_directory(app.root_path, 'index.html')
+    return render_template('index.html')
 
 
 
@@ -52,7 +52,7 @@ def pag_principal_contacto():
 
 @app.route("/contact")
 def contacto():
-    return send_from_directory(app.root_path, 'index.html')
+    return render_template('index.html')
 
 
 
