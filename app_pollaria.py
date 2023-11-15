@@ -13,7 +13,7 @@ misencargos = basedatos.lista
 
 @app.route("/")
 def pag_principal():
-    return render_template('pagina.html')
+    return render_template('index.html')
 
 
 @app.route("/our-product")
@@ -41,7 +41,7 @@ def pag_principal_galeria():
 
 @app.route("/galeria")
 def galeria():
-    return render_template('pagina.html')
+    return render_template('index.html')
 
 
 
@@ -52,7 +52,7 @@ def pag_principal_contacto():
 
 @app.route("/contact")
 def contacto():
-    return render_template('pagina.html')
+    return render_template('index.html')
 
 
 
