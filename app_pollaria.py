@@ -13,7 +13,8 @@ misencargos = basedatos.lista
 
 @app.route("/")
 def pag_principal():
-    return send_from_directory(app.root_path, 'index.html')
+    return render_template('index.html')
+
 
 @app.route("/our-product")
 def pag_our_product():

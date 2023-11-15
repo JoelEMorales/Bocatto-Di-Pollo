@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Obtén el elemento con la clase 'bg-image'
     // Establece la imagen de fondo utilizando JavaScript
     const bgImage = document.querySelector('.bg-image');
-    bgImage.style.backgroundImage = 'url("static/fotosalfajores/baner-bocatto.png")';
+    bgImage.style.backgroundImage = `url("${static_url}fotosalfajores/baner-bocatto.png")`;
   }
 });
 
