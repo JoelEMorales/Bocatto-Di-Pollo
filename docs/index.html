@@ -2,434 +2,436 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="static/styles/estilosalfajor.css" />
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-font-family: "Times New Roman", Georgia, Serif;
-}
+    <link rel="stylesheet" type="text/css" href="../static/styles/estilosalfajor.css">
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-font-family: "Playfair Display";
-letter-spacing: 5px;
-}
-</style>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: "Times New Roman", Georgia, Serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+        }
+    </style>
 </head>
 
 <body>
-<nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
+    <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
 
-<a href="/" class="w3-button w3-bar-item w3-hover-white d-none d-md-block">
-<img src="static/fotosalfajores/logo-bocatto.jpg" alt="Logo" alt="Logo" style="height: 50px; width: 50px">
-</a>
+        <a href="/" class="w3-button w3-bar-item w3-hover-white d-none d-md-block">
+            <img src="../static/fotosalfajores/logo-bocatto.jpg" alt="Logo" alt="Logo" style="height: 50px; width: 50px">
+        </a>
 
-<!-- MENU PANTALLAS GRANDES -->
-<div class="w3-right w3-padding-large d-none d-md-block">
-<a href="/" class="w3-bar-item w3-button">¿Quienes somos?</a>
-<a href="/our-product" class="w3-bar-item w3-button">Productos</a>
-<a href="#galeria" class="w3-bar-item w3-button">Galeria</a>
-<a href="#contact" class="w3-bar-item w3-button">Contactanos</a>
-<a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
-id="carrito-icono"></i></a>
-</div>
+        <!-- MENU PANTALLAS GRANDES -->
+        <div class="w3-right w3-padding-large d-none d-md-block">
+            <a href="/" class="w3-bar-item w3-button">¿Quienes somos?</a>
+            <a href="/our-product" class="w3-bar-item w3-button">Productos</a>
+            <a href="#galeria" class="w3-bar-item w3-button">Galeria</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contactanos</a>
+            <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                    id="carrito-icono"></i></a>
+        </div>
 
-<!-- MENU PANTALLAS MOVILES -->
-<!-- Button to open the offcanvas sidebar -->
-<div class="navbar d-block d-md-none">
+        <!-- MENU PANTALLAS MOVILES -->
+        <!-- Button to open the offcanvas sidebar -->
+        <div class="navbar d-block d-md-none">
 
-<div class="container-fluid">
+            <div class="container-fluid">
 
-<a class="nav-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#nav_movil">
-<i class="fa-solid fa-bars"></i>
-</a>
+                <a class="nav-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#nav_movil">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
 
-<a href="/" class="navbar-brand">
-<img src="static/fotosalfajores/logo-bocatto.jpg" alt="Avatar Logo" style="width:40px;"
-class="rounded-pill">
-</a>
+                <a href="/" class="navbar-brand">
+                    <img src="static/fotosalfajores/logo-bocatto.jpg" alt="Avatar Logo" style="width:40px;"
+                        class="rounded-pill">
+                </a>
 
-<a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
-id="carrito-icono"></i></a>
+                <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg"
+                        id="carrito-icono"></i></a>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<!-- Offcanvas Sidebar -->
-<div class="offcanvas offcanvas-start bg-dark text-white" id="nav_movil">
-<div class="offcanvas-header">
-<button type="button" class="btn-close text-reset ms-4" data-bs-dismiss="offcanvas"></button>
-</div>
-<div class="offcanvas-body">
-<li class="nav-item">
-<a href="/" class="nav-link ms-4">¿Quienes somos?</a>
-</li>
-<li class="nav-item">
-<a href="/our-product" class="nav-link ms-4">Productos</a>
-</li>
-<li class="nav-item">
-<a href="/principal_contacto" class="nav-link ms-4">Galeria</a>
-</li>
-<li class="nav-item">
-<a href="/principal_contacto" class="nav-link ms-4">Contactanos</a>
-</li>
-</div>
-</div>
-</nav>
+        <!-- Offcanvas Sidebar -->
+        <div class="offcanvas offcanvas-start bg-dark text-white" id="nav_movil">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close text-reset ms-4" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <li class="nav-item">
+                    <a href="/" class="nav-link ms-4">¿Quienes somos?</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/our-product" class="nav-link ms-4">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/principal_contacto" class="nav-link ms-4">Galeria</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/principal_contacto" class="nav-link ms-4">Contactanos</a>
+                </li>
+            </div>
+        </div>
+    </nav>
 
-<!-- DIV SECCION CORREDISA -->
-<div id="mySidebar" class="sidebar" style="z-index: 2">
-<a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
-<a href="#descripcion" class="w3-bar-item">Su carrito</a>
-<hr>
-<!-- PRODUCTOS DEL CARRITO -->
-<div id="div_lista_de_productos">
-<!-- Aquí se mostrarán los productos seleccionados -->
-</div>
+    <!-- DIV SECCION CORREDISA -->
+    <div id="mySidebar" class="sidebar" style="z-index: 2">
+        <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
+        <a href="#descripcion" class="w3-bar-item">Su carrito</a>
+        <hr>
+        <!-- PRODUCTOS DEL CARRITO -->
+        <div id="div_lista_de_productos">
+            <!-- Aquí se mostrarán los productos seleccionados -->
+        </div>
 
-<!-- Boton para acceder al pago -->
-<div class="w3-padding-large">
-<button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Proceso
-de pago</button>
-</div>
-</div>
+        <!-- Boton para acceder al pago -->
+        <div class="w3-padding-large">
+            <button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Proceso
+                de pago</button>
+        </div>
+    </div>
 
-<!-- welcome header -->
-<div class="bg-image" id="home" style="background-image: url(static/fotosalfajores/baner-bocatto.png);"></div>
-<header class="bg-text">
-<h1>Bocatto Di Pollo</h1>
-<h2 style="font-size:25px">¡Bienvenido al hogar del pollo mas sabroso y fresco!.</h2>
-<p>La mejor experiencia culinaria te espera.</p>
-</header>
+    <!-- welcome header -->
+    <div class="bg-image" id="home" style="background-image: url(static/fotosalfajores/baner-bocatto.png);"></div>
+    <header class="bg-text">
+        <h1>Bocatto Di Pollo</h1>
+        <h2 style="font-size:25px">¡Bienvenido al hogar del pollo mas sabroso y fresco!.</h2>
+        <p>La mejor experiencia culinaria te espera.</p>
+    </header>
 
-<article class="w3-main w3-content w3-padding" style="max-width:1200px;">
+    <article class="w3-main w3-content w3-padding" style="max-width:1200px;">
 
-<!-- QUE ES? -->
-<section class="w3-row w3-padding-top w3-white" id="descripcion">
-<div class="w3-half w3-padding-large w3-hide-small">
-<br>
-<img src="static/fotosalfajores/mila-1.JPG" class="w3-round w3-image" alt="Table" style="width:100%">
-</div>
+        <!-- QUE ES? -->
+        <section class="w3-row w3-padding-top w3-white" id="descripcion">
+            <div class="w3-half w3-padding-large w3-hide-small">
+                <br>
+                <img src="static/fotosalfajores/mila-1.JPG" class="w3-round w3-image" alt="Table" style="width:100%">
+            </div>
 
-<div class="w3-half w3-padding-large">
-<br>
-<h1 class="w3-center w3-text-black">Sabor y Tradición</h1><br>
-<h5 class="w3-center w3-text-black">Nos enorgullece ofrecerte una seleccion de productos donde el pollo
-es el protagonista:
-<hr style="background-color: gray; height: 0,5px;">
-</h5>
-<p class="w3-large w3-text-black">
-Nuestra deliciosa oferta familiar se enfoca en el mundo del pollo y sus delicias. Desde nuestro
-pollo fresco y jugoso hasta una amplia selección de productos relacionados, nos esforzamos por
-brindarte lo mejor. Cada elemento es cuidadosamente seleccionado y preparado con amor para
-asegurarte una experiencia auténtica y sabrosa. Nuestro negocio familiar se enorgullece de ofrecer
-productos únicos y especiales, perfectos para acompañar cualquier momento del día, ya sea una comida
-rápida o un festín para toda la familia. ¡Ven y descubre los sabores que nos hacen destacar en el
-mundo del pollo!
-</p>
-<p class="w3-large w3-text-grey w3-hide-medium">
-En nuestro sitio web podrás conocer más acerca de nuestro amplio catalogo, nuestras
-técnicas de elaboración y los diferentes sabores que ofrecemos. Además, podrás realizar tus pedidos
-para que lo tengamos listo cuando llegues.
-<br>
-Te invitamos a probar nuestras deliciosas milanesas de pollo y a disfrutar de una experiencia
-única y auténtica de la gastronomía de Bocatto Di Pollo. <br>¡Haz tu pedido hoy mismo!
-</p>
-</div>
-</section>
+            <div class="w3-half w3-padding-large">
+                <br>
+                <h1 class="w3-center w3-text-black">Sabor y Tradición</h1><br>
+                <h5 class="w3-center w3-text-black">Nos enorgullece ofrecerte una seleccion de productos donde el pollo
+                    es el protagonista:
+                    <hr style="background-color: gray; height: 0,5px;">
+                </h5>
+                <p class="w3-large w3-text-black">
+                    Nuestra deliciosa oferta familiar se enfoca en el mundo del pollo y sus delicias. Desde nuestro
+                    pollo fresco y jugoso hasta una amplia selección de productos relacionados, nos esforzamos por
+                    brindarte lo mejor. Cada elemento es cuidadosamente seleccionado y preparado con amor para
+                    asegurarte una experiencia auténtica y sabrosa. Nuestro negocio familiar se enorgullece de ofrecer
+                    productos únicos y especiales, perfectos para acompañar cualquier momento del día, ya sea una comida
+                    rápida o un festín para toda la familia. ¡Ven y descubre los sabores que nos hacen destacar en el
+                    mundo del pollo!
+                </p>
+                <p class="w3-large w3-text-grey w3-hide-medium">
+                    En nuestro sitio web podrás conocer más acerca de nuestro amplio catalogo, nuestras
+                    técnicas de elaboración y los diferentes sabores que ofrecemos. Además, podrás realizar tus pedidos
+                    para que lo tengamos listo cuando llegues.
+                    <br>
+                    Te invitamos a probar nuestras deliciosas milanesas de pollo y a disfrutar de una experiencia
+                    única y auténtica de la gastronomía de Bocatto Di Pollo. <br>¡Haz tu pedido hoy mismo!
+                </p>
+            </div>
+        </section>
 
-<!-- Historia e ingrediente -->
-<section class="w3-row w3-padding-top w3-white" id="descripcion">
-<div class="w3-half w3-padding-large">
-<br><br><br>
-<h1 class="w3-center w3-text-black">Nuestra Historia: Del Sueño a la Realidad</h1><br>
-<hr style="background-color: gray; height: 0,5px;">
-<p class="w3-large w3-text-black">
-Hace más de una década, la familia Morales tomó una valiente decisión al emigrar desde Mendoza a San
-Luis en busca de nuevas oportunidades. Fue aquí, en esta tierra llena de promesas, donde la señora
-Claudia Graciela Cordero inició una emocionante trayectoria en el apasionante mundo de la pollería.
+        <!-- Historia e ingrediente -->
+        <section class="w3-row w3-padding-top w3-white" id="descripcion">
+            <div class="w3-half w3-padding-large">
+                <br><br><br>
+                <h1 class="w3-center w3-text-black">Nuestra Historia: Del Sueño a la Realidad</h1><br>
+                <hr style="background-color: gray; height: 0,5px;">
+                <p class="w3-large w3-text-black">
+                    Hace más de una década, la familia Morales tomó una valiente decisión al emigrar desde Mendoza a San
+                    Luis en busca de nuevas oportunidades. Fue aquí, en esta tierra llena de promesas, donde la señora
+                    Claudia Graciela Cordero inició una emocionante trayectoria en el apasionante mundo de la pollería.
 
-Con determinación y entusiasmo, Claudia se sumergió en el ámbito trabajando en una empresa de
-pollería durante 5 años. Durante ese tiempo, adquirió todos los conocimientos y habilidades
-necesarias para convertirse en una experta en el rubro.</p>
-<p class="w3-large w3-text-grey w3-hide-medium">
-El destino les sonrió un día y junto a su familia tomaron la decisión de independizarse y dar vida a
-su propio sueño: "Bocatto Di Pollo". El comedor de su hogar se convirtió en el lugar donde comenzó
-esta hermosa aventura. Durante 2 largos años, con esfuerzo y dedicación, vieron crecer su pequeño
-negocio hasta que llegó el momento de dar un paso más.
+                    Con determinación y entusiasmo, Claudia se sumergió en el ámbito trabajando en una empresa de
+                    pollería durante 5 años. Durante ese tiempo, adquirió todos los conocimientos y habilidades
+                    necesarias para convertirse en una experta en el rubro.</p>
+                <p class="w3-large w3-text-grey w3-hide-medium">
+                    El destino les sonrió un día y junto a su familia tomaron la decisión de independizarse y dar vida a
+                    su propio sueño: "Bocatto Di Pollo". El comedor de su hogar se convirtió en el lugar donde comenzó
+                    esta hermosa aventura. Durante 2 largos años, con esfuerzo y dedicación, vieron crecer su pequeño
+                    negocio hasta que llegó el momento de dar un paso más.
 
-El siguiente capítulo fue un hito significativo en su historia. Decidieron abrir un local en una
-esquina del mismo barrio que los acogió desde su llegada a San Luis. Allí, con el respaldo de la
-comunidad, su amor por el pollo y una atención inigualable, el negocio floreció.
-<br><br>
-Hoy, "Bocatto Di Pollo" es sinónimo de calidad y tradición. Diez años de experiencia respaldan la
-excelencia en cada elaboracion que ofrecen. Es una historia de superación, esfuerzo y dedicación que
-continuará creciendo junto a todos aquellos que han sido parte de este delicioso viaje. ¡Gracias por
-ser parte de nuestra historia!"
-</p>
-</div>
-<div class="w3-half w3-padding-large w3-hide-small">
-<br>
-<br>
-<img src="static/fotosalfajores/arrollado.JPG" class="w3-round w3-image" alt="Table"
-style="width:100%; height: 780px">
-</div>
+                    El siguiente capítulo fue un hito significativo en su historia. Decidieron abrir un local en una
+                    esquina del mismo barrio que los acogió desde su llegada a San Luis. Allí, con el respaldo de la
+                    comunidad, su amor por el pollo y una atención inigualable, el negocio floreció.
+                    <br><br>
+                    Hoy, "Bocatto Di Pollo" es sinónimo de calidad y tradición. Diez años de experiencia respaldan la
+                    excelencia en cada elaboracion que ofrecen. Es una historia de superación, esfuerzo y dedicación que
+                    continuará creciendo junto a todos aquellos que han sido parte de este delicioso viaje. ¡Gracias por
+                    ser parte de nuestra historia!"
+                </p>
+            </div>
+            <div class="w3-half w3-padding-large w3-hide-small">
+                <br>
+                <br>
+                <img src="static/fotosalfajores/arrollado.JPG" class="w3-round w3-image" alt="Table"
+                    style="width:100%; height: 780px">
+            </div>
 
-<!-- SECTION CAROUSEL -->
-<section class="w3-row w3-padding-top w3-white" id="carousel">
-<br><br><br>
-<!-- Carousel -->
-<div id="demo" class="carousel slide" data-bs-ride="carousel">
+            <!-- SECTION CAROUSEL -->
+            <section class="w3-row w3-padding-top w3-white" id="carousel">
+                <br><br><br>
+                <!-- Carousel -->
+                <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-<!-- Indicators/dots -->
-<div class="carousel-indicators">
-<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-</div>
+                    <!-- Indicators/dots -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                    </div>
 
-<!-- The slideshow/carousel -->
-<div class="carousel-inner">
-<div class="carousel-item active">
-<img src="static/fotosalfajores/work-1.jpeg" alt="Los Angeles" class="d-block w-100">
-</div>
-<div class="carousel-item">
-<img src="static/fotosalfajores/work-2.jpeg" alt="Chicago" class="d-block w-100">
-</div>
-<div class="carousel-item">
-<img src="static/fotosalfajores/work-3.jpeg" alt="New York" class="d-block w-100">
-</div>
-</div>
+                    <!-- The slideshow/carousel -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="static/fotosalfajores/work-1.jpeg" alt="Los Angeles" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="static/fotosalfajores/work-2.jpeg" alt="Chicago" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="static/fotosalfajores/work-3.jpeg" alt="New York" class="d-block w-100">
+                        </div>
+                    </div>
 
-<!-- Left and right controls/icons -->
-<button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-<span class="carousel-control-prev-icon"></span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-<span class="carousel-control-next-icon"></span>
-</button>
-</div>
-<br>
-</section>
+                    <!-- Left and right controls/icons -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+                <br>
+            </section>
 
-<!-- Photo Grid Alfajor -->
-<section style="height: 900px" id="galeria">
+            <!-- Photo Grid Alfajor -->
+            <section style="height: 900px" id="galeria">
 
-<!-- First Grid Photo Grid Alfajor -->
-<div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
-<br><br><br><br>
-<h1>Galeria</h1><br><br><br>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/pollo-1.JPG" alt="Pollo">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/pata-1.JPG" alt="Pata de pollo">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/mila-papa.JPG" alt="Milanesa">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/arrollado-2.JPG" alt="Arrollado">
-</div>
-</div>
-<!-- Sequend Grid Photo Grid Alfajor -->
-<div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/mila-1.JPG" alt="Alfajor Negro">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/mila.elaboracion-4.jpg" alt="Alfajor Blanco">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/arrollado-3.jpg" alt="Alfajor Blanco">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/pechuga-1.JPG" alt="Alfajor Blanco">
-</div>
-</div>
-<!-- Three Grid Photo Grid Alfajor -->
-<div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/burger-1.jpg" alt="Alfajor Negro">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/Mila-elaboracion-1.JPG" alt="Alfajor Blanco">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/mila-3.JPG" alt="Alfajor Blanco">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/mila-4.JPG" class="crop" alt="Alfajor Blanco">
-</div>
-</div>
-<!-- Four Grid Photo Grid Alfajor -->
-<div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/pata.muslo-3.jpg" alt="Alfajor Negro">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/albondiga-2.jpg" alt="Alfajor Blanco">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/pollo-2.JPG" alt="Alfajor Blanco">
-</div>
-<div class="w3-quarter contenedor-img">
-<img src="static/fotosalfajores/pechuga-5.jpg" class="crop" alt="Alfajor Blanco">
-</div>
-</div>
-</section>
-</article>
+                <!-- First Grid Photo Grid Alfajor -->
+                <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                    <br><br><br><br>
+                    <h1>Galeria</h1><br><br><br>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/pollo-1.JPG" alt="Pollo">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/pata-1.JPG" alt="Pata de pollo">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/mila-papa.JPG" alt="Milanesa">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/arrollado-2.JPG" alt="Arrollado">
+                    </div>
+                </div>
+                <!-- Sequend Grid Photo Grid Alfajor -->
+                <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/mila-1.JPG" alt="Alfajor Negro">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/mila.elaboracion-4.jpg" alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/arrollado-3.jpg" alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/pechuga-1.JPG" alt="Alfajor Blanco">
+                    </div>
+                </div>
+                <!-- Three Grid Photo Grid Alfajor -->
+                <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/burger-1.jpg" alt="Alfajor Negro">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/Mila-elaboracion-1.JPG" alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/mila-3.JPG" alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/mila-4.JPG" class="crop" alt="Alfajor Blanco">
+                    </div>
+                </div>
+                <!-- Four Grid Photo Grid Alfajor -->
+                <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/pata.muslo-3.jpg" alt="Alfajor Negro">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/albondiga-2.jpg" alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/pollo-2.JPG" alt="Alfajor Blanco">
+                    </div>
+                    <div class="w3-quarter contenedor-img">
+                        <img src="static/fotosalfajores/pechuga-5.jpg" class="crop" alt="Alfajor Blanco">
+                    </div>
+                </div>
+            </section>
+    </article>
 
-<!-- PIE DE PAGINA CON MAPA, HORARIOS, UBICACION Y CONTACTO -->
-<footer class="w3-container w3-white" id="contact">
-<br><br>
-<hr class="my-2">
-<br>
+    <!-- PIE DE PAGINA CON MAPA, HORARIOS, UBICACION Y CONTACTO -->
+    <footer class="w3-container w3-white" id="contact">
+        <br><br>
+        <hr class="my-2">
+        <br>
 
-<!-- APPS -->
-<div class="w3-padding-large w3-center">
-<div class="row">
-<div class="col-md-6 mb-4 mb-md-0">
-<h3 class="w3-text-black">Síguenos</h3>
-<a href="https://www.instagram.com/bocatto_di_pollo/" class="w3-large w3-text-black d-block mb-3">
-<i class="fa-brands fa-square-instagram"></i>&nbsp;&nbsp;@bocatto_di_pollo
-</a>
-<a href="www.facebook.com/Bocatto-Di-Pollo-188887745394197"
-class="w3-large w3-text-black d-block mb-3">
-<i class="fa-brands fa-facebook"></i>&nbsp;&nbsp;Bocatto di Pollo
-</a>
-<p class="w3-large w3-text-black mb-3">
-<i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;bocattodipollo@gmail.com
-</p>
-<p class="mb-2"><strong>Lunes a Viernes</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
-<p class="mb-2"><strong>Sábados</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
-<p class="mb-2"><strong>Domingo</strong> | Cerrado</p>
-<p><strong>Ubicación</strong></p>
-<p>
-Balcarce 803
-D5700GDH D5700GDG
-San Luis
-Argentina
-</p>
-<p class="w3-text-blue-grey w3-medium mb-4">
-<b>Si quieres saber más sobre nuestros productos, ingredientes o simplemente tienes alguna duda,
-rellena el formulario de contacto</b>
-</p>
-<!-- BOTON CONTACTO -->
-<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
-CONTACTANOS
-</button>
-</div>
+        <!-- APPS -->
+        <div class="w3-padding-large w3-center">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h3 class="w3-text-black">Síguenos</h3>
+                    <a href="https://www.instagram.com/bocatto_di_pollo/" class="w3-large w3-text-black d-block mb-3">
+                        <i class="fa-brands fa-square-instagram"></i>&nbsp;&nbsp;@bocatto_di_pollo
+                    </a>
+                    <a href="www.facebook.com/Bocatto-Di-Pollo-188887745394197"
+                        class="w3-large w3-text-black d-block mb-3">
+                        <i class="fa-brands fa-facebook"></i>&nbsp;&nbsp;Bocatto di Pollo
+                    </a>
+                    <p class="w3-large w3-text-black mb-3">
+                        <i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;bocattodipollo@gmail.com
+                    </p>
+                    <p class="mb-2"><strong>Lunes a Viernes</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
+                    <p class="mb-2"><strong>Sábados</strong> | 07:30 - 14:30 -- 17:30 - 22:00</p>
+                    <p class="mb-2"><strong>Domingo</strong> | Cerrado</p>
+                    <p><strong>Ubicación</strong></p>
+                    <p>
+                        Balcarce 803
+                        D5700GDH D5700GDG
+                        San Luis
+                        Argentina
+                    </p>
+                    <p class="w3-text-blue-grey w3-medium mb-4">
+                        <b>Si quieres saber más sobre nuestros productos, ingredientes o simplemente tienes alguna duda,
+                            rellena el formulario de contacto</b>
+                    </p>
+                    <!-- BOTON CONTACTO -->
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+                        CONTACTANOS
+                    </button>
+                </div>
 
-<!-- GOOGLE MAPS -->
-<div class="col-md-6">
-<div class="w3-hide-small">
-<iframe
-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.383045279537!2d-66.33778142659068!3d-33.3088000315649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d43b51d19c2103%3A0xff02940b25dcc3d1!2sBOCATTO%20DI%20POLLO!5e0!3m2!1ses-419!2ses!4v1690134814208!5m2!1ses-419!2ses"
-width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
-</div>
-</div>
-</div>
-</footer>
+                <!-- GOOGLE MAPS -->
+                <div class="col-md-6">
+                    <div class="w3-hide-small">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.383045279537!2d-66.33778142659068!3d-33.3088000315649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d43b51d19c2103%3A0xff02940b25dcc3d1!2sBOCATTO%20DI%20POLLO!5e0!3m2!1ses-419!2ses!4v1690134814208!5m2!1ses-419!2ses"
+                            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<!-- The Modal -->
-<div class="modal" id="myModal" style="text-align: left">
-<div class="modal-dialog">
-<div class="modal-content">
-<!-- Modal Header -->
-<div class="modal-header">
-<h4 class="modal-title">Formulario de Contacto</h4>
-<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-</div>
+    <!-- The Modal -->
+    <div class="modal" id="myModal" style="text-align: left">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Formulario de Contacto</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-<!-- Modal body -->
-<div class="modal-body">
-<form id="form" class="was-validated">
-<div class="mb-3">
-<label for="from_name">Nombre:</label>
-<input type="text" name="from_name" id="from_name" class="form-control"
-placeholder="Ingrese su nombre" required />
-<div class="valid-feedback">¡Válido!</div>
-<div class="invalid-feedback">
-Por favor, introduzca su nombre.
-</div>
-</div>
-<div class="mb-3">
-<label for="from_lastname">Apellido:</label>
-<input type="text" name="from_lastname" id="from_lastname" class="form-control"
-placeholder="Ingrese su apellido" required />
-<div class="valid-feedback">¡Válido!</div>
-<div class="invalid-feedback">
-Por favor, introduzca su apellido.
-</div>
-</div>
-<div class="mb-3">
-<label for="email">Email:</label>
-<input type="email" name="email" id="email" class="form-control"
-placeholder="Ingrese su correo electrónico" required />
-<div class="valid-feedback">¡Válido!</div>
-<div class="invalid-feedback">
-Por favor, introduzca un correo electrónico válido.
-</div>
-</div>
-<div class="mb-3">
-<label for="telefono">Teléfono:</label>
-<input type="text" name="telefono" id="telefono" class="form-control"
-placeholder="Ingrese su número de teléfono" required />
-<div class="valid-feedback">¡Válido!</div>
-<div class="invalid-feedback">
-Por favor, introduzca su número de teléfono.
-</div>
-</div>
-<div class="mb-3">
-<label for="message">Deje su consulta:</label>
-<textarea name="message" id="message" class="form-control" placeholder="Escriba su consulta"
-required></textarea>
-</div>
-<hr />
-<div class="d-flex justify-content-end">
-<button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">
-Cerrar
-</button>
-<button type="submit" id="boton_enviar" class="btn btn-primary">
-Enviar
-</button>
-</div>
-</form>
-<script type="text/javascript"
-src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="form" class="was-validated">
+                        <div class="mb-3">
+                            <label for="from_name">Nombre:</label>
+                            <input type="text" name="from_name" id="from_name" class="form-control"
+                                placeholder="Ingrese su nombre" required />
+                            <div class="valid-feedback">¡Válido!</div>
+                            <div class="invalid-feedback">
+                                Por favor, introduzca su nombre.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="from_lastname">Apellido:</label>
+                            <input type="text" name="from_lastname" id="from_lastname" class="form-control"
+                                placeholder="Ingrese su apellido" required />
+                            <div class="valid-feedback">¡Válido!</div>
+                            <div class="invalid-feedback">
+                                Por favor, introduzca su apellido.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" id="email" class="form-control"
+                                placeholder="Ingrese su correo electrónico" required />
+                            <div class="valid-feedback">¡Válido!</div>
+                            <div class="invalid-feedback">
+                                Por favor, introduzca un correo electrónico válido.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="text" name="telefono" id="telefono" class="form-control"
+                                placeholder="Ingrese su número de teléfono" required />
+                            <div class="valid-feedback">¡Válido!</div>
+                            <div class="invalid-feedback">
+                                Por favor, introduzca su número de teléfono.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message">Deje su consulta:</label>
+                            <textarea name="message" id="message" class="form-control" placeholder="Escriba su consulta"
+                                required></textarea>
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <button type="submit" id="boton_enviar" class="btn btn-primary">
+                                Enviar
+                            </button>
+                        </div>
+                    </form>
+                    <script type="text/javascript"
+                        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-<script type="text/javascript">
-emailjs.init("bZL7G9gX0CBh9EfQH");
-</script>
-</div>
-</div>
-</div>
-</div>
+                    <script type="text/javascript">
+                        emailjs.init("bZL7G9gX0CBh9EfQH");
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 <script type="text/javascript">
-emailjs.init('bZL7G9gX0CBh9EfQH')
+    emailjs.init('bZL7G9gX0CBh9EfQH')
 </script>
 <script>var static_url = "{{ url_for('static', filename='') }}";</script>
 <script src="static/javascript/principal.js"></script>
@@ -437,30 +439,30 @@ emailjs.init('bZL7G9gX0CBh9EfQH')
 <script src="static/javascript/carrito.js"></script>
 
 <script>
-const btn = document.getElementById("boton_enviar");
+    const btn = document.getElementById("boton_enviar");
 
-document
-.getElementById("form")
-.addEventListener("submit", function (event) {
-event.preventDefault();
+    document
+        .getElementById("form")
+        .addEventListener("submit", function (event) {
+            event.preventDefault();
 
-btn.innerHTML = "Cargando...";
+            btn.innerHTML = "Cargando...";
 
-const serviceID = "default_service";
-const templateID = "template_z4pm6o9";
+            const serviceID = "default_service";
+            const templateID = "template_z4pm6o9";
 
-emailjs.sendForm(serviceID, templateID, this).then(
-() => {
-btn.innerHTML = "Enviar";
-alert("Enviado!");
-form.reset(); // Esto restablece los campos del formulario
-},
-(err) => {
-btn.innerHTML = "Enviando";
-alert(JSON.stringify(err));
-}
-);
-});
+            emailjs.sendForm(serviceID, templateID, this).then(
+                () => {
+                    btn.innerHTML = "Enviar";
+                    alert("Enviado!");
+                    form.reset(); // Esto restablece los campos del formulario
+                },
+                (err) => {
+                    btn.innerHTML = "Enviando";
+                    alert(JSON.stringify(err));
+                }
+            );
+        });
 </script>
 
 </html>
