@@ -18,19 +18,19 @@ def pag_principal():
 
 @app.route("/our-product")
 def pag_our_product():
-    return send_from_directory(app.root_path,'product.html')
+    return render_template('product.html')
 
 
 @app.route("/product")
 def pag_producto():
-    return send_from_directory(app.root_path,'pagina_compra.html')
+    return render_template('pagina_compra.html')
 
 
 
 @app.route('/resumen_compra')
 def pag_carrito():
     # Puedes hacer aquí cualquier proceso necesario antes de renderizar la página su_carrito.html
-    return send_from_directory(app.root_path,'resumen_compra.html')
+    return render_template('resumen_compra.html')
     
 
 
