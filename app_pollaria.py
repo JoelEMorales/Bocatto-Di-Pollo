@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for, send_from_directory
 from bson import ObjectId
 from pymongo import MongoClient
+import os
 
 app = Flask(__name__, static_folder='static', template_folder='docs')
 
@@ -13,7 +14,7 @@ misencargos = basedatos.lista
 
 @app.route("/")
 def pag_principal():
-    return send_from_directory(app.root_path, 'index.html')
+    return render_template('index.html')
 
 
 @app.route("/our-product")
@@ -41,7 +42,7 @@ def pag_principal_galeria():
 
 @app.route("/galeria")
 def galeria():
-    return send_from_directory(app.root_path, 'index.html')
+    return render_template('index.html')
 
 
 
@@ -52,7 +53,7 @@ def pag_principal_contacto():
 
 @app.route("/contact")
 def contacto():
-    return send_from_directory(app.root_path, 'index.html')
+    return render_template('index.html')
 
 
 
@@ -73,4 +74,5 @@ def contact():
 
 
 if __name__ == "__main__":
+    print(os.path.abspath(app.template_folder))
     app.run()
