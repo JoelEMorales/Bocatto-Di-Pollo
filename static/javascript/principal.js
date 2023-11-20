@@ -1,18 +1,7 @@
 // fUNCIONES PAGINA PRINCIPAL, PRODUCT, PAGINA_COMPRA
 
 
-//welcome
-document.addEventListener('DOMContentLoaded', function () {
 
-  // Verificar si la URL coincide con la página principal
-  if (window.location.pathname === '/') {
-
-    // Obtén el elemento con la clase 'bg-image'
-    // Establece la imagen de fondo utilizando JavaScript
-    const bgImage = document.querySelector('.bg-image');
-    bgImage.style.backgroundImage = `url("${static_url}fotosalfajores/baner-bocatto.png")`;
-  }
-});
 
 
 //BARRA MENU SCROLL
@@ -42,7 +31,7 @@ window.onscroll = function () {
 // fUNCIONES PAGINA DE COMPRAR PRODUCTO
 
 
-//BOTON COMPRA PRODUCTO
+//BOTON PARA OBTENER DATOS DEL PRODUCTO SELECCIONADO ANTES DE CARGAR EL NUEVO HTML EN EL MAIN
 function abrir_pagina_producto(prodctID) {
 
   // Obtener el título del producto de la página principal
@@ -77,67 +66,67 @@ function abrir_pagina_producto(prodctID) {
   localStorage.setItem('imgaen2_transferir', producto_info.imagen2_producto);
   localStorage.setItem('imgaen3_transferir', producto_info.imagen3_producto);
 
-  // Redireccionar a la nueva página
-  window.location.href = "/product";
+  // cargar el HTML dentro de la etiqueta main
+  cargarPagina('compra');
+
+  // Luego de cargar la página, ejecutar el script para manipular los elementos
+  ejecutarScriptDespuesCargarPagina();
 }
 
-// Verificar si se cargó la página completamente
-window.addEventListener("load", function () {
-    // Verificar si existe el elemento con el ID "nameproducto"
-    var nameproducto = document.getElementById("nameproducto");
-  
-    if (nameproducto) {
-      // Recuperar el contenido almacenado en localStorage
-      const cantidad_producto_transferir = localStorage.getItem("cantidad_transferir");
-      const opcion_producto_transferir = localStorage.getItem("opcion_transferir");
-      const titulo_producto = localStorage.getItem("titulo_transferir");
-      const precio_producto = localStorage.getItem("precio_transferir");
-      const nombre_cantidad = localStorage.getItem("nombre_cantidad_transferir");
-      const descripcion_producto = localStorage.getItem("descripcion_transferir");
-      const ingredientes_producto = localStorage.getItem("ingredientes_transferir");
-      const imgPrincipal1_producto = localStorage.getItem("imgPrincipal1_transferir");
-      const imgPrincipal2_producto = localStorage.getItem("imgPrincipal2_transferir");
-      const imgPrincipal3_producto = localStorage.getItem("imgPrincipal3_transferir");
-      const imagen1_producto = localStorage.getItem("imgaen1_transferir");
-      const imagen2_producto = localStorage.getItem("imgaen2_transferir");
-      const imagen3_producto = localStorage.getItem("imgaen3_transferir");
-  
-      // Verificar si los valores almacenados en localStorage no son null
-      if (titulo_producto !== null && precio_producto !== null && nombre_cantidad !== null) {
-        // Actualizar el contenido del label según el tipo de producto
-        var label_cantidad = document.getElementById("cantidad_producto");
-        label_cantidad.textContent = cantidad_producto_transferir === "kilo" ? "Cantidad en kilo:" : "Cantidad:";
-  
-        // Agregar aclaración según el producto
-        var contenido_div_id_opcion = document.getElementById("opcion").innerHTML;
-  
-        if (opcion_producto_transferir === "opcion") {
-          var contenido_new = "<br><label>Elija el producto que desea:</label><select class='form-select form-select-sm' id='opcion_producto'><option>Filet de Pechuga</option><option>Filet de Muslo</option></select>";
-          document.getElementById("opcion").innerHTML = contenido_div_id_opcion + contenido_new;
-        }
-  
-        // Asignar la información guardada a los elementos existentes
-        nameproducto.textContent = titulo_producto;
-        var divCompraInformacion = document.getElementById("div-compra-informacion");
-        var h3Precio = divCompraInformacion.querySelector("h3");
-        var spanDolar = document.createElement("span");
-        spanDolar.textContent = "$";
-        h3Precio.appendChild(spanDolar);
-        h3Precio.appendChild(document.createTextNode(precio_producto));
-        
-        document.getElementById("nombre_unidad").textContent = nombre_cantidad;
-        document.getElementById("descripcion_compra").innerHTML = descripcion_producto;
-        document.getElementById("ingredientes_compra").innerHTML = ingredientes_producto;
-        document.getElementById("img1_principal").setAttribute("src", imgPrincipal1_producto);
-        document.getElementById("img2_principal").setAttribute("src", imgPrincipal2_producto);
-        document.getElementById("img3_principal").setAttribute("src", imgPrincipal3_producto);
-        document.getElementById("img1").setAttribute("src", imagen1_producto);
-        document.getElementById("img2").setAttribute("src", imagen2_producto);
-        document.getElementById("img3").setAttribute("src", imagen3_producto);
-      }
+// Función que contiene el código para ejecutar después de cargar la página
+function ejecutarScriptDespuesCargarPagina() {
+  // Recuperar el contenido almacenado en localStorage y manipular los elementos
+  const cantidad_producto_transferir = localStorage.getItem("cantidad_transferir");
+  const opcion_producto_transferir = localStorage.getItem("opcion_transferir");
+  const titulo_producto = localStorage.getItem("titulo_transferir");
+  const precio_producto = localStorage.getItem("precio_transferir");
+  const nombre_cantidad = localStorage.getItem("nombre_cantidad_transferir");
+  const descripcion_producto = localStorage.getItem("descripcion_transferir");
+  const ingredientes_producto = localStorage.getItem("ingredientes_transferir");
+  const imgPrincipal1_producto = localStorage.getItem("imgPrincipal1_transferir");
+  const imgPrincipal2_producto = localStorage.getItem("imgPrincipal2_transferir");
+  const imgPrincipal3_producto = localStorage.getItem("imgPrincipal3_transferir");
+  const imagen1_producto = localStorage.getItem("imgaen1_transferir");
+  const imagen2_producto = localStorage.getItem("imgaen2_transferir");
+  const imagen3_producto = localStorage.getItem("imgaen3_transferir");
+
+  // Verificar si los valores almacenados en localStorage no son null
+  if (titulo_producto !== null && precio_producto !== null && nombre_cantidad !== null) {
+    // Actualizar el contenido del label según el tipo de producto
+    var label_cantidad = document.getElementById("cantidad_producto");
+    label_cantidad.textContent = cantidad_producto_transferir === "kilo" ? "Cantidad en kilo:" : "Cantidad:";
+
+    // Agregar aclaración según el producto
+    var contenido_div_id_opcion = document.getElementById("opcion").innerHTML;
+
+    if (opcion_producto_transferir === "opcion") {
+      var contenido_new = "<br><label>Elija el producto que desea:</label><select class='form-select form-select-sm' id='opcion_producto'><option>Filet de Pechuga</option><option>Filet de Muslo</option></select>";
+      document.getElementById("opcion").innerHTML = contenido_div_id_opcion + contenido_new;
     }
-  });
-  
+
+    // Asignar la información guardada a los elementos existentes
+    var nameproducto = document.getElementById("nameproducto");
+    nameproducto.textContent = titulo_producto;
+
+    var divCompraInformacion = document.getElementById("div-compra-informacion");
+    var h3Precio = divCompraInformacion.querySelector("h3");
+    var spanDolar = document.createElement("span");
+    spanDolar.textContent = "$";
+    h3Precio.appendChild(spanDolar);
+    h3Precio.appendChild(document.createTextNode(precio_producto));
+
+    document.getElementById("nombre_unidad").textContent = nombre_cantidad;
+    document.getElementById("descripcion_compra").innerHTML = descripcion_producto;
+    document.getElementById("ingredientes_compra").innerHTML = ingredientes_producto;
+    document.getElementById("img1_principal").setAttribute("src", imgPrincipal1_producto);
+    document.getElementById("img2_principal").setAttribute("src", imgPrincipal2_producto);
+    document.getElementById("img3_principal").setAttribute("src", imgPrincipal3_producto);
+    document.getElementById("img1").setAttribute("src", imagen1_producto);
+    document.getElementById("img2").setAttribute("src", imagen2_producto);
+    document.getElementById("img3").setAttribute("src", imagen3_producto);
+  }
+}
+
 
 function contenido_producto(prodctID) {
   var producto_info = {};
@@ -162,10 +151,10 @@ function contenido_producto(prodctID) {
     producto_info.descripcion_producto = "<p style='text-align: left;'>El arrollado de pollo es un platillo delicioso que consiste en una fina capa de pechuga de pollo rellena con una mezcla de ingredientes sabrosos, como jamon, queso, espinacas, zanahorias u otros vegetales. Una vez relleno, el pollo se enrolla y se cocina al horno o en agua, lo que le da una textura jugosa y tierna. El arrollaado de pollo es una opcion popular para ocasiones especiales, ya que su presentacion es elegante y su sabor es exquisito. Es una preparacion creativa y deliciosa que permite disfrutar del pollo de una manera diferente y sabrosa. Su versatilidad y sabor lo convierte en una opcion popular para complacer a familiares y amigos en diversas ocasiones culinarias.</p>";
 
     producto_info.ingredientes_producto =
-"<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li><li>Zanahorias</li><li>Vegetales</li><li>Huevo</li><li>Especias y Condimentos</li><li>(El relleno puede ser a su gusto)</li></ul>";
-    producto_info.imgPrincipal1_producto ="/static/fotosalfajores/arrollado-2.JPG";
-    producto_info.imgPrincipal2_producto ="/static/fotosalfajores/arrollado.JPG";
-    producto_info.imgPrincipal3_producto ="/static/fotosalfajores/arrollado-3.jpg";
+      "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li><li>Zanahorias</li><li>Vegetales</li><li>Huevo</li><li>Especias y Condimentos</li><li>(El relleno puede ser a su gusto)</li></ul>";
+    producto_info.imgPrincipal1_producto = "/static/fotosalfajores/arrollado-2.JPG";
+    producto_info.imgPrincipal2_producto = "/static/fotosalfajores/arrollado.JPG";
+    producto_info.imgPrincipal3_producto = "/static/fotosalfajores/arrollado-3.jpg";
     producto_info.imagen1_producto = "/static/fotosalfajores/arrollado-2.JPG";
     producto_info.imagen2_producto = "/static/fotosalfajores/arrollado.JPG";
     producto_info.imagen3_producto = "/static/fotosalfajores/arrollado-3.jpg";
@@ -316,6 +305,10 @@ function contenido_producto(prodctID) {
 
 // CODIGOS AGREGAR PRODUCTO AL CARRITO Y GUARDADO EN EL LOCALSTORAGE
 
+ // Agregar un evento de carga a la ventana (se ejecutará cuando la página se cargue o recargue)
+ window.addEventListener('load', function() {
+  actualizarCarritoEnLocalStorage();
+});
 
 
 // Función para agregar un producto al carrito

@@ -290,7 +290,12 @@ setTimeout(actualizarIconoCarrito, 100);
 function redirigir_resumen() {
   // Redireccionar al usuario a la página de resumen de compra
   alert("Redirigiendo a la página de resumen de compra");
-  window.location.href = "/resumen_compra";
+
+  // cargar el HTML dentro de la etiqueta main para resumen de compra
+  cargarPagina('resumen')
+
+  // Luego de cargar la página, ejecutar el script para manipular los elementos
+  cargar_resumen();
 }
 
 function cargar_resumen() {
@@ -324,6 +329,7 @@ function cargar_resumen() {
   for (var clave in productosAgrupados) {
     var producto = productosAgrupados[clave];
     var productoDiv = document.createElement("div");
+    productoDiv.style.height = "100%";
     productoDiv.className = "row filaResumen";
 
     // Agrega la imagen
