@@ -3,7 +3,7 @@ from bson import ObjectId
 from pymongo import MongoClient
 import os
 
-app = Flask(__name__, static_folder='static', template_folder='docs')
+app = Flask(__name__, static_folder='static')
 
 client = MongoClient("mongodb://localhost:27017")
 basedatos = client.paginas
@@ -14,7 +14,7 @@ misencargos = basedatos.lista
 
 @app.route("/")
 def pag_principal():
-    return render_template('index.html')
+    return send_from_directory(app.root_path, 'index.html')
 
 
 @app.route("/our-product")
@@ -42,7 +42,7 @@ def pag_principal_galeria():
 
 @app.route("/galeria")
 def galeria():
-    return render_template('index.html')
+    return send_from_directory(app.root_path, 'index.html')
 
 
 
@@ -53,7 +53,7 @@ def pag_principal_contacto():
 
 @app.route("/contact")
 def contacto():
-    return render_template('index.html')
+    return send_from_directory(app.root_path, 'index.html')
 
 
 
