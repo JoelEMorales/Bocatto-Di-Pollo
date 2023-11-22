@@ -257,3 +257,20 @@ img.hover-shadow {
         float: right;
     }
 }
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* ESTILOS PRINCIPALES DE LA SECCION MAIN PARA LAS PAGINAS */
+
+
+/* Estilos para la página inicial */
+.pag-inicial {
+    height: 100%;
+}
+
+/* Estilos para otra página */
+.pag-resumen {
+    height: auto;
+}

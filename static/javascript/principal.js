@@ -303,13 +303,33 @@ function contenido_producto(prodctID) {
 
 //---------------------------------------------------------------------------------------//
 
-// CODIGOS AGREGAR PRODUCTO AL CARRITO Y GUARDADO EN EL LOCALSTORAGE
+// CODIGOS PARA AGREGAR PRODUCTO AL CARRITO, GUARDAR EN EL LOCALSTORAGE Y CAMBIAR ICONO DE CARRITO
 
- // Agregar un evento de carga a la ventana (se ejecutará cuando la página se cargue o recargue)
- window.addEventListener('load', function() {
-  actualizarCarritoEnLocalStorage();
+// Declarar una variable global para el carrito
+var carrito = [];
+
+// Función para actualizar el carrito en localStorage y en la variable global
+function actualizarCarrito(carrito) {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+// Función para mostrar productos desde datos en lugar de HTML almacenado
+function mostrarProductosEnCarrito(carrito) {
+  var carritoHTML = document.getElementById("div_lista_de_productos");
+  carritoHTML.innerHTML = carrito.map(crearNuevoProductoHTML).join('');
+  console.log("Productos en el carrito después de la actualización:", carrito);
+}
+
+// Agregar un evento de carga a la ventana (se ejecutará cuando la página se cargue o recargue)
+window.addEventListener('load', function () {
+  // Obtener la lista de productos del localStorage
+  var listaDeProductosGuardada = localStorage.getItem("carrito");
+  if (listaDeProductosGuardada) {
+    carrito = JSON.parse(listaDeProductosGuardada);
+    // Mostrar productos desde la variable global
+    mostrarProductosEnCarrito(carrito);
+  }
 });
-
 
 // Función para agregar un producto al carrito
 function agregarProductoAlCarrito() {
@@ -329,7 +349,6 @@ function agregarProductoAlCarrito() {
     }
 
     // Buscar si el producto ya está en la lista
-    var carrito = obtenerCarrito();
     var productoExistente = carrito.find(producto => producto.nombre === nombreProducto && producto.aclaracion === opcionSeleccionada);
 
     if (productoExistente) {
@@ -345,37 +364,20 @@ function agregarProductoAlCarrito() {
         total: precio * cantidadDeCajas,
       });
     }
-
-    // Actualizar el carrito en localStorage y mostrar productos
-    actualizarCarritoEnLocalStorage(carrito);
-    mostrarProductosEnCarrito(carrito);
-    actualizarIconoCarrito();
   } else {
     alert("Debes seleccionar una cantidad.");
   }
-}
 
-// Función para actualizar el carrito en el localStorage
-function actualizarCarritoEnLocalStorage(carrito) {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-}
-
-// Función para mostrar productos desde datos en lugar de HTML almacenado
-function mostrarProductosEnCarrito(carrito) {
-  var carritoHTML = document.getElementById("div_lista_de_productos");
-  carritoHTML.innerHTML = ""; // Limpiar el contenido actual
-
-  carrito.forEach(function (producto) {
-    var nuevoProductoHTML = crearNuevoProducto(producto.nombre, producto.cantidad, producto.aclaracion, producto.imagen, producto.total);
-    carritoHTML.appendChild(nuevoProductoHTML);
-  });
+  // Actualizar el carrito en localStorage y mostrar productos
+  actualizarCarrito(carrito);
+  mostrarProductosEnCarrito(carrito);
+  // Llamar a actualizarIconoCarrito sin retraso
+  actualizarIconoCarrito();
 }
 
 // Función para crear un nuevo elemento HTML para el producto
-function crearNuevoProducto(nombre, cantidad, aclaracion, imagen, total) {
-  var nuevoProducto = document.createElement("div");
-  nuevoProducto.innerHTML = obtenerHtmlProducto(nombre, cantidad, aclaracion, imagen, total);
-  return nuevoProducto;
+function crearNuevoProductoHTML(producto) {
+  return obtenerHtmlProducto(producto.nombre, producto.cantidad, producto.aclaracion, producto.imagen, producto.total);
 }
 
 // Función para obtener el HTML del nuevo producto
@@ -394,45 +396,55 @@ function obtenerHtmlProducto(nombre, cantidad, aclaracion, imagen, total) {
         <br><br>
         <a class="w3-left">Cant en kg: </a><a class="w3-left" id="cantidad_caja">${cantidad}</a>
         <br><br>
-        <a class="w3-left">Precio por kg: $</a><<a class="w3-left" id="valorunidad">${total}</a>
+        <a class="w3-left">Precio por kg: $</a><a class="w3-left" id="valorunidad">${total}</a>
         <button class="w3-button w3-text-white w3-right" type="button" onclick="quitarProductoDeProductoHTML(this)">Quitar</button>
       </div>
     </div>`;
 }
 
-// Obtener la lista de productos del localStorage y mostrarla en el carrito
-var listaDeProductosGuardada = localStorage.getItem("carrito");
-if (listaDeProductosGuardada) {
-  var listaDeProductos = JSON.parse(listaDeProductosGuardada);
-  mostrarProductosEnCarrito(listaDeProductos);
-}
+// ACTUALIZAR ICONO CARRITO DE COMPRA
 
+function inicializarCarrito() {
+  // Obtener el carrito del almacenamiento local
+  var carritoAlmacenado = JSON.parse(localStorage.getItem("carrito"));
 
-
-// Función para quitar un producto del carrito
-function quitarProducto(nombreProducto, aclaracion) {
-  var carrito = obtenerCarrito();
-  var indice = -1;
-
-  for (var i = 0; i < carrito.length; i++) {
-    if (carrito[i].nombre === nombreProducto && carrito[i].aclaracion === aclaracion) {
-      indice = i;
-      break;
-    }
-  }
-
-  if (indice !== -1) {
-    carrito.splice(indice, 1);
-    actualizarCarrito(carrito);
-    actualizarIconoCarrito();
-    actualizarContenidoCarrito();
+  // Si no hay un carrito almacenado, establecer uno vacío
+  if (!carritoAlmacenado || carritoAlmacenado.length === 0) {
+    localStorage.setItem("carrito", JSON.stringify([]));
+  } else {
+    // Si hay un carrito almacenado, usarlo en lugar de un carrito vacío
+    carrito = carritoAlmacenado;
+    // Mostrar los productos del carrito al cargar la página
+    mostrarProductosEnCarrito(carrito);
   }
 }
 
+document.addEventListener("DOMContentLoaded", inicializarCarrito);
 
+// Función para actualizar el ícono del carrito
+function actualizarIconoCarrito() {
+  console.log("Actualizando el ícono del carrito...");
+  var productosEnCarrito = carrito.length;
 
+  console.log("Número de productos en el carrito:", productosEnCarrito);
 
+  // Verificar si el carrito contiene al menos un producto
+  if (productosEnCarrito > 0) {
+    // Cambiar el ícono a un ícono diferente (por ejemplo, un ícono de carrito lleno)
+    document.getElementById("carrito-icono").classList.remove("fa-cart-shopping");
+    document.getElementById("carrito-icono").classList.add("fa-cart-plus");
+  } else {
+    // Si el carrito está vacío, restaurar el ícono original (fa-shopping-cart)
+    document.getElementById("carrito-icono").classList.remove("fa-cart-plus");
+    document.getElementById("carrito-icono").classList.add("fa-cart-shopping");
+  }
+}
 
+// Llamar a la función para actualizar el ícono del carrito cuando la página cargue
+document.addEventListener("DOMContentLoaded", function () {
+  inicializarCarrito();
+  actualizarIconoCarrito();
+});
 
 
 

@@ -1,9 +1,6 @@
-
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // CODIGOS PARA ELIMINAR PRODUCTO DEL LOCAL STORAGE
-
-
 
 // Función para obtener el carrito desde Local Storage o crear uno nuevo
 function obtenerCarrito() {
@@ -22,25 +19,25 @@ function obtenerCarrito() {
   }
 }
 
-// Función para actualizar el carrito en el almacenamiento local compartido
-function actualizarCarrito(carrito) {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-}
+// // Función para actualizar el carrito en el almacenamiento local compartido
+// function actualizarCarrito(carrito) {
+//   localStorage.setItem("carrito", JSON.stringify(carrito));
+// }
 
 // FUNCION - Borrar producto desde pagina pagina_compra.html
 function quitarProductoDeProductoHTML(boton) {
-  
   // Obtener el producto
   var productoAEliminar = boton.closest(".w3-row");
 
   // Obtener el nombre del producto
-  var nombreProducto = productoAEliminar.querySelector("#namecarrito").textContent;
+  var nombreProducto =
+    productoAEliminar.querySelector("#namecarrito").textContent;
 
   // Eliminar el elemento del producto del DOM
   productoAEliminar.remove();
 
   eliminarProductoDelCarrito(nombreProducto);
-  
+
   actualizarIconoCarrito();
 
   // Actualiza la vista del carrito en la página de productos
@@ -97,19 +94,6 @@ function eliminarProductoDelCarrito(nombreProducto) {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // CODIGO PARA TERMINAR COMPRA Y ENVIAR EMAIL
@@ -136,7 +120,7 @@ function enviar_email() {
   var correoContenido = "Nombre del comprador: " + nombreCliente + "\n\n";
 
   correoContenido += "Telefono del cliente: " + telefono + "\n\n";
-  
+
   correoContenido += "Aclaracion: " + special_instructions + "\n\n";
 
   productos.forEach(function (producto) {
@@ -204,83 +188,18 @@ function obtenerProductosDesdeResumen() {
   return productos;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 // CODIGO DE LA PAGINA PRODUCT.HTML y pagina_compra.html
-// CARRITO DE COMPRA
 
+// // Llamar a la función para actualizar el ícono del carrito cuando la página cargue
+// document.addEventListener("DOMContentLoaded", actualizarIconoCarrito);
 
-
-function inicializarCarrito() {
-  var carrito = obtenerCarrito();
-  if (!carrito || carrito.length === 0) {
-    localStorage.setItem("carrito", JSON.stringify([]));
-  }
-}
-
-document.addEventListener("DOMContentLoaded", inicializarCarrito);
-
-var productIdCounter = 1; // Inicializar el contador
-
-// Función para actualizar el ícono del carrito
-function actualizarIconoCarrito() {
-  var listaDeProductos = document.getElementById("div_lista_de_productos");
-  var productosEnCarrito = listaDeProductos.querySelectorAll(".w3-row");
-
-  // Verificar si el carrito contiene al menos un producto
-  if (productosEnCarrito.length > 0) {
-    // Cambiar el ícono a un ícono diferente (por ejemplo, un ícono de carrito lleno)
-    document
-      .getElementById("carrito-icono")
-      .classList.remove("fa-cart-shopping");
-    document.getElementById("carrito-icono").classList.add("fa-cart-plus");
-  } else {
-    // Si el carrito está vacío, restaurar el ícono original (fa-shopping-cart)
-    document.getElementById("carrito-icono").classList.remove("fa-cart-plus");
-    document.getElementById("carrito-icono").classList.add("fa-cart-shopping");
-  }
-}
-
-// Llamar a la función para actualizar el ícono del carrito cuando la página cargue
-document.addEventListener("DOMContentLoaded", actualizarIconoCarrito);
-
-// Llamar a la función para actualizar el ícono del carrito cada vez que se agregue o elimine un producto del carrito
-document.getElementById("div_lista_de_productos").addEventListener("DOMNodeInserted", actualizarIconoCarrito);
-document.getElementById("div_lista_de_productos").addEventListener("DOMNodeRemoved", function () {
-  // Esperar un corto período de tiempo para asegurarnos de que el elemento se haya eliminado completamente
-setTimeout(actualizarIconoCarrito, 100);
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// // Llamar a la función para actualizar el ícono del carrito cada vez que se agregue o elimine un producto del carrito
+// document.getElementById("div_lista_de_productos").addEventListener("DOMNodeInserted", actualizarIconoCarrito);
+// document.getElementById("div_lista_de_productos").addEventListener("DOMNodeRemoved", function () {
+//   // Esperar un corto período de tiempo para asegurarnos de que el elemento se haya eliminado completamente
+// setTimeout(actualizarIconoCarrito, 100);
+// });
 
 //-------------------------------------------------------------------------------------------------------------------------
 
@@ -288,11 +207,8 @@ setTimeout(actualizarIconoCarrito, 100);
 // PAGINA FINAL - RESUMEN COMPRA
 
 function redirigir_resumen() {
-  // Redireccionar al usuario a la página de resumen de compra
-  alert("Redirigiendo a la página de resumen de compra");
-
   // cargar el HTML dentro de la etiqueta main para resumen de compra
-  cargarPagina('resumen')
+  cargarPagina("resumen");
 
   // Luego de cargar la página, ejecutar el script para manipular los elementos
   cargar_resumen();
@@ -337,7 +253,10 @@ function cargar_resumen() {
     imgDiv.className = "col";
     var img = document.createElement("img");
     img.src = producto.imagen; // Utiliza la ruta de la imagen del producto desde el carrito
-    img.style.width = "100%"; // Utiliza el 100% del ancho disponible
+    // Agrega clases de Bootstrap para controlar el tamaño de la imagen
+    img.className = "img-fluid"; // Esta clase hace que la imagen sea responsive y ocupe el 100% del ancho
+    // Agrega clases específicas para pantallas grandes y medianas
+    imgDiv.classList.add("col-lg-1"); // En pantallas grandes, la imagen ocupará el 50%
     imgDiv.appendChild(img);
     productoDiv.appendChild(imgDiv);
 
@@ -356,7 +275,10 @@ function cargar_resumen() {
     var cantidadDiv = document.createElement("div");
     cantidadDiv.style.paddingTop = "10px"; // Ajusta el espaciado superior
     cantidadDiv.className = "col";
-    cantidadDiv.innerHTML = '<p><span class="cantidadProducto">' + producto.cantidad + "</span> kg</p>";
+    cantidadDiv.innerHTML =
+      '<p><span class="cantidadProducto">' +
+      producto.cantidad +
+      "</span> kg</p>";
     productoDiv.appendChild(cantidadDiv);
 
     // Agrega la valor del producto
@@ -369,9 +291,10 @@ function cargar_resumen() {
 
     // Verifica si valorNumerico es un número válido (no es NaN)
     if (!isNaN(valorNumerico)) {
-    // Si es un número válido, muestra el valor con el signo de "$" en el párrafo
-    valorDiv.innerHTML = '<p>$<span class="valorProducto">' + valorNumerico + "</span></p>";
-    }else {
+      // Si es un número válido, muestra el valor con el signo de "$" en el párrafo
+      valorDiv.innerHTML =
+        '<p>$<span class="valorProducto">' + valorNumerico + "</span></p>";
+    } else {
       // Si no es un número válido, muestra un mensaje de error o un valor predeterminado
       valorDiv.innerHTML = '<p class="valorProducto">Valor no válido</p>';
     }
@@ -382,7 +305,10 @@ function cargar_resumen() {
     var quitarDiv = document.createElement("div");
     quitarDiv.style.paddingTop = "10px"; // Ajusta el espaciado superior
     quitarDiv.className = "col";
-    quitarDiv.innerHTML = "<p><button onclick=\"quitarProducto('" + clave + "')\">Quitar</button></p>";
+    quitarDiv.innerHTML =
+      "<p><button onclick=\"quitarProducto('" +
+      clave +
+      "')\">Quitar</button></p>";
     productoDiv.appendChild(quitarDiv);
 
     contenidoDiv.appendChild(productoDiv);
@@ -417,12 +343,12 @@ function cargar_resumen() {
   instruccionesTextarea.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
   instruccionesTextarea.id = "special";
   instruccionesTextarea.name = "text";
-  instruccionesTextarea.placeholder = "Escribe aquí las instrucciones especiales";
+  instruccionesTextarea.placeholder =
+    "Escribe aquí las instrucciones especiales";
   colDivInstruccionesEspeciales.appendChild(instruccionesTextarea);
 
   // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
   instruccionesTextarea.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
-
 
   // Columna para precesar pedido
   var colDivProcesar = document.createElement("div");
@@ -486,7 +412,6 @@ function cargar_resumen() {
   // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
   name.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
 
-
   // Agregar un evento de escucha al campo de entrada del nombre
   name.addEventListener("blur", function () {
     if (name.value.trim() === "") {
@@ -538,14 +463,5 @@ function cargar_resumen() {
   // Asigna la función finalizarCompraClick como el manejador del evento onclick
   finalizarCompra.onclick = finalizarCompraClick;
 }
-
-
-
-
-
-
-
-
-
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------

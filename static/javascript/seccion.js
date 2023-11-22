@@ -1,15 +1,18 @@
 // CODIGO HTML DE LAS SECCIONES DE LAS PAGINAS
 
 function cargarPagina(pagina) {
-    // Lógica para cargar el contenido específico de la página
-    const contenido = document.getElementById("contenido");
+  // Lógica para cargar el contenido específico de la página
+  const contenido = document.getElementById("contenido");
 
-    // Puedes utilizar AJAX para cargar el contenido desde el servidor
-    // o simplemente actualizar el contenido localmente
+  // Puedes utilizar AJAX para cargar el contenido desde el servidor
+  // o simplemente actualizar el contenido localmente
 
-    // Aquí un ejemplo simple
-    if (pagina === "principal") {
-        contenido.innerHTML = `
+  // Aquí un ejemplo simple
+  if (pagina === "principal") {
+    // Cambiar clase para obtener otros estilos CSS
+    document.getElementById("contenido").className = "pag-inicial";
+
+    contenido.innerHTML = `
         <!-- welcome header -->
         <div class="bg-image" id="home" style="background-image: url(static/fotosalfajores/baner-bocatto.png);"></div>
         <nav class="bg-text">
@@ -251,8 +254,11 @@ function cargarPagina(pagina) {
             </section>
         </article>
         `;
-    } else if (pagina === "productos") {
-        contenido.innerHTML = `
+  } else if (pagina === "productos") {
+    // Cambiar clase para obtener otros estilos CSS
+    document.getElementById("contenido").className = "pag-inicial";
+
+    contenido.innerHTML = `
                 <article class="w3-main w3-content w3-padding" style="max-width:1200px;">
 
                 <!-- GRID PHOTO PRODUCTS-->
@@ -430,8 +436,10 @@ function cargarPagina(pagina) {
                 <br><br>
             </article>
         `;
-    } else if (pagina === "compra") {
-        contenido.innerHTML = `
+  } else if (pagina === "compra") {
+    // Cambiar clase para obtener otros estilos CSS
+    document.getElementById("contenido").className = "pag-inicial";
+    contenido.innerHTML = `
         
         <section class="w3-row w3-padding w3-content w3-white w3-main" style="max-width:1200px;">
         <br><br><br>
@@ -492,9 +500,12 @@ function cargarPagina(pagina) {
         </article>
     </section>
         `;
-    } else if (pagina === "resumen") {
-        contenido.innerHTML = `
-        <section class="w3-row w3-padding w3-content w3-white w3-main" style="max-width: 1200px; height: 100%">
+  } else if (pagina === "resumen") {
+    // Cambiar clase para obtener otros estilos CSS
+    document.getElementById("contenido").className = "pag-resumen";
+
+    contenido.innerHTML = `
+        <section class="w3-row w3-padding w3-content w3-white w3-main" style="max-width: 1200px">
       <br /><br /><br />
       <br /><br /><br />
       <h2 style="text-align: center; padding: 40px">
@@ -519,16 +530,16 @@ function cargarPagina(pagina) {
             </div>
   
             <!-- DIV donde aparecerá el contenido del carrito -->
-            <div id="contenido_resumen" style="height: 100%;"></div>
+            <div id="contenido_resumen"></div>
           </div>
         </div>
       </article>
     </section>
         `;
-    }
+  }
 }
 
 // Cargar la página 1 por defecto al abrir la página principal
 document.addEventListener("DOMContentLoaded", function () {
-    cargarPagina("principal");
+  cargarPagina("principal");
 });
