@@ -138,12 +138,12 @@ function contenido_producto(prodctID) {
     producto_info.descripcion_producto = "<p style='text-align: left;'>La milanesa de pollo es un plato sabroso y versátil que se prepara a partir de filetes de pechuga de pollo finamente empanizados y fritos hasta obtener una textura crujiente por fuera y jugosa por dentro. Su deliciosa base está compuesta por la tierna carne de pollo, que es sazonada con una combinación de especias y hierbas para realzar su sabor. Luego, se sumerge en una mezcla de huevo batido que le aporta un toque de suavidad y adherencia. La milanesa de pollo casera destaca por su versatilidad, ya que se puede servir como plato principal acompañada de ensaladas, arroz o papas, o incluso como un delicioso sándwich en pan fresco con ingredientes como lechuga, tomate y mayonesa. Su exquisito relleno de pollo y su textura crujiente hacen que sea una opción popular y apetitosa para disfrutar en diversas ocasiones y con diferentes acompañamientos. Sin duda, es una opción irresistible para aquellos que buscan un plato casero delicioso y reconfortante.<p>";
 
     producto_info.ingredientes_producto = "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pollo</li><li>Pan Rallado</li><li>Huevo</li><li>Condimentos (sal, provensal)</li></ul>";
-    producto_info.imgPrincipal1_producto = "/static/fotosalfajores/mila-1.JPG";
-    producto_info.imgPrincipal2_producto = "/static/fotosalfajores/mila-2.JPG";
-    producto_info.imgPrincipal3_producto = "/static/fotosalfajores/mila-3.JPG";
-    producto_info.imagen1_producto = "/static/fotosalfajores/mila-1.JPG";
-    producto_info.imagen2_producto = "/static/fotosalfajores/mila-2.JPG";
-    producto_info.imagen3_producto = "/static/fotosalfajores/mila-3.JPG";
+    producto_info.imgPrincipal1_producto = "static/fotosalfajores/mila-1.JPG";
+    producto_info.imgPrincipal2_producto = "static/fotosalfajores/mila-2.JPG";
+    producto_info.imgPrincipal3_producto = "static/fotosalfajores/mila-3.JPG";
+    producto_info.imagen1_producto = "static/fotosalfajores/mila-1.JPG";
+    producto_info.imagen2_producto = "static/fotosalfajores/mila-2.JPG";
+    producto_info.imagen3_producto = "static/fotosalfajores/mila-3.JPG";
   } else if (prodctID === "producto2") {
     producto_info.tipo_producto = "kilo";
     producto_info.nombre_cantidad = "Arrollado:";
@@ -152,12 +152,12 @@ function contenido_producto(prodctID) {
 
     producto_info.ingredientes_producto =
       "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li><li>Zanahorias</li><li>Vegetales</li><li>Huevo</li><li>Especias y Condimentos</li><li>(El relleno puede ser a su gusto)</li></ul>";
-    producto_info.imgPrincipal1_producto = "/static/fotosalfajores/arrollado-2.JPG";
-    producto_info.imgPrincipal2_producto = "/static/fotosalfajores/arrollado.JPG";
-    producto_info.imgPrincipal3_producto = "/static/fotosalfajores/arrollado-3.jpg";
-    producto_info.imagen1_producto = "/static/fotosalfajores/arrollado-2.JPG";
-    producto_info.imagen2_producto = "/static/fotosalfajores/arrollado.JPG";
-    producto_info.imagen3_producto = "/static/fotosalfajores/arrollado-3.jpg";
+    producto_info.imgPrincipal1_producto = "static/fotosalfajores/arrollado-2.JPG";
+    producto_info.imgPrincipal2_producto = "static/fotosalfajores/arrollado.JPG";
+    producto_info.imgPrincipal3_producto = "static/fotosalfajores/arrollado-3.jpg";
+    producto_info.imagen1_producto = "static/fotosalfajores/arrollado-2.JPG";
+    producto_info.imagen2_producto = "static/fotosalfajores/arrollado.JPG";
+    producto_info.imagen3_producto = "static/fotosalfajores/arrollado-3.jpg";
   } else if (prodctID === "producto3") {
     producto_info.tipo_producto = "kilo";
     producto_info.nombre_cantidad = "Milanesa Rellena:";
@@ -168,17 +168,17 @@ function contenido_producto(prodctID) {
     producto_info.ingredientes_producto =
       "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li></ul>";
     producto_info.imgPrincipal1_producto =
-      "/static/fotosalfajores/mila.elaboracion-7.jpg";
+      "static/fotosalfajores/mila.elaboracion-7.jpg";
     producto_info.imgPrincipal2_producto =
-      "/static/fotosalfajores/mila-elaboracion-3.JPG";
+      "static/fotosalfajores/mila-elaboracion-3.JPG";
     producto_info.imgPrincipal3_producto =
-      "/static/fotosalfajores/mila.elaboracion-8.jpg";
+      "static/fotosalfajores/mila.elaboracion-8.jpg";
     producto_info.imagen1_producto =
-      "/static/fotosalfajores/mila.elaboracion-7.jpg";
+      "static/fotosalfajores/mila.elaboracion-7.jpg";
     producto_info.imagen2_producto =
-      "/static/fotosalfajores/mila-elaboracion-3.JPG";
+      "static/fotosalfajores/mila-elaboracion-3.JPG";
     producto_info.imagen3_producto =
-      "/static/fotosalfajores/mila.elaboracion-8.jpg";
+      "static/fotosalfajores/mila.elaboracion-8.jpg";
   } else if (prodctID === "producto4") {
     producto_info.tipo_producto = "kilo";
     producto_info.nombre_cantidad = "Hamburguesa Simple:";
@@ -194,9 +194,9 @@ function contenido_producto(prodctID) {
       "/static/fotosalfajores/burger-2.jpg";
     producto_info.imgPrincipal3_producto =
       "/static/fotosalfajores/burger-3.jpg";
-    producto_info.imagen1_producto = "/static/fotosalfajores/burger-1.jpg";
-    producto_info.imagen2_producto = "/static/fotosalfajores/burger-2.jpg";
-    producto_info.imagen3_producto = "/static/fotosalfajores/burger-3.jpg";
+    producto_info.imagen1_producto = "static/fotosalfajores/burger-1.jpg";
+    producto_info.imagen2_producto = "static/fotosalfajores/burger-2.jpg";
+    producto_info.imagen3_producto = "static/fotosalfajores/burger-3.jpg";
   } else if (prodctID === "producto5") {
     producto_info.tipo_producto = "kilo";
     producto_info.nombre_cantidad = "Hamburguesa Rellena:";
@@ -206,14 +206,14 @@ function contenido_producto(prodctID) {
     producto_info.ingredientes_producto =
       "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo Molida</li><li>Jamon</li><li>Queso</li><li>Pan Rallado</li><li>Huevo</li><li>Especias y Condimentos</li></ul>";
     producto_info.imgPrincipal1_producto =
-      "/static/fotosalfajores/arrollado-2.JPG";
+      "static/fotosalfajores/arrollado-2.JPG";
     producto_info.imgPrincipal2_producto =
-      "/static/fotosalfajores/arrollado.JPG";
+      "static/fotosalfajores/arrollado.JPG";
     producto_info.imgPrincipal3_producto =
-      "/static/fotosalfajores/arrollado-3.jpg";
-    producto_info.imagen1_producto = "/static/fotosalfajores/arrollado-2.JPG";
-    producto_info.imagen2_producto = "/static/fotosalfajores/arrollado.JPG";
-    producto_info.imagen3_producto = "/static/fotosalfajores/arrollado-3.jpg";
+      "static/fotosalfajores/arrollado-3.jpg";
+    producto_info.imagen1_producto = "static/fotosalfajores/arrollado-2.JPG";
+    producto_info.imagen2_producto = "static/fotosalfajores/arrollado.JPG";
+    producto_info.imagen3_producto = "static/fotosalfajores/arrollado-3.jpg";
   } else if (prodctID === "producto6") {
     producto_info.tipo_producto = "otro";
     producto_info.nombre_cantidad = "Arrolladito J/Q:";
@@ -224,14 +224,14 @@ function contenido_producto(prodctID) {
     producto_info.ingredientes_producto =
       "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li><li>Especias y Condimentos</li></ul>";
     producto_info.imgPrincipal1_producto =
-      "/static/fotosalfajores/arrollado-2.JPG";
+      "static/fotosalfajores/arrollado-2.JPG";
     producto_info.imgPrincipal2_producto =
-      "/static/fotosalfajores/arrollado.JPG";
+      "static/fotosalfajores/arrollado.JPG";
     producto_info.imgPrincipal3_producto =
-      "/static/fotosalfajores/arrollado-3.jpg";
-    producto_info.imagen1_producto = "/static/fotosalfajores/arrollado-2.JPG";
-    producto_info.imagen2_producto = "/static/fotosalfajores/arrollado.JPG";
-    producto_info.imagen3_producto = "/static/fotosalfajores/arrollado-3.jpg";
+      "static/fotosalfajores/arrollado-3.jpg";
+    producto_info.imagen1_producto = "static/fotosalfajores/arrollado-2.JPG";
+    producto_info.imagen2_producto = "static/fotosalfajores/arrollado.JPG";
+    producto_info.imagen3_producto = "static/fotosalfajores/arrollado-3.jpg";
   } else if (prodctID === "producto7") {
     producto_info.tipo_producto = "otro";
     producto_info.nombre_cantidad = "Pata Muslo:";
@@ -247,9 +247,9 @@ function contenido_producto(prodctID) {
       "/static/fotosalfajores/pata.muslo-2.jpg";
     producto_info.imgPrincipal3_producto =
       "/static/fotosalfajores/pata.muslo-3.jpg";
-    producto_info.imagen1_producto = "/static/fotosalfajores/pata.muslo-1.jpg";
-    producto_info.imagen2_producto = "/static/fotosalfajores/pata.muslo-2.jpg";
-    producto_info.imagen3_producto = "/static/fotosalfajores/pata.muslo-3.jpg";
+    producto_info.imagen1_producto = "static/fotosalfajores/pata.muslo-1.jpg";
+    producto_info.imagen2_producto = "static/fotosalfajores/pata.muslo-2.jpg";
+    producto_info.imagen3_producto = "static/fotosalfajores/pata.muslo-3.jpg";
   } else if (prodctID === "producto8") {
     producto_info.tipo_producto = "kilo";
     producto_info.nombre_cantidad = "Filet de Pechuga y Muslo:";
@@ -266,9 +266,9 @@ function contenido_producto(prodctID) {
       "/static/fotosalfajores/pechuga-2.jpg";
     producto_info.imgPrincipal3_producto =
       "/static/fotosalfajores/pechuga-3.jpg";
-    producto_info.imagen1_producto = "/static/fotosalfajores/pechuga-1.JPG";
-    producto_info.imagen2_producto = "/static/fotosalfajores/pechuga-2.jpg";
-    producto_info.imagen3_producto = "/static/fotosalfajores/pechuga-3.jpg";
+    producto_info.imagen1_producto = "static/fotosalfajores/pechuga-1.JPG";
+    producto_info.imagen2_producto = "static/fotosalfajores/pechuga-2.jpg";
+    producto_info.imagen3_producto = "static/fotosalfajores/pechuga-3.jpg";
   } else if (prodctID === "producto9") {
     producto_info.tipo_producto = "otro";
     producto_info.nombre_cantidad = "Pollo Entero:";
@@ -278,12 +278,12 @@ function contenido_producto(prodctID) {
 
     producto_info.ingredientes_producto =
       "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pollo Entero</li></ul>";
-    producto_info.imgPrincipal1_producto = "/static/fotosalfajores/pollo-1.JPG";
-    producto_info.imgPrincipal2_producto = "/static/fotosalfajores/pollo-2.JPG";
-    producto_info.imgPrincipal3_producto = "/static/fotosalfajores/pollo-3.jpg";
-    producto_info.imagen1_producto = "/static/fotosalfajores/pollo-1.JPG";
-    producto_info.imagen2_producto = "/static/fotosalfajores/pollo-2.JPG";
-    producto_info.imagen3_producto = "/static/fotosalfajores/pollo-3.jpg";
+    producto_info.imgPrincipal1_producto = "static/fotosalfajores/pollo-1.JPG";
+    producto_info.imgPrincipal2_producto = "static/fotosalfajores/pollo-2.JPG";
+    producto_info.imgPrincipal3_producto = "static/fotosalfajores/pollo-3.jpg";
+    producto_info.imagen1_producto = "static/fotosalfajores/pollo-1.JPG";
+    producto_info.imagen2_producto = "static/fotosalfajores/pollo-2.JPG";
+    producto_info.imagen3_producto = "static/fotosalfajores/pollo-3.jpg";
   }
 
   // Puedes agregar más "elif" para otros productos
@@ -451,26 +451,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Verifica si hay un fragmento en la URL y desplázate a esa sección
-// document.addEventListener('DOMContentLoaded', function() {
-//   var fragment = window.location.hash.substr(1);
-//   if (fragment) {
-//       var targetElement = document.getElementById(fragment);
-//       if (targetElement) {
-//           targetElement.scrollIntoView();
-//       }
-//   }
-// });

@@ -302,4 +302,3 @@ footer.innerHTML = `
                 });
         </script>
 `;
-

@@ -19,11 +19,6 @@ function obtenerCarrito() {
   }
 }
 
-// // Función para actualizar el carrito en el almacenamiento local compartido
-// function actualizarCarrito(carrito) {
-//   localStorage.setItem("carrito", JSON.stringify(carrito));
-// }
-
 // FUNCION - Borrar producto desde pagina pagina_compra.html
 function quitarProductoDeProductoHTML(boton) {
   // Obtener el producto
@@ -189,19 +184,6 @@ function obtenerProductosDesdeResumen() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
-// CODIGO DE LA PAGINA PRODUCT.HTML y pagina_compra.html
-
-// // Llamar a la función para actualizar el ícono del carrito cuando la página cargue
-// document.addEventListener("DOMContentLoaded", actualizarIconoCarrito);
-
-// // Llamar a la función para actualizar el ícono del carrito cada vez que se agregue o elimine un producto del carrito
-// document.getElementById("div_lista_de_productos").addEventListener("DOMNodeInserted", actualizarIconoCarrito);
-// document.getElementById("div_lista_de_productos").addEventListener("DOMNodeRemoved", function () {
-//   // Esperar un corto período de tiempo para asegurarnos de que el elemento se haya eliminado completamente
-// setTimeout(actualizarIconoCarrito, 100);
-// });
-
-//-------------------------------------------------------------------------------------------------------------------------
 
 // CODIGO DE LA PAGINA RESUMEN_COMPRA.HTML
 // PAGINA FINAL - RESUMEN COMPRA
