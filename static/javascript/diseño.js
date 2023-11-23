@@ -8,7 +8,7 @@ const header_resumen = document.getElementById("header_resumen");
 header.innerHTML = `
 <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
     <a href="/" class="w3-button w3-bar-item w3-hover-white d-none d-md-block">
-        <img src="../static/fotosalfajores/logo-bocatto.jpg" alt="Logo" style="height: 50px; width: 50px">
+        <img src="static/fotosalfajores/logo-bocatto.jpg" alt="Logo" style="height: 50px; width: 50px">
     </a>
 
     <!-- MENU PANTALLAS GRANDES -->
