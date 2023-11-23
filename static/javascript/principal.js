@@ -189,11 +189,11 @@ function contenido_producto(prodctID) {
     producto_info.ingredientes_producto =
       "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo molida</li><li>Pan Rallado</li><li>Huevo</li><li>Especias y Condimentos</li></ul>";
     producto_info.imgPrincipal1_producto =
-      "/static/fotosalfajores/burger-1.jpg";
+      "static/fotosalfajores/burger-1.jpg";
     producto_info.imgPrincipal2_producto =
-      "/static/fotosalfajores/burger-2.jpg";
+      "static/fotosalfajores/burger-2.jpg";
     producto_info.imgPrincipal3_producto =
-      "/static/fotosalfajores/burger-3.jpg";
+      "static/fotosalfajores/burger-3.jpg";
     producto_info.imagen1_producto = "static/fotosalfajores/burger-1.jpg";
     producto_info.imagen2_producto = "static/fotosalfajores/burger-2.jpg";
     producto_info.imagen3_producto = "static/fotosalfajores/burger-3.jpg";
@@ -242,11 +242,11 @@ function contenido_producto(prodctID) {
     producto_info.ingredientes_producto =
       "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pata Muslo</li></ul>";
     producto_info.imgPrincipal1_producto =
-      "/static/fotosalfajores/pata.muslo-1.jpg";
+      "static/fotosalfajores/pata.muslo-1.jpg";
     producto_info.imgPrincipal2_producto =
-      "/static/fotosalfajores/pata.muslo-2.jpg";
+      "static/fotosalfajores/pata.muslo-2.jpg";
     producto_info.imgPrincipal3_producto =
-      "/static/fotosalfajores/pata.muslo-3.jpg";
+      "static/fotosalfajores/pata.muslo-3.jpg";
     producto_info.imagen1_producto = "static/fotosalfajores/pata.muslo-1.jpg";
     producto_info.imagen2_producto = "static/fotosalfajores/pata.muslo-2.jpg";
     producto_info.imagen3_producto = "static/fotosalfajores/pata.muslo-3.jpg";
@@ -261,11 +261,11 @@ function contenido_producto(prodctID) {
     producto_info.ingredientes_producto =
       "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de Pechuga</li><li>Filet de Muslo</li></ul>";
     producto_info.imgPrincipal1_producto =
-      "/static/fotosalfajores/pechuga-1.JPG";
+      "static/fotosalfajores/pechuga-1.JPG";
     producto_info.imgPrincipal2_producto =
-      "/static/fotosalfajores/pechuga-2.jpg";
+      "static/fotosalfajores/pechuga-2.jpg";
     producto_info.imgPrincipal3_producto =
-      "/static/fotosalfajores/pechuga-3.jpg";
+      "static/fotosalfajores/pechuga-3.jpg";
     producto_info.imagen1_producto = "static/fotosalfajores/pechuga-1.JPG";
     producto_info.imagen2_producto = "static/fotosalfajores/pechuga-2.jpg";
     producto_info.imagen3_producto = "static/fotosalfajores/pechuga-3.jpg";
