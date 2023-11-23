@@ -13,10 +13,10 @@ header.innerHTML = `
 
     <!-- MENU PANTALLAS GRANDES -->
     <div class="w3-right w3-padding-large d-none d-md-block">
-        <a href="/" class="w3-bar-item w3-button">¿Quiénes somos?</a>
+        <a href="#principal" onclick="cargarPagina('principal')" class="w3-bar-item w3-button">¿Quiénes somos?</a>
         <a href="#productos" onclick="cargarPagina('productos')" class="w3-bar-item w3-button">Productos</a>
-        <a href="/principal_galeria" class="w3-bar-item w3-button">Galería</a>
-        <a href="/principal_contacto" class="w3-bar-item w3-button">Contáctanos</a>
+        <a href="#galeria" onclick="cargarPagina('principal')" class="w3-bar-item w3-button">Galería</a>
+        <a href="#contacto" class="w3-bar-item w3-button">Contáctanos</a>
         <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg" id="carrito-icono"></i></a>
     </div>
 
@@ -35,39 +35,40 @@ header.innerHTML = `
     </div>
 
     <!-- Offcanvas Sidebar -->
-    <div class="offcanvas offcanvas-start bg-dark text-white" id="nav_movil">
+    <div class="offcanvas offcanvas-start bg-dark text-white" id="nav_movil" style="width: 70%;">
         <div class="offcanvas-header">
             <button type="button" class="btn-close text-reset ms-4" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
-            <li class="nav-item">
-                <a href="/" class="nav-link ms-4">¿Quiénes somos?</a>
-            </li>
-            <li class="nav-item">
-                <a href="#productos" onclick="cargarPagina('productos')" class="nav-link ms-4">Productos</a>
-            </li>
-            <li class="nav-item">
-                <a href="/principal_galeria" class="nav-link ms-4">Galería</a>
-            </li>
-            <li class="nav-item">
-                <a href="/principal_contacto" class="nav-link ms-4">Contáctanos</a>
-            </li>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#principal" onclick="cargarPagina('principal'); cerrarOffcanvas();" class="nav-link ms-4">¿Quiénes somos?</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#productos" onclick="cargarPagina('productos'); cerrarOffcanvas();" class="nav-link ms-4">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#galeria" onclick="cargarPagina('principal'); cerrarOffcanvas();" class="nav-link ms-4">Galería</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contacto" onclick=" cerrarOffcanvas();" class="nav-link ms-4">Contáctanos</a>
+                </li>
+            </ul>
         </div>
     </div>
-</nav>
-
-<!-- DIV SECCIÓN CORREDIZA -->
-<div id="mySidebar" class="sidebar" style="z-index: 2">
-    <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
-    <a href="#descripcion" class="w3-bar-item">Su carrito</a>
-    <hr>
-    <!-- PRODUCTOS DEL CARRITO -->
-    <div id="div_lista_de_productos">
-        <!-- Aquí se mostrarán los productos seleccionados -->
-    </div>
-    <!-- Botón para acceder al pago -->
-    <div class="w3-padding-large">
-        <button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Proceso de pago</button>
+    
+    <!-- DIV SECCIÓN CORREDIZA -->
+    <div id="mySidebar" class="sidebar" style="z-index: 2">
+        <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
+        <a href="#descripcion" class="w3-bar-item">Su carrito</a>
+        <hr>
+        <!-- PRODUCTOS DEL CARRITO -->
+        <div id="div_lista_de_productos">
+            <!-- Aquí se mostrarán los productos seleccionados -->
+        </div>
+        <!-- Botón para acceder al pago -->
+        <div class="w3-padding-large">
+            <button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Proceso de pago</button>
     </div>
 </div>
 `;
@@ -180,7 +181,7 @@ footer.innerHTML = `
                                 contacto</b>
                         </p>
                         <!-- BOTON CONTACTO -->
-                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal" id="contacto">
                             CONTACTANOS
                         </button>
                     </div>
