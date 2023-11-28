@@ -1,0 +1,9 @@
+# created by virtualenv automatically
+
+config/
+
+.config.js
+
+.env
+
+node_modules/

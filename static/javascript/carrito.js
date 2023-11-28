@@ -97,7 +97,7 @@ function enviar_email() {
   alert("Enviando el pedido");
 
   // Configura Email.js con tus credenciales
-  emailjs.init("bZL7G9gX0CBh9EfQH");
+  emailjs.init(process.env.CREDENCIALES_EMAILJS);
 
   // Recopila los datos del comprador
   var nombreCliente = document.getElementById("namecliente").value;
@@ -126,7 +126,7 @@ function enviar_email() {
 
   // Configura el mensaje del correo
   var email = {
-    to: "joelelianmorales@gmail.com",
+    to: process.env.TO_EMAILJS,
     subject: "Nuevo pedido de Bocatto Di Pollo",
     message: correoContenido,
   };
