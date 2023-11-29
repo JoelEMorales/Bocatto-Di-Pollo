@@ -1,7 +1,3 @@
-require('dotenv').config({ path: '/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/.env' });
-
-
-
 // Add SDK credentials
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
 const mercadopago = new MercadoPago(process.env.MP_PUBLIC_KEY, {
