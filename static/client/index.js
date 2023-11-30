@@ -1,6 +1,6 @@
 // Add SDK credentials
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-const mercadopago = new MercadoPago(process.env.MP_PUBLIC_KEY, {
+const mercadopago = new MercadoPago("PUBLIC-KEY", {
     locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
 });
 

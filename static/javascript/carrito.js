@@ -126,7 +126,7 @@ function enviar_email() {
 
   // Configura el mensaje del correo
   var email = {
-    to: process.env.TO_EMAILJS,
+    to: "joelelianmorales@gmail.com",
     subject: "Nuevo pedido de Bocatto Di Pollo",
     message: correoContenido,
   };

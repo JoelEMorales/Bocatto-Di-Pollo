@@ -3,7 +3,10 @@ const app = express();
 const cors = require("cors");
 const mercadopago = require("mercadopago");
 
+
 require('dotenv').config({ path: '/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/.env' });
+
+
 
 
 
