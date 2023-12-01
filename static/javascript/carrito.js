@@ -1,6 +1,166 @@
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// CODIGOS PARA AGREGAR PRODUCTO AL CARRITO, GUARDAR EN EL LOCALSTORAGE Y CAMBIAR ICONO DE CARRITO
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// Declarar una variable global para el carrito
+var carritoG = [];
+
+// Función para agregar un producto al carrito
+function agregarProductoAlCarrito() {
+  // Obtener información del producto a agregar
+  var nombreProducto = document.querySelector("#nameproducto").textContent;
+  var cantidadDeCajas = parseFloat(document.querySelector("#cant_box").value);
+  var imagenProducto = document.querySelector("#img2_principal").getAttribute("src");
+  var precio = parseFloat(localStorage.getItem("precio_transferir"));
+
+  // Validar si la cantidad es mayor que cero
+  if (cantidadDeCajas > 0) {
+    // Obtener la opción seleccionada (solo si el producto es "Filet De Pechuga y Muslo")
+    var opcionSeleccionada = "";
+    if (nombreProducto === "Filet De Pechuga y Muslo") {
+      var miaclaracion = document.getElementById("opcion_producto");
+      opcionSeleccionada = miaclaracion.options[miaclaracion.selectedIndex].textContent;
+    }
+
+    // Buscar si el producto ya está en la lista
+    var productoExistente = carrito.find(producto => producto.nombre === nombreProducto && producto.aclaracion === opcionSeleccionada);
+
+    if (productoExistente) {
+      productoExistente.cantidad += cantidadDeCajas;
+      productoExistente.total += precio * cantidadDeCajas;
+    } else {
+      // Agregar el producto al carrito de datos
+      carritoG.push({
+        nombre: nombreProducto,
+        cantidad: cantidadDeCajas,
+        aclaracion: opcionSeleccionada,
+        imagen: imagenProducto,
+        total: precio * cantidadDeCajas,
+      });
+    }
+  } else {
+    alert("Debes seleccionar una cantidad.");
+  }
+
+  // Actualizar el carrito en localStorage y mostrar productos
+  actualizarCarrito(carritoG);
+  mostrarProductosEnCarrito(carritoG);
+  // Llamar a actualizarIconoCarrito sin retraso
+  actualizarIconoCarrito();
+}
+
+
+// Función para actualizar el carrito en localStorage y en la variable global
+function actualizarCarrito(carritoG) {
+  localStorage.setItem("carrito", JSON.stringify(carritoG));
+}
+
+// Función para mostrar productos desde datos en lugar de HTML almacenado
+function mostrarProductosEnCarrito(carritoG) {
+  var carritoHTML = document.getElementById("div_lista_de_productos");
+  carritoHTML.innerHTML = carritoG.map(crearNuevoProductoHTML).join('');
+}
+
+// Agregar un evento de carga a la ventana (se ejecutará cuando la página se cargue o recargue)
+window.addEventListener('load', function () {
+  // Obtener la lista de productos del localStorage
+  var listaDeProductosGuardada = localStorage.getItem("carrito");
+  if (listaDeProductosGuardada) {
+    carritoG = JSON.parse(listaDeProductosGuardada);
+    // Mostrar productos desde la variable global
+    mostrarProductosEnCarrito(carritoG);
+  }
+  console.log("Productos en el carrito después de la actualización:", carritoG);
+});
+
+
+
+// Función para crear un nuevo elemento HTML para el producto
+function crearNuevoProductoHTML(producto) {
+  return obtenerHtmlProducto(producto.nombre, producto.cantidad, producto.aclaracion, producto.imagen, producto.total);
+}
+
+// Función para obtener el HTML del nuevo producto
+function obtenerHtmlProducto(nombre, cantidad, aclaracion, imagen, total) {
+  // Aquí puedes construir el HTML del producto de acuerdo a tu formato deseado
+  // Puedes usar los parámetros nombre, cantidad, aclaracion, imagen y total para personalizar el HTML
+  return `
+    <div class="w3-row w3-content">
+      <div style="max-width: 100px; max-height: 150px;" class="w3-padding-small w3-half">
+        <img src="${imagen}" style="width: 100%; height: 100%" id="imgproductocarrito"/>
+      </div>
+      <div class="w3-half">
+        <a class="w3-left" id="namecarrito">${nombre}</a>
+        <br><br>
+        <a class="w3-left" id="aclaracion">${aclaracion}</a>
+        <br><br>
+        <a class="w3-left">Cant en kg: </a><a class="w3-left" id="cantidad_caja">${cantidad}</a>
+        <br><br>
+        <a class="w3-left">Precio por kg: $</a><a class="w3-left" id="valorunidad">${total}</a>
+        <button class="w3-button w3-text-white w3-right" type="button" onclick="quitarProductoDeProductoHTML(this)">Quitar</button>
+      </div>
+    </div>`;
+}
+
+
+// ACTUALIZAR ICONO CARRITO DE COMPRA
+
+function inicializarCarrito() {
+  // Obtener el carrito del almacenamiento local
+  var carritoAlmacenado = JSON.parse(localStorage.getItem("carrito"));
+
+  // Si no hay un carrito almacenado, establecer uno vacío
+  if (!carritoAlmacenado || carritoAlmacenado.length === 0) {
+    localStorage.setItem("carrito", JSON.stringify([]));
+  } else {
+    // Si hay un carrito almacenado, usarlo en lugar de un carrito vacío
+    carritoG = carritoAlmacenado;
+    // Mostrar los productos del carrito al cargar la página
+    mostrarProductosEnCarrito(carritoG);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", inicializarCarrito);
+
+// Función para actualizar el ícono del carrito
+function actualizarIconoCarrito() {
+  console.log("Actualizando el ícono del carrito...");
+  var productosEnCarrito = carritoG.length;
+
+  console.log("Número de productos en el carrito:", productosEnCarrito);
+
+  // Verificar si el carrito contiene al menos un producto
+  if (productosEnCarrito > 0) {
+    // Cambiar el ícono a un ícono diferente (por ejemplo, un ícono de carrito lleno)
+    document.getElementById("carrito-icono").classList.remove("fa-cart-shopping");
+    document.getElementById("carrito-icono").classList.add("fa-cart-plus");
+  } else {
+    // Si el carrito está vacío, restaurar el ícono original (fa-shopping-cart)
+    document.getElementById("carrito-icono").classList.remove("fa-cart-plus");
+    document.getElementById("carrito-icono").classList.add("fa-cart-shopping");
+  }
+}
+
+// Llamar a la función para actualizar el ícono del carrito cuando la página cargue
+document.addEventListener("DOMContentLoaded", function () {
+  inicializarCarrito();
+  actualizarIconoCarrito();
+});
+
+
+
+
+
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // CODIGOS PARA ELIMINAR PRODUCTO DEL LOCAL STORAGE
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 // Función para obtener el carrito desde Local Storage o crear uno nuevo
 function obtenerCarrito() {
@@ -31,12 +191,9 @@ function quitarProductoDeProductoHTML(boton) {
   // Eliminar el elemento del producto del DOM
   productoAEliminar.remove();
 
-  eliminarProductoDelCarrito(nombreProducto);
+  quitarProducto(nombreProducto);
 
   actualizarIconoCarrito();
-
-  // Actualiza la vista del carrito en la página de productos
-  actualizarContenidoCarrito();
 }
 
 function quitarProducto(nombreProducto) {
@@ -83,110 +240,9 @@ function eliminarProductoDelCarrito(nombreProducto) {
 
     // Actualiza el carrito en el LocalStorage
     localStorage.setItem("carrito", JSON.stringify(carrito));
-
-    // Actualiza el contenido del carrito en la página de productos
-    actualizarContenidoCarrito(); // Implementa esta función para actualizar el contenido del carrito en la página de productos
   }
 }
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// CODIGO PARA TERMINAR COMPRA Y ENVIAR EMAIL
-
-function enviar_email() {
-  alert("Enviando el pedido");
-
-  // Configura Email.js con tus credenciales
-  emailjs.init(process.env.CREDENCIALES_EMAILJS);
-
-  // Recopila los datos del comprador
-  var nombreCliente = document.getElementById("namecliente").value;
-
-  // Recopila los intrucciones especiales
-  var special_instructions = document.getElementById("special").value;
-
-  // Recopila los intrucciones especiales
-  var telefono = document.getElementById("telefono").value;
-
-  // Recopila los datos de productos desde el resumen_compra
-  var productos = obtenerProductosDesdeResumen();
-
-  // Prepara el contenido del correo
-  var correoContenido = "Nombre del comprador: " + nombreCliente + "\n\n";
-
-  correoContenido += "Telefono del cliente: " + telefono + "\n\n";
-
-  correoContenido += "Aclaracion: " + special_instructions + "\n\n";
-
-  productos.forEach(function (producto) {
-    correoContenido += "Producto: " + producto.nombre + "\n";
-    correoContenido += "Cantidad: " + producto.cantidad + "\n";
-    correoContenido += "Precio: $ " + producto.valor + "\n\n\n";
-  });
-
-  // Configura el mensaje del correo
-  var email = {
-    to: "joelelianmorales@gmail.com",
-    subject: "Nuevo pedido de Bocatto Di Pollo",
-    message: correoContenido,
-  };
-
-  // Envía el correo
-  emailjs.send("service_3s9yg03", "template_Bocatto", email).then(
-    function (response) {
-      alert("Correo enviado con éxito");
-
-      // Aquí puedes agregar el código para borrar los productos del Local Storage y del carrito
-      borrarProductos();
-    },
-    function (error) {
-      alert("Error al enviar el correo: " + error);
-    }
-  );
-
-  // Aquí puedes agregar el código para borrar los productos del local estore y del carrito
-  // ...
-
-  // Recarga la página de resumen para reflejar los cambios
-  cargar_resumen();
-}
-
-function borrarProductos() {
-  // Borra los productos del Local Storage
-  localStorage.removeItem("carrito");
-
-  // Borra los productos del carrito en la página
-  var carritoDiv = document.getElementById("contenido_resumen");
-  carritoDiv.innerHTML = ""; // Limpia el contenido del carrito en la página
-
-  // Opcional: Actualiza cualquier otro estado relacionado con el carrito que puedas tener en tu aplicación
-}
-
-function obtenerProductosDesdeResumen() {
-  var productos = [];
-  var productosDivs = document.querySelectorAll(".filaResumen"); // Suponiendo que los productos se almacenan en elementos con la clase 'row'
-
-  productosDivs.forEach(function (productoDiv) {
-    var nombre = productoDiv.querySelector(".nombreProducto").textContent; // Suponiendo que el nombre se encuentra en un elemento con la clase 'nombreProducto'
-    var cantidad = parseInt(
-      productoDiv.querySelector(".cantidadProducto").textContent
-    ); // Suponiendo que la cantidad se encuentra en un elemento con la clase 'cantidadProducto'
-    var valor = productoDiv.querySelector(".valorProducto").textContent; // Suponiendo que el valor se encuentra en un elemento con la clase 'valorProducto'
-
-    productos.push({
-      nombre: nombre,
-      cantidad: cantidad,
-      valor: valor,
-    });
-  });
-
-  return productos;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
-
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------

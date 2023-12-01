@@ -17,7 +17,7 @@ header.innerHTML = `
         <a href="#productos" onclick="cargarPagina('productos')" class="w3-bar-item w3-button">Productos</a>
         <a href="#galeria" onclick="cargarPagina('principal')" class="w3-bar-item w3-button">Galería</a>
         <a href="#contacto" class="w3-bar-item w3-button">Contáctanos</a>
-        <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg" id="carrito-icono"></i></a>
+        <a class="w3-bar-item w3-button" id="main" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg" id="carrito-icono"></i></a>
     </div>
 
     <!-- MENU PANTALLAS MOVILES -->
@@ -42,16 +42,16 @@ header.innerHTML = `
         <div class="offcanvas-body">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="#principal" onclick="cargarPagina('principal'); cerrarOffcanvas();" class="nav-link ms-4">¿Quiénes somos?</a>
+                    <a href="#principal" onclick="cargarPagina('principal');" class="nav-link ms-4">¿Quiénes somos?</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#productos" onclick="cargarPagina('productos'); cerrarOffcanvas();" class="nav-link ms-4">Productos</a>
+                    <a href="#productos" onclick="cargarPagina('productos');" class="nav-link ms-4">Productos</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#galeria" onclick="cargarPagina('principal'); cerrarOffcanvas();" class="nav-link ms-4">Galería</a>
+                    <a href="#galeria" onclick="cargarPagina('principal');" class="nav-link ms-4">Galería</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#contacto" onclick=" cerrarOffcanvas();" class="nav-link ms-4">Contáctanos</a>
+                    <a href="#contacto" class="nav-link ms-4">Contáctanos</a>
                 </li>
             </ul>
         </div>
@@ -68,7 +68,7 @@ header.innerHTML = `
         </div>
         <!-- Botón para acceder al pago -->
         <div class="w3-padding-large">
-            <button class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Proceso de pago</button>
+            <button id="btn_resumen" class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Proceso de pago</button>
     </div>
 </div>
 `;

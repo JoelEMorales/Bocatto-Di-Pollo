@@ -1,6 +1,6 @@
 // Add SDK credentials
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-const mercadopago = new MercadoPago("PUBLIC-KEY", {
+const mercadopago = new MercadoPago("MP_PUBLIC_KEY", {
     locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
 });
 
@@ -38,13 +38,7 @@ carrito.forEach(function (producto) {
 // CODIGO DE LA PAGINA RESUMEN_COMPRA.HTML
 // PAGINA FINAL - RESUMEN COMPRA
 
-function redirigir_resumen() {
-    // cargar el HTML dentro de la etiqueta main para resumen de compra
-    cargarPagina("resumen");
 
-    // Luego de cargar la página, ejecutar el script para manipular los elementos
-    cargar_resumen();
-}
 
 
 function cargar_resumen() {
@@ -275,25 +269,24 @@ function cargar_resumen() {
     const procesar_mercadoPago = document.createElement("button");
     // procesar_mercadoPago.style.paddingTop = "5px";
     procesar_mercadoPago.style.marginTop = "30px";
-    // // finalizarCompra.style.backgroundColor = "green";
-    // procesar_mercadoPago.style.width = "200px";
     procesar_mercadoPago.className = "btn btn-primary btn-lg btn-block";
     procesar_mercadoPago.id = "checkout-btn";
     procesar_mercadoPago.innerHTML = "Finalizar pedido";
     colDivProcesar.appendChild(procesar_mercadoPago);
 
-    // // Función para verificar el nombre y enviar el correo electrónico
-    // function finalizarCompraClick() {
-    //     var nameCliente = document.getElementById("namecliente");
+    // Función para verificar el nombre y enviar el correo electrónico
+    function finalizarCompraClick() {
+        var nameCliente = document.getElementById("namecliente");
 
-    //     if (nameCliente.value.trim() === "") {
-    //         alert("Por favor, ingrese su nombre para continuar.");
-    //     } else {
-    //         enviar_email(); // Llama a la función enviar_email si el nombre no está en blanco
-    //     }
-    // }
-    // // Asigna la función finalizarCompraClick como el manejador del evento onclick
-    // finalizarCompra.onclick = finalizarCompraClick;
+        if (nameCliente.value.trim() === "") {
+            alert("Por favor, ingrese su nombre para continuar.");
+        } else {
+            enviar_email(); // Llama a la función enviar_email si el nombre no está en blanco
+
+        }
+    }
+    // Asigna la función finalizarCompraClick como el manejador del evento onclick
+    procesar_mercadoPago.onclick = finalizarCompraClick;
 
     // DIV MERCADO PAGO button-checkout
     const div_button_checkout = document.createElement("div");
