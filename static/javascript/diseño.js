@@ -30,7 +30,7 @@ header.innerHTML = `
             <a href="/" class="navbar-brand">
                 <img src="static/fotosalfajores/logo-bocatto.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
             </a>
-            <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg" id="carrito-icono"></i></a>
+            <a class="w3-bar-item w3-button" id="main" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg" id="carrito-icono"></i></a>
         </div>
     </div>
 

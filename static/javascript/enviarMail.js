@@ -11,7 +11,7 @@ function enviar_email() {
     alert("Enviando el pedido");
 
     // Configura Email.js con tus credenciales
-    emailjs.init("CREDENCIALES_EMAILJS");
+    emailjs.init("bZL7G9gX0CBh9EfQH");
 
     // Recopila los datos del comprador
     var nombreCliente = document.getElementById("namecliente").value;

@@ -24,7 +24,7 @@ window.onscroll = function () {
 
 //MENU DESPEGABLE CARRITO
 
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+/* Establece el ancho de la barra lateral en 250 px y el margen izquierdo del contenido de la página en 250 px */
 function openNav() {
   var sidebar = document.getElementById("mySidebar");
   var main = document.getElementById("main");
@@ -40,7 +40,7 @@ function openNav() {
   btnResumen.addEventListener("click", closeNav);
 }
 
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+/* Establece el ancho de la barra lateral en 0 y el margen izquierdo del contenido de la página en 0 */
 function closeNav() {
   var sidebar = document.getElementById("mySidebar");
   var main = document.getElementById("main");
@@ -58,14 +58,10 @@ function closeNavOutside(event) {
   var main = document.getElementById("main");
 
   // Verificar si el clic no ocurrió dentro de la barra lateral o el botón
-  if (!sidebar.contains(event.target) && event.target.id !== "btn_resumen" && event.target.id !== "carrito-icono") {
+  if (!sidebar.contains(event.target) && event.target.id !== "btn_resumen" && event.target.id !== "carrito-icono" && event.target.id !== "main") {
     closeNav();
   }
 }
-
-// Agregar event listener para abrir la barra lateral al hacer clic en el icono del carrito
-var carritoIcono = document.getElementById("carrito-icono");
-carritoIcono.addEventListener("click", openNav);
 
 
 function actualizar_cantidad() {
