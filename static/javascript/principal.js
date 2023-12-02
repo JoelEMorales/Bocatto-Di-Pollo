@@ -86,14 +86,3 @@ function actualizar_cantidad() {
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-function redirigir_resumen() {
-  // cargar el HTML dentro de la etiqueta main para resumen de compra
-  cargarPagina("resumen");
-
-  // Luego de cargar la página, ejecutar el script para manipular los elementos
-  cargar_resumen();
-}
-
-
-
-

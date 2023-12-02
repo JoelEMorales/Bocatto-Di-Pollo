@@ -7,7 +7,9 @@
 
 
 // Declarar una variable global para el carrito
-var carritoG = [];
+let carritoG = [];
+
+
 
 // Función para agregar un producto al carrito
 function agregarProductoAlCarrito() {
@@ -27,7 +29,7 @@ function agregarProductoAlCarrito() {
     }
 
     // Buscar si el producto ya está en la lista
-    var productoExistente = carrito.find(producto => producto.nombre === nombreProducto && producto.aclaracion === opcionSeleccionada);
+    var productoExistente = carritoG.find(producto => producto.nombre === nombreProducto && producto.aclaracion === opcionSeleccionada);
 
     if (productoExistente) {
       productoExistente.cantidad += cantidadDeCajas;
@@ -65,17 +67,17 @@ function mostrarProductosEnCarrito(carritoG) {
   carritoHTML.innerHTML = carritoG.map(crearNuevoProductoHTML).join('');
 }
 
-// Agregar un evento de carga a la ventana (se ejecutará cuando la página se cargue o recargue)
-window.addEventListener('load', function () {
-  // Obtener la lista de productos del localStorage
-  var listaDeProductosGuardada = localStorage.getItem("carrito");
-  if (listaDeProductosGuardada) {
-    carritoG = JSON.parse(listaDeProductosGuardada);
-    // Mostrar productos desde la variable global
-    mostrarProductosEnCarrito(carritoG);
-  }
-  console.log("Productos en el carrito después de la actualización:", carritoG);
-});
+
+var listaDeProductosGuardada = localStorage.getItem("carrito");
+if (listaDeProductosGuardada) {
+
+  // Se convierte de formato JSON a un objeto JavaScript utilizando JSON.parse, y se asigna a la variable global carritoG.
+  carritoG = JSON.parse(listaDeProductosGuardada);
+  // Mostrar productos desde la variable global
+  mostrarProductosEnCarrito(carritoG);
+}
+console.log("Productos en el carrito después de la actualización:", carritoG);
+
 
 
 
@@ -124,14 +126,13 @@ function inicializarCarrito() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", inicializarCarrito);
-
 // Función para actualizar el ícono del carrito
 function actualizarIconoCarrito() {
   console.log("Actualizando el ícono del carrito...");
   var productosEnCarrito = carritoG.length;
 
   console.log("Número de productos en el carrito:", productosEnCarrito);
+  console.log("Contenido del carrito:", carritoG);
 
   // Verificar si el carrito contiene al menos un producto
   if (productosEnCarrito > 0) {
@@ -245,4 +246,18 @@ function eliminarProductoDelCarrito(nombreProducto) {
 
 
 
+
+function redirigir_resumen() {
+  // Guardar la última modificación en el localStorage
+  actualizarCarrito(carritoG);
+  console.log("redirigir_resumen: Iniciando...");
+  // console.log("Contenido del LocalStorage (carrito):", storedCart);
+
+  cargarPagina("resumen");
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOMContentLoaded evento activado");
+  });
+  cargar_resumen();
+  console.log("redirigir_resumen: Finalizado.");
+}
 

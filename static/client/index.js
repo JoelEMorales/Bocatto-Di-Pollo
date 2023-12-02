@@ -6,32 +6,8 @@ const mercadopago = new MercadoPago("MP_PUBLIC_KEY", {
 
 
 // Recupera el carrito del LocalStorage
-const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// Objeto para rastrear la cantidad de cada producto
-const productosAgrupados = {};
-
-// Variable para sumar el precio total
-let precioTotal = 0;
-
-// Agrupa los productos y suma sus cantidades
-carrito.forEach(function (producto) {
-    const clave = producto.nombre + (producto.aclaracion || ""); // Usamos una clave única basada en el nombre y aclaración (si existe)
-    if (!productosAgrupados[clave]) {
-        productosAgrupados[clave] = {
-            nombre: producto.nombre,
-            cantidad: producto.cantidad,
-            aclaracion: producto.aclaracion,
-            imagen: producto.imagen,
-            valor: producto.total,
-        };
-    } else {
-        productosAgrupados[clave].cantidad += producto.cantidad;
-    }
-
-    // Suma el precio total
-    precioTotal += parseFloat(producto.total);
-});
+// const storedCart = JSON.parse(localStorage.getItem("carrito")) || [];
 
 
 
@@ -41,7 +17,15 @@ carrito.forEach(function (producto) {
 
 
 
+// Variable para sumar el precio total
+let precioTotal = 0;
+
+
 function cargar_resumen() {
+
+    console.log("cargar_resumen: Iniciando...");
+
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     // Objeto para rastrear la cantidad de cada producto
     const productosAgrupados = {};
@@ -60,11 +44,28 @@ function cargar_resumen() {
         } else {
             productosAgrupados[clave].cantidad += producto.cantidad;
         }
-    });
 
+        // Suma el precio total
+        precioTotal += parseFloat(producto.total);
+    });
+    
     // Actualizar el contenido dentro del div 'contenido_resumen'
     const contenidoDiv = document.getElementById("contenido_resumen");
-    contenidoDiv.innerHTML = ""; // Limpia cualquier contenido previo
+
+    // Log para verificar si el elemento se encontró
+    console.log("Elemento contenido_resumen:", contenidoDiv);
+
+    if (!contenidoDiv) {
+        console.error("No se encontró el elemento con id 'contenido_resumen'");
+        return;
+    } else {
+        contenidoDiv.innerHTML = ""; // Limpia cualquier contenido previo
+    }
+
+
+
+    console.log("Datos de productosAgrupados:", productosAgrupados);
+
 
     // Recorre los productos agrupados y muestra la cantidad total
     for (const clave in productosAgrupados) {
@@ -138,10 +139,11 @@ function cargar_resumen() {
 
         contenidoDiv.appendChild(productoDiv);
 
-        // Agrega una línea horizontal
+        // Agrega una línea horizontal después de cada producto
         const hr = document.createElement("hr");
         hr.style.backgroundColor = "gray";
         hr.style.height = "0.5px";
+        contenidoDiv.appendChild(productoDiv);
         contenidoDiv.appendChild(hr);
     }
 
@@ -274,19 +276,21 @@ function cargar_resumen() {
     procesar_mercadoPago.innerHTML = "Finalizar pedido";
     colDivProcesar.appendChild(procesar_mercadoPago);
 
-    // Función para verificar el nombre y enviar el correo electrónico
-    function finalizarCompraClick() {
-        var nameCliente = document.getElementById("namecliente");
+    // // Función para verificar el nombre y enviar el correo electrónico
+    // function finalizarCompraClick() {
+    //     var nameCliente = document.getElementById("namecliente");
 
-        if (nameCliente.value.trim() === "") {
-            alert("Por favor, ingrese su nombre para continuar.");
-        } else {
-            enviar_email(); // Llama a la función enviar_email si el nombre no está en blanco
+    //     if (nameCliente.value.trim() === "") {
+    //         alert("Por favor, ingrese su nombre para continuar.");
+    //     } else {
+    //         // Llama a las funciónes si el nombre no está en blanco
+    //         generarPreferencia();
+    //         enviar_email(); 
 
-        }
-    }
+    //     }
+    // }
     // Asigna la función finalizarCompraClick como el manejador del evento onclick
-    procesar_mercadoPago.onclick = finalizarCompraClick;
+    procesar_mercadoPago.onclick = generarPreferencia;
 
     // DIV MERCADO PAGO button-checkout
     const div_button_checkout = document.createElement("div");
@@ -301,14 +305,20 @@ function cargar_resumen() {
 
 
 
+    console.log("cargar_resumen: Finalizado.");
+}
 
+
+function generarPreferencia() {
+
+    // Código relacionado con Mercado Pago y Bricks aquí
 
     // Obtener el botón de pago fuera del bucle
     const checkoutButton = document.getElementById("checkout-btn");
 
     if (checkoutButton) {
 
-        // Handle call to backend and generate preference.
+        // Manejar llamada al backend y generar preferencia.
         checkoutButton.addEventListener("click", function () {
 
             console.log("Botón de pago clickeado");
@@ -347,8 +357,7 @@ function cargar_resumen() {
         console.error('No se pudo encontrar el botón de checkout');
     }
 
-}
-
+};
 
 
 function createCheckoutButton(preferenceId) {
