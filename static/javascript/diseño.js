@@ -59,13 +59,18 @@ header.innerHTML = `
     
     <!-- SECCIÓN CORREDIZA DEL CARRITO -->
     <div id="mySidebar" class="sidebar" style="z-index: 2">
-        <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
-        
+
         <!-- ENLACE AL CARRITO -->
-        <a href="#descripcion" class="w3-bar-item">Su carrito</a>
-        
+        <div id="contHeader">
+            <div id="titCarrito">
+                <a href="#descripcion">Su carrito</a>
+            </div>
+            <div id="iconX">
+                <a href="javascript:void(0)" onclick="closeNav()">×</a>
+            </div>            
+        </div>
         <!-- LÍNEAS DIVISORIAS -->
-        <hr><hr><hr><hr>
+        <hr id="divisorCarrito">
         
         <!-- PRODUCTOS DEL CARRITO -->
         <div id="div_lista_de_productos">
@@ -73,7 +78,7 @@ header.innerHTML = `
         </div>
         
         <!-- BOTÓN DE PROCESO DE PAGO -->
-        <div class="w3-padding">
+        <div class="w3-padding-small">
             <div class="row">
                 <div class="col">
                     <button id="btn_resumen" class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Resumen</button>

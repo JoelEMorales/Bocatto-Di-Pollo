@@ -91,20 +91,20 @@ function obtenerHtmlProducto(nombre, cantidad, aclaracion, imagen, total) {
   // Aquí puedes construir el HTML del producto de acuerdo a tu formato deseado
   // Puedes usar los parámetros nombre, cantidad, aclaracion, imagen y total para personalizar el HTML
   return `
-    <div class="w3-row w3-content">
+    <div class="w3-row w3-content" style="padding-bottom: 30px;">
       <div style="max-width: 100px; max-height: 150px;" class="w3-padding-small w3-half">
         <img src="${imagen}" style="width: 100%; height: 100%" id="imgproductocarrito"/>
       </div>
       <div class="w3-half">
-        <a class="w3-left" id="namecarrito">${nombre}</a>
-        <br><br>
+        <a class="w3-left-align" id="namecarrito">${nombre}</a>
+        <br>
         <a class="w3-left" id="aclaracion">${aclaracion}</a>
-        <br><br>
+        <br>
         <a class="w3-left">Cant en kg: </a><a class="w3-left" id="cantidad_caja">${cantidad}</a>
-        <br><br>
+        <br>
         <a class="w3-left">Precio por kg: $</a><a class="w3-left" id="valorunidad">${total}</a>
-        <button class="w3-button w3-text-white w3-right" type="button" onclick="quitarProductoDeProductoHTML(this)">Quitar</button>
       </div>
+      <button class="w3-button w3-text-white" type="button" onclick="quitarProductoDeProductoHTML(this)">Quitar</button>
     </div>`;
 }
 
