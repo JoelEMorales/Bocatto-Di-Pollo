@@ -42,33 +42,47 @@ header.innerHTML = `
         <div class="offcanvas-body">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="#principal" onclick="cargarPagina('principal');" class="nav-link ms-4">¿Quiénes somos?</a>
+                    <a href="#principal" onclick="cargarPagina('principal');" class="nav-link ms-4" data-bs-dismiss="offcanvas">¿Quiénes somos?</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#productos" onclick="cargarPagina('productos');" class="nav-link ms-4">Productos</a>
+                    <a href="#productos" onclick="cargarPagina('productos');" class="nav-link ms-4" data-bs-dismiss="offcanvas">Productos</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#galeria" onclick="cargarPagina('principal');" class="nav-link ms-4">Galería</a>
+                    <a href="#galeria" onclick="cargarPagina('principal');" class="nav-link ms-4" data-bs-dismiss="offcanvas">Galería</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#contacto" class="nav-link ms-4">Contáctanos</a>
+                    <a href="#contacto" class="nav-link ms-4" data-bs-dismiss="offcanvas">Contáctanos</a>
                 </li>
             </ul>
         </div>
     </div>
     
-    <!-- DIV SECCIÓN CORREDIZA -->
+    <!-- SECCIÓN CORREDIZA DEL CARRITO -->
     <div id="mySidebar" class="sidebar" style="z-index: 2">
         <a href="javascript:void(0)" class="closebtn w3-right" onclick="closeNav()">×</a>
+        
+        <!-- ENLACE AL CARRITO -->
         <a href="#descripcion" class="w3-bar-item">Su carrito</a>
-        <hr>
+        
+        <!-- LÍNEAS DIVISORIAS -->
+        <hr><hr><hr><hr>
+        
         <!-- PRODUCTOS DEL CARRITO -->
         <div id="div_lista_de_productos">
             <!-- Aquí se mostrarán los productos seleccionados -->
         </div>
-        <!-- Botón para acceder al pago -->
-        <div class="w3-padding-large">
-            <button id="btn_resumen" class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Proceso de pago</button>
+        
+        <!-- BOTÓN DE PROCESO DE PAGO -->
+        <div class="w3-padding">
+            <div class="row">
+                <div class="col">
+                    <button id="btn_resumen" class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Resumen</button>
+                </div>
+                <div class="col">
+                    <button id="btn_comprar" class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="cargarPagina('productos')">Seguir comprando</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 `;

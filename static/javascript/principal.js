@@ -29,8 +29,8 @@ function openNav() {
   var sidebar = document.getElementById("mySidebar");
   var main = document.getElementById("main");
 
-  sidebar.style.width = "300px";
-  main.style.marginRight = "250px";
+  sidebar.style.width = "325px";
+  main.style.marginRight = "300px";
 
   // Agregar event listener para cerrar la barra lateral al hacer clic fuera de ella
   document.addEventListener("click", closeNavOutside);
@@ -38,6 +38,10 @@ function openNav() {
   // Agregar event listener al botón para cerrar la barra lateral
   var btnResumen = document.getElementById("btn_resumen");
   btnResumen.addEventListener("click", closeNav);
+
+  // Agregar event listener al botón para cerrar la barra lateral
+  var btnComprar = document.getElementById("btn_comprar");
+  btnComprar.addEventListener("click", closeNav);
 }
 
 /* Establece el ancho de la barra lateral en 0 y el margen izquierdo del contenido de la página en 0 */
@@ -58,7 +62,7 @@ function closeNavOutside(event) {
   var main = document.getElementById("main");
 
   // Verificar si el clic no ocurrió dentro de la barra lateral o el botón
-  if (!sidebar.contains(event.target) && event.target.id !== "btn_resumen" && event.target.id !== "carrito-icono" && event.target.id !== "main") {
+  if (!sidebar.contains(event.target) && event.target.id !== "btn_resumen" && event.target.id !== "btn_comprar" && event.target.id !== "carrito-icono" && event.target.id !== "main") {
     closeNav();
   }
 }
