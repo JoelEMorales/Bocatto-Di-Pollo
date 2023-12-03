@@ -72,13 +72,13 @@ function closeNavOutside(event) {
 
 // Agregar un event listener para ajustar el diseño al cambiar el tamaño de la ventana
 window.addEventListener("resize", function () {
-  if (sidebar.style.width !== "0") {
-      openNav();
+  // Verificar si la barra lateral no está cerrada
+  if (getComputedStyle(sidebar).width !== "0px") {
+    openNav(); // Llamar a la función openNav() solo si la barra lateral no está cerrada
   }
 });
-
-// Llamada inicial para establecer el diseño según el tamaño de la pantalla
-openNav();
+// // Llamada inicial para establecer el diseño según el tamaño de la pantalla
+// openNav();
 
 
 function actualizar_cantidad() {

@@ -1,4 +1,3 @@
-
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // CODIGOS PARA AGREGAR PRODUCTO AL CARRITO, GUARDAR EN EL LOCALSTORAGE Y CAMBIAR ICONO DE CARRITO

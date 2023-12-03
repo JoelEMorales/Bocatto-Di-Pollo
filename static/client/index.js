@@ -10,7 +10,8 @@ const mercadopago = new MercadoPago("MP_PUBLIC_KEY", {
 let precioTotal = 0;
 
 
-function cargar_resumen() {
+
+window.cargar_resumen=function() {
 
     console.log("cargar_resumen: Iniciando...");
 
@@ -37,7 +38,7 @@ function cargar_resumen() {
         // Suma el precio total
         precioTotal += parseFloat(producto.total);
     });
-    
+
     // Actualizar el contenido dentro del div 'contenido_resumen'
     const contenidoDiv = document.getElementById("contenido_resumen");
 
@@ -299,7 +300,6 @@ function cargar_resumen() {
 
 
 function generarPreferencia() {
-
     // Código relacionado con Mercado Pago y Bricks aquí
 
     // Obtener el botón de pago fuera del bucle
@@ -367,7 +367,26 @@ function createCheckoutButton(preferenceId) {
                 },
                 callbacks: {
                     onError: (error) => console.error(error),
-                    onReady: () => { },
+                    onReady: () => {
+                        // SweetAlert code
+                        Swal.fire({
+                            title: "Advertencia de pago!",
+                            text: "Te informamos que se realizará la mitad del pago como seña a través de nuestra web. El restante lo podrás abonar al recoger tu pedido en nuestra tienda física. ¡Gracias por tu comprensión y confianza!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Seguir con el pago"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success"
+                                });
+                            }
+                        });
+                    },
                 },
             }
         );
