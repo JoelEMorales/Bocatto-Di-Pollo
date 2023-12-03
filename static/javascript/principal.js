@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // fUNCIONES PAGINA PRINCIPAL INDEX.HTML  -   MENU - CARRITO DESPEGABLE
- 
+
 //---------------------------------------------------------------------------------------------------------
 
 
@@ -24,13 +24,19 @@ window.onscroll = function () {
 
 //MENU DESPEGABLE CARRITO
 
+const sidebar = document.getElementById("mySidebar");
+const main = document.getElementById("main");
+
 /* Establece el ancho de la barra lateral en 250 px y el margen izquierdo del contenido de la página en 250 px */
 function openNav() {
-  var sidebar = document.getElementById("mySidebar");
-  var main = document.getElementById("main");
 
-  sidebar.style.width = "325px";
-  main.style.marginRight = "300px";
+  if (window.innerWidth > 768) {
+    sidebar.style.width = "360px";
+    main.style.marginRight = "300px";
+  } else {
+    sidebar.style.width = "75%";
+    main.style.marginRight = "0";
+  }
 
   // Agregar event listener para cerrar la barra lateral al hacer clic fuera de ella
   document.addEventListener("click", closeNavOutside);
@@ -58,14 +64,21 @@ function closeNav() {
 
 // Función para cerrar la barra lateral al hacer clic fuera de ella
 function closeNavOutside(event) {
-  var sidebar = document.getElementById("mySidebar");
-  var main = document.getElementById("main");
-
   // Verificar si el clic no ocurrió dentro de la barra lateral o el botón
   if (!sidebar.contains(event.target) && event.target.id !== "btn_resumen" && event.target.id !== "btn_comprar" && event.target.id !== "carrito-icono" && event.target.id !== "main") {
     closeNav();
   }
 }
+
+// Agregar un event listener para ajustar el diseño al cambiar el tamaño de la ventana
+window.addEventListener("resize", function () {
+  if (sidebar.style.width !== "0") {
+      openNav();
+  }
+});
+
+// Llamada inicial para establecer el diseño según el tamaño de la pantalla
+openNav();
 
 
 function actualizar_cantidad() {
@@ -77,12 +90,5 @@ function actualizar_cantidad() {
 //---------------------------------------------------------------------------------------------------------
 
 
-
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// FUNCION PARA REDIRIGIR A PAGINA RESUMEN
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
