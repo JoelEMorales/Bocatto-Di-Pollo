@@ -51,7 +51,7 @@ function enviar_email() {
             alert("Correo enviado con éxito");
 
             // Aquí puedes agregar el código para borrar los productos del Local Storage y del carrito
-            borrarProductos();
+            // borrarProductos();
         },
         function (error) {
             alert("Error al enviar el correo: " + error);

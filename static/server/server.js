@@ -14,7 +14,10 @@ mercadopago.configure({
   access_token: process.env.MP_ACCESS_TOKEN
 });
 
-
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://sdk.mercadopago.com https://http2.mlstatic.com;");
+  next();
+});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

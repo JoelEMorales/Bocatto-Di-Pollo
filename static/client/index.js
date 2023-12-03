@@ -266,21 +266,20 @@ window.cargar_resumen=function() {
     procesar_mercadoPago.innerHTML = "Finalizar pedido";
     colDivProcesar.appendChild(procesar_mercadoPago);
 
-    // // Función para verificar el nombre y enviar el correo electrónico
-    // function finalizarCompraClick() {
-    //     var nameCliente = document.getElementById("namecliente");
+    // Función para verificar el nombre y enviar el correo electrónico
+    function finalizarCompraClick() {
+        var nameCliente = document.getElementById("namecliente");
 
-    //     if (nameCliente.value.trim() === "") {
-    //         alert("Por favor, ingrese su nombre para continuar.");
-    //     } else {
-    //         // Llama a las funciónes si el nombre no está en blanco
-    //         generarPreferencia();
-    //         enviar_email(); 
+        if (nameCliente.value.trim() === "") {
+            alert("Por favor, ingrese su nombre para continuar.");
+        } else {
+            // Llama a las funciónes si el nombre no está en blanco
+            generarPreferencia();            
+        }
+    }
 
-    //     }
-    // }
     // Asigna la función finalizarCompraClick como el manejador del evento onclick
-    procesar_mercadoPago.onclick = generarPreferencia;
+    procesar_mercadoPago.onclick = finalizarCompraClick;
 
     // DIV MERCADO PAGO button-checkout
     const div_button_checkout = document.createElement("div");
@@ -376,16 +375,21 @@ function createCheckoutButton(preferenceId) {
                             showCancelButton: true,
                             confirmButtonColor: "#3085d6",
                             cancelButtonColor: "#d33",
-                            confirmButtonText: "Seguir con el pago"
+                            confirmButtonText: "Seguir con el pago",
+                            cancelButtonText: "Cancelar"
                         }).then((result) => {
-                            if (result.isConfirmed) {
+                            if (!result.isConfirmed) {
                                 Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
+                                    title: "Proceso de pago anulado!",
+                                    text: "Se lo redigirá a la pagina de inicio",
                                     icon: "success"
+                                }).then(() => {
+                                    // Redirige a la página principal después de mostrar el mensaje
+                                    cargarPagina("principal");
                                 });
                             }
                         });
+                        // enviar_email();     
                     },
                 },
             }
