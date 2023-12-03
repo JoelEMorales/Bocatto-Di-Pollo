@@ -5,17 +5,6 @@ const mercadopago = new MercadoPago("MP_PUBLIC_KEY", {
 });
 
 
-// Recupera el carrito del LocalStorage
-
-// const storedCart = JSON.parse(localStorage.getItem("carrito")) || [];
-
-
-
-// CODIGO DE LA PAGINA RESUMEN_COMPRA.HTML
-// PAGINA FINAL - RESUMEN COMPRA
-
-
-
 
 // Variable para sumar el precio total
 let precioTotal = 0;
@@ -25,13 +14,13 @@ function cargar_resumen() {
 
     console.log("cargar_resumen: Iniciando...");
 
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const storedCart = JSON.parse(localStorage.getItem("carrito")) || [];
 
     // Objeto para rastrear la cantidad de cada producto
     const productosAgrupados = {};
 
     // Agrupa los productos y suma sus cantidades
-    carrito.forEach(function (producto) {
+    storedCart.forEach(function (producto) {
         const clave = producto.nombre + (producto.aclaracion || ""); // Usamos una clave única basada en el nombre y aclaración (si existe)
         if (!productosAgrupados[clave]) {
             productosAgrupados[clave] = {
