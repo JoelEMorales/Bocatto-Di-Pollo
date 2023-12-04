@@ -182,11 +182,10 @@ function obtenerCarrito() {
 // FUNCION - Borrar producto desde pagina pagina_compra.html
 function quitarProductoDeProductoHTML(boton) {
   // Obtener el producto
-  var productoAEliminar = boton.closest(".w3-row");
+  const productoAEliminar = boton.closest(".w3-row");
 
   // Obtener el nombre del producto
-  var nombreProducto =
-    productoAEliminar.querySelector("#namecarrito").textContent;
+  const nombreProducto = productoAEliminar.querySelector("#namecarrito").textContent;
 
   // Eliminar el elemento del producto del DOM
   productoAEliminar.remove();
@@ -197,13 +196,20 @@ function quitarProductoDeProductoHTML(boton) {
 }
 
 function quitarProducto(nombreProducto) {
-  // Recupera el carrito del LocalStorage
-  var carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  // Obtener el carrito del localStorage
+  let obtengoCarrito = obtenerCarrito();
+
+  // Filtrar el carrito para excluir el producto a eliminar
+  obtengoCarrito = obtengoCarrito.filter(producto => producto.nombre !== nombreProducto);
+
+  // Guardar el carrito actualizado en el localStorage
+  guardarCarritoEnLocalStorage(obtengoCarrito);
+
 
   // Busca el índice del producto a eliminar
-  var indice = -1;
-  for (var i = 0; i < carrito.length; i++) {
-    if (carrito[i].nombre === nombreProducto) {
+  let indice = -1;
+  for (let i = 0; i < obtengoCarrito.length; i++) {
+    if (obtengoCarrito[i].nombre === nombreProducto) {
       indice = i;
       break;
     }
@@ -211,37 +217,51 @@ function quitarProducto(nombreProducto) {
 
   // Si se encontró el producto, lo elimina del carrito
   if (indice !== -1) {
-    carrito.splice(indice, 1);
+    obtengoCarrito.splice(indice, 1);
 
     // Actualiza el carrito en el LocalStorage
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.setItem("carrito", JSON.stringify(obtengoCarrito));
 
     // Recarga la página de resumen para reflejar los cambios
     cargar_resumen();
   }
+
 }
 
-// FUNCION COMUN PARA LA ELIMINACION DE PRODUCTO
-function eliminarProductoDelCarrito(nombreProducto) {
-  var carrito = obtenerCarrito();
-
-  // Busca el índice del producto a eliminar
-  var indice = -1;
-  for (var i = 0; i < carrito.length; i++) {
-    if (carrito[i].nombre === nombreProducto) {
-      indice = i;
-      break;
-    }
-  }
-
-  // Si se encontró el producto, lo elimina del carrito
-  if (indice !== -1) {
-    carrito.splice(indice, 1);
-
-    // Actualiza el carrito en el LocalStorage
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-  }
+function guardarCarritoEnLocalStorage(carrito) {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 }
+
+
+
+
+// // function quitarProducto(nombreProducto) {
+// //   // Recupera el carrito del LocalStorage
+// //   var carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+// }
+
+// // FUNCION COMUN PARA LA ELIMINACION DE PRODUCTO
+// function eliminarProductoDelCarrito(nombreProducto) {
+//   var carrito = obtenerCarrito();
+
+//   // Busca el índice del producto a eliminar
+//   var indice = -1;
+//   for (var i = 0; i < carrito.length; i++) {
+//     if (carrito[i].nombre === nombreProducto) {
+//       indice = i;
+//       break;
+//     }
+//   }
+
+//   // Si se encontró el producto, lo elimina del carrito
+//   if (indice !== -1) {
+//     carrito.splice(indice, 1);
+
+//     // Actualiza el carrito en el LocalStorage
+//     localStorage.setItem("carrito", JSON.stringify(carrito));
+//   }
+// }
 
 
 
@@ -260,10 +280,13 @@ function redirigir_resumen() {
   // console.log("Contenido del LocalStorage (carrito):", storedCart);
 
   cargarPagina("resumen");
-  document.addEventListener("DOMContentLoaded", function () {
-    console.log("DOMContentLoaded evento activado");
-  });
-  cargar_resumen();
+
+  if (carritoG.length > 0) {
+    cargar_resumen();
+  } else {
+    console.log("redirigir_resumen: No hay contenido en el carrito. No se cargará el resumen.");
+  }
+
   console.log("redirigir_resumen: Finalizado.");
 }
 

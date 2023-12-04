@@ -1,6 +1,6 @@
 // Add SDK credentials
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-const mercadopago = new MercadoPago("MP_ACCESS_TOKEN", {
+const mercadopago = new MercadoPago("APP_USR-af94d654-a321-4018-a12e-61676894b33c", {
     locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
 });
 
@@ -223,18 +223,13 @@ window.cargar_resumen = function () {
     name.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
     name.type = "text";
     name.placeholder = "Indique su nombre completo para preparar su pedido";
+    name.pattern = "[A-Za-z\s]+"
+    name.title = "Por favor, ingresa solo letras y espacios"
+    name.required = true;
     name.id = "namecliente";
-    colDivProcesar.appendChild(name);
-
     // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
     name.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
-
-    // Agregar un evento de escucha al campo de entrada del nombre
-    name.addEventListener("blur", function () {
-        if (name.value.trim() === "") {
-            alert("Por favor, ingrese su nombre para continuar.");
-        }
-    });
+    colDivProcesar.appendChild(name);
 
     // Numero de telefono del comprador
     const tel = document.createElement("input");
@@ -244,6 +239,9 @@ window.cargar_resumen = function () {
     tel.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
     tel.type = "text";
     tel.placeholder = "Indique su número de teléfono";
+    tel.pattern = "[0-9()+\- ]+"
+    tel.title = "Por favor, ingresa solo números y caracteres especiales comunes en números de teléfono"
+    tel.required = true;
     tel.id = "telCLiente";
     // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
     tel.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
@@ -301,7 +299,7 @@ window.cargar_resumen = function () {
 // Código relacionado con Mercado Pago y Bricks aquí
 function generarPreferencia() {
     const checkoutButton = document.getElementById("checkout-btn");
-
+    
     // Manejar llamada al backend y generar preferencia.
     console.log("Botón de pago clickeado");
     checkoutButton.remove();
@@ -365,6 +363,7 @@ function createCheckoutButton(preferenceId) {
                             cancelButtonColor: "#d33",
                             confirmButtonText: "Seguir con el pago",
                             cancelButtonText: "Cancelar"
+
                         }).then((result) => {
                             if (!result.isConfirmed) {
                                 Swal.fire({
