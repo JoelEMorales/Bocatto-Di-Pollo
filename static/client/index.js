@@ -1,6 +1,6 @@
 // Add SDK credentials
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-const mercadopago = new MercadoPago("MP_PUBLIC_KEY", {
+const mercadopago = new MercadoPago("MP_ACCESS_TOKEN", {
     locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
 });
 
@@ -11,7 +11,7 @@ let precioTotal = 0;
 
 
 
-window.cargar_resumen=function() {
+window.cargar_resumen = function () {
 
     console.log("cargar_resumen: Iniciando...");
 
@@ -244,18 +244,10 @@ window.cargar_resumen=function() {
     tel.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
     tel.type = "text";
     tel.placeholder = "Indique su número de teléfono";
-    tel.id = "telefono";
-    colDivProcesar.appendChild(tel);
-
+    tel.id = "telCLiente";
     // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
     tel.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
-
-    // Agregar un evento de escucha al campo de entrada de telefono
-    tel.addEventListener("blur", function () {
-        if (tel.value.trim() === "") {
-            alert("Por favor, ingrese su telefono para continuar.");
-        }
-    });
+    colDivProcesar.appendChild(tel);
 
     // Boton finalizar compra
     const procesar_mercadoPago = document.createElement("button");
@@ -266,15 +258,24 @@ window.cargar_resumen=function() {
     procesar_mercadoPago.innerHTML = "Finalizar pedido";
     colDivProcesar.appendChild(procesar_mercadoPago);
 
-    // Función para verificar el nombre y enviar el correo electrónico
+    // Verifica el nombre y telefono antes de enviar el correo electrónico
     function finalizarCompraClick() {
-        var nameCliente = document.getElementById("namecliente");
+        const nameCliente = document.getElementById("namecliente");
+        const telCLiente = document.getElementById("telCLiente")
+
+        let mensaje = ""
 
         if (nameCliente.value.trim() === "") {
-            alert("Por favor, ingrese su nombre para continuar.");
+            mensaje += "Por favor, ingrese su nombre para continuar."
+            Swal.fire(mensaje);
+
+        } else if (telCLiente.value.trim() === "") {
+            mensaje += "Por favor, ingrese su telefono para continuar."
+            Swal.fire(mensaje);
+
         } else {
             // Llama a las funciónes si el nombre no está en blanco
-            generarPreferencia();            
+            generarPreferencia();
         }
     }
 
@@ -297,54 +298,41 @@ window.cargar_resumen=function() {
     console.log("cargar_resumen: Finalizado.");
 }
 
-
+// Código relacionado con Mercado Pago y Bricks aquí
 function generarPreferencia() {
-    // Código relacionado con Mercado Pago y Bricks aquí
-
-    // Obtener el botón de pago fuera del bucle
     const checkoutButton = document.getElementById("checkout-btn");
 
-    if (checkoutButton) {
+    // Manejar llamada al backend y generar preferencia.
+    console.log("Botón de pago clickeado");
+    checkoutButton.remove();
 
-        // Manejar llamada al backend y generar preferencia.
-        checkoutButton.addEventListener("click", function () {
+    const orderData = {
+        quantity: 1,
+        description: "Total a pagar",
+        price: precioTotal,
+    };
 
-            console.log("Botón de pago clickeado");
-            checkoutButton.remove();
+    console.log("Datos del pedido:", orderData);
 
-            const orderData = {
-                quantity: 1,
-                description: "Total a pagar",
-                price: precioTotal,
-            };
-
-            console.log("Datos del pedido:", orderData);
-
-            fetch("http://localhost:5000/create_preference", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(orderData),
-            })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (preference) {
-                    console.log("Preferencia creada:", preference);
-                    createCheckoutButton(preference.id);
-                })
-                .catch(function (error) {
-                    console.error("Error en la solicitud:", error);
-                    alert("Unexpected error");
-                    checkoutButton.disabled = false;
-                });
+    fetch("http://localhost:5000/create_preference", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (preference) {
+            console.log("Preferencia creada:", preference);
+            createCheckoutButton(preference.id);
+        })
+        .catch(function (error) {
+            console.error("Error en la solicitud:", error);
+            alert("Unexpected error");
+            checkoutButton.disabled = false;
         });
-
-    } else {
-        console.error('No se pudo encontrar el botón de checkout');
-    }
-
 };
 
 
