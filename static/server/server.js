@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mercadopago = require("mercadopago");
+const path = require("path")
 
 
 require('dotenv').config({ path: '/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/.env' });
@@ -39,7 +40,7 @@ app.post("/create_preference", (req, res) => {
       }
     ],
     back_urls: {
-      "success": "http://localhost:5000",
+      "success": "http://localhost:5000/success",
       "failure": "http://localhost:5000",
       "pending": "http://localhost:5000"
     },
@@ -54,6 +55,11 @@ app.post("/create_preference", (req, res) => {
     }).catch(function (error) {
       console.log(error);
     });
+});
+
+app.get('/success', (req, res) =>{
+
+  res.sendFile("/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/success.html")
 });
 
 app.get('/feedback', function (req, res) {

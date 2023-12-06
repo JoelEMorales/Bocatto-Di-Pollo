@@ -1,6 +1,69 @@
+
+// ARCHIVO index.JS UBICADO EN : /home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static/client/index.js
+
+
+export { mostrardatosCliente,nameGlobal, telGlobal, intEspecialGlobal, datosCliente };
+// import { obtenerProductosDesdeResumen } from "../javascript/enviarMail";
+
+let intEspecialGlobal = "";
+let nameGlobal = "";
+let telGlobal = "";
+
+
+// Inicialización de datosCliente desde localStorage
+let datosCliente = JSON.parse(localStorage.getItem("datosCliente")) || {};
+
+function mostrardatosCliente(nombre, telefono, instrucciones) {
+    console.log("DATOS DEL CLIENTE: Nombre-" + nombre + ", Teléfono-" + telefono + ", Instrucciones-" + instrucciones);
+
+    datosCliente = {nombre, telefono, instrucciones}
+    localStorage.setItem("datosCliente", JSON.stringify(datosCliente));
+
+    return datosCliente;
+}
+
+
+function obtenerProductosDesdeResumen() {
+
+    let productos = [];
+    const productosDivs = document.querySelectorAll(".filaResumen"); // Suponiendo que los productos se almacenan en elementos con la clase 'row'
+
+    productosDivs.forEach(function (productoDiv) {
+        var nombre = productoDiv.querySelector(".nombreProducto").textContent; // Suponiendo que el nombre se encuentra en un elemento con la clase 'nombreProducto'
+        var cantidad = parseInt(
+            productoDiv.querySelector(".cantidadProducto").textContent
+        ); // Suponiendo que la cantidad se encuentra en un elemento con la clase 'cantidadProducto'
+        var valor = productoDiv.querySelector(".valorProducto").textContent; // Suponiendo que el valor se encuentra en un elemento con la clase 'valorProducto'
+
+        productos.push({
+            nombre: nombre,
+            cantidad: cantidad,
+            valor: valor,
+        });
+    });
+
+    // Guarda los productos en el localStorage
+    localStorage.setItem("productosResumen", JSON.stringify(productos));
+
+    let total = 0;
+    // Imprime los datos usando un bucle
+    console.log("DATOS GUARDADOS DEL RESUMEN:");
+    productos.forEach(function (producto) {
+        total += parseInt(producto.valor)
+        console.log("Nombre:", producto.nombre);
+        console.log("Cantidad:", producto.cantidad);
+        console.log("Valor:", producto.valor);
+        console.log("total:", total);
+        console.log("------------------------");
+    });
+
+    return productos;
+}
+
+
 // Add SDK credentials
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-const mercadopago = new MercadoPago("APP_USR-af94d654-a321-4018-a12e-61676894b33c", {
+const mercadopago = new MercadoPago("MP_ACCESS_TOKEN", {
     locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
 });
 
@@ -158,7 +221,7 @@ window.cargar_resumen = function () {
     instruccionesTextarea.style.width = "100%"; // Utilizamos el 100% del ancho disponible
     instruccionesTextarea.style.height = "100%"; // Utilizamos el 100% del alto disponible
     instruccionesTextarea.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
-    instruccionesTextarea.id = "special";
+    instruccionesTextarea.id = "intEspecial";
     instruccionesTextarea.name = "text";
     instruccionesTextarea.placeholder =
         "Escribe aquí las instrucciones especiales";
@@ -176,7 +239,7 @@ window.cargar_resumen = function () {
     const fraseInformacion = document.createElement("p");
     fraseInformacion.style.textAlign = "right";
     fraseInformacion.style.paddingTop = "10px";
-    fraseInformacion.textContent = "Pago realizado en el local fisico";
+    fraseInformacion.textContent = "Segunda mitad del pago se realizara en el local fisico";
     colDivProcesar.appendChild(fraseInformacion);
 
     // Intrucciones de recogida
@@ -209,43 +272,29 @@ window.cargar_resumen = function () {
     masInformacionUbicacion.innerHTML = "Balcarce, 803, San Luis, Argentina";
     colDivProcesar.appendChild(masInformacionUbicacion);
 
-    // Ubicacion
-    const masInformacion = document.createElement("p");
-    masInformacion.style.textAlign = "left";
-    masInformacion.style.paddingTop = "10px";
-    masInformacion.innerHTML = "Balcarce, 803, San Luis, Argentina";
-    colDivProcesar.appendChild(masInformacion);
+    function crearCampoEntrada(tipo, placeholder, pattern, title, required, id) {
+        const input = document.createElement("input");
+        input.style.paddingTop = "10px";
+        input.style.marginTop = "10px";
+        // Utilizamos el 100% del ancho disponible
+        input.style.width = "100%";
+        input.style.boxSizing = "border-box";
+        input.type = tipo;
+        input.placeholder = placeholder;
+        input.pattern = pattern;
+        input.title = title;
+        input.required = required;
+        input.id = id;
+        input.style.fontSize = "16px";
 
-    // Nombre del comprador
-    const name = document.createElement("input");
-    name.style.paddingTop = "10px";
-    name.style.width = "100%"; // Utilizamos el 100% del ancho disponible
-    name.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
-    name.type = "text";
-    name.placeholder = "Indique su nombre completo para preparar su pedido";
-    name.pattern = "[A-Za-z\s]+"
-    name.title = "Por favor, ingresa solo letras y espacios"
-    name.required = true;
-    name.id = "namecliente";
-    // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
-    name.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
-    colDivProcesar.appendChild(name);
+        colDivProcesar.appendChild(input);
+    }
 
-    // Numero de telefono del comprador
-    const tel = document.createElement("input");
-    tel.style.paddingTop = "10px";
-    tel.style.marginTop = "10px";
-    tel.style.width = "100%"; // Utilizamos el 100% del ancho disponible
-    tel.style.boxSizing = "border-box"; // Incluimos el padding y el borde en el ancho total
-    tel.type = "text";
-    tel.placeholder = "Indique su número de teléfono";
-    tel.pattern = "[0-9()+\- ]+"
-    tel.title = "Por favor, ingresa solo números y caracteres especiales comunes en números de teléfono"
-    tel.required = true;
-    tel.id = "telCLiente";
-    // Establecemos un tamaño de fuente relativo para que se ajuste mejor en pantallas más pequeñas
-    tel.style.fontSize = "16px"; // Puedes ajustar este valor según tus necesidades
-    colDivProcesar.appendChild(tel);
+    // Crear campo de nombre
+    crearCampoEntrada("text", "Indique su nombre completo para preparar su pedido", "^\d+$", "Solo se permiten letras.", true, "namecliente");
+
+    // Crear campo de número de teléfono
+    crearCampoEntrada("text", "Indique su número de teléfono", "\d+", "Solo se permiten números.", true, "telCLiente");
 
     // Boton finalizar compra
     const procesar_mercadoPago = document.createElement("button");
@@ -258,21 +307,32 @@ window.cargar_resumen = function () {
 
     // Verifica el nombre y telefono antes de enviar el correo electrónico
     function finalizarCompraClick() {
-        const nameCliente = document.getElementById("namecliente");
-        const telCLiente = document.getElementById("telCLiente")
+        nameGlobal = document.getElementById("namecliente").value;
+        telGlobal = document.getElementById("telCLiente").value;
+        intEspecialGlobal = document.getElementById("intEspecial").value;
 
-        let mensaje = ""
+        let mensaje = "";
 
-        if (nameCliente.value.trim() === "") {
-            mensaje += "Por favor, ingrese su nombre para continuar."
+        if (nameGlobal.trim() === "" && telGlobal.trim() === "") {
+            mensaje += "Por favor, ingrese su nombre y telefono.";
             Swal.fire(mensaje);
 
-        } else if (telCLiente.value.trim() === "") {
-            mensaje += "Por favor, ingrese su telefono para continuar."
+        } else if (!/^[A-Za-z\s]+$/.test(nameGlobal.trim())) {
+            mensaje += "Por favor, ingrese su nombre correctamente para continuar.";
+            Swal.fire(mensaje);
+
+        } else if (!/^\d+$/.test(telGlobal.trim())) {
+            mensaje += "Por favor, ingrese su número de teléfono correctamente para continuar.";
             Swal.fire(mensaje);
 
         } else {
-            // Llama a las funciónes si el nombre no está en blanco
+
+            console.log(nameGlobal, telGlobal, intEspecialGlobal);
+
+            mostrardatosCliente(nameGlobal, telGlobal, intEspecialGlobal);
+
+            obtenerProductosDesdeResumen();
+            // Llama a las funciones si el nombre y teléfono son válidos
             generarPreferencia();
         }
     }
@@ -299,7 +359,7 @@ window.cargar_resumen = function () {
 // Código relacionado con Mercado Pago y Bricks aquí
 function generarPreferencia() {
     const checkoutButton = document.getElementById("checkout-btn");
-    
+
     // Manejar llamada al backend y generar preferencia.
     console.log("Botón de pago clickeado");
     checkoutButton.remove();
@@ -376,7 +436,6 @@ function createCheckoutButton(preferenceId) {
                                 });
                             }
                         });
-                        // enviar_email();     
                     },
                 },
             }
@@ -384,3 +443,80 @@ function createCheckoutButton(preferenceId) {
     };
     window.checkoutButton = renderComponent(bricksBuilder);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     if (window.location.href.includes("http://localhost:5000/success")) {
+//         // Realiza la solicitud al servidor solo si la URL contiene "/success"
+//         fetch('http://localhost:5000/success')
+//             .then(response => {
+//                 if (!response.ok) {
+//                     throw new Error('Network response was not ok');
+//                 }
+//                 return response.json();
+//             })
+//             .then(data => {
+//                 // Realizar acciones en el cliente según la respuesta del servidor
+//                 if (data.success) {
+//                     // Redirección
+//                     window.location.href = 'http://localhost:5000';
+
+//                     // Notificar al cliente sobre el éxito del pago aquí
+//                     Swal.fire({
+//                         position: "center",
+//                         title: "¡Pago exitoso!",
+//                         text: "Gracias por tu compra.",
+//                         icon: "success",
+//                         showConfirmButton: false,
+//                         timer: 3000
+//                     });
+
+//                     // Enviar un correo electrónico al vendedor
+//                     enviar_email();
+
+//                     // Limpiar el localStorage
+//                     localStorage.clear();
+//                 }
+//             })
+//             .catch(error => {
+//                 console.error('Error:', error);
+//                 // Puedes manejar el error de manera apropiada, por ejemplo, mostrando un mensaje al usuario
+//                 Swal.fire({
+//                     position: "center",
+//                     title: "Error",
+//                     text: "Ocurrió un error al procesar el pago.",
+//                     icon: "error",
+//                     showConfirmButton: true
+//                 });
+//             });
+//     }
+// });
+
+
+

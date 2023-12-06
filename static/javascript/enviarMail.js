@@ -1,45 +1,44 @@
+
+// ARCHIVO enviarMail.JS UBICADO EN : /home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static/javascript/enviarMail.js
+
+
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // CODIGO PARA TERMINAR COMPRA Y ENVIAR EMAIL
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Exporto la funcion para utilizarla en otros archivos
+export function Email() {
 
+    //recupero los datos del localstorage
+    const cliente = JSON.parse(localStorage.getItem("datosCliente")) || {};
+    const productosGuardados = JSON.parse(localStorage.getItem("productosResumen")) || [];
 
-
-function enviar_email() {
-    alert("Enviando el pedido");
+    // Precio total de la compra
+    let total = 0;
 
     // Configura Email.js con tus credenciales
     emailjs.init("CREDENCIALES_EMAILJS");
 
-    // Recopila los datos del comprador
-    var nombreCliente = document.getElementById("namecliente").value;
-
-    // Recopila los intrucciones especiales
-    var special_instructions = document.getElementById("special").value;
-
-    // Recopila los intrucciones especiales
-    var telefono = document.getElementById("telefono").value;
-
-    // Recopila los datos de productos desde el resumen_compra
-    var productos = obtenerProductosDesdeResumen();
-
     // Prepara el contenido del correo
-    var correoContenido = "Nombre del comprador: " + nombreCliente + "\n\n";
+    let correoContenido = "Nombre del comprador: " + cliente.nombre + "\n\n";
 
-    correoContenido += "Telefono del cliente: " + telefono + "\n\n";
+    correoContenido += "Telefono del cliente: " + cliente.telefono + "\n\n";
 
-    correoContenido += "Aclaracion: " + special_instructions + "\n\n";
+    correoContenido += "Aclaracion: " + cliente.instrucciones + "\n\n";
 
-    productos.forEach(function (producto) {
-        correoContenido += "Producto: " + producto.nombre + "\n";
-        correoContenido += "Cantidad: " + producto.cantidad + "\n";
-        correoContenido += "Precio: $ " + producto.valor + "\n\n\n";
+    productosGuardados.forEach(function (product) {
+        correoContenido += "Producto: " + product.nombre + "\n";
+        correoContenido += "Cantidad: " + product.cantidad + "\n";
+        correoContenido += "Precio: $ " + product.valor + "\n\n\n";
+        total += parseInt(product.valor);
     });
 
+    correoContenido += "MITAD DEL PRECIO TOTAL: $ " + total / 2 + "\n\n";
+
     // Configura el mensaje del correo
-    var email = {
+    const email = {
         to: "joelelianmorales@gmail.com",
         subject: "Nuevo pedido de Bocatto Di Pollo",
         message: correoContenido,
@@ -48,53 +47,33 @@ function enviar_email() {
     // Envía el correo
     emailjs.send("service_3s9yg03", "template_Bocatto", email).then(
         function (response) {
-            alert("Correo enviado con éxito");
-
-            // Aquí puedes agregar el código para borrar los productos del Local Storage y del carrito
-            // borrarProductos();
+            borrarProductos();
         },
         function (error) {
             alert("Error al enviar el correo: " + error);
         }
     );
-
-    // Aquí puedes agregar el código para borrar los productos del local estore y del carrito
-    // ...
-
-    // Recarga la página de resumen para reflejar los cambios
-    cargar_resumen();
-}
-
-function obtenerProductosDesdeResumen() {
-    var productos = [];
-    var productosDivs = document.querySelectorAll(".filaResumen"); // Suponiendo que los productos se almacenan en elementos con la clase 'row'
-
-    productosDivs.forEach(function (productoDiv) {
-        var nombre = productoDiv.querySelector(".nombreProducto").textContent; // Suponiendo que el nombre se encuentra en un elemento con la clase 'nombreProducto'
-        var cantidad = parseInt(
-            productoDiv.querySelector(".cantidadProducto").textContent
-        ); // Suponiendo que la cantidad se encuentra en un elemento con la clase 'cantidadProducto'
-        var valor = productoDiv.querySelector(".valorProducto").textContent; // Suponiendo que el valor se encuentra en un elemento con la clase 'valorProducto'
-
-        productos.push({
-            nombre: nombre,
-            cantidad: cantidad,
-            valor: valor,
-        });
-    });
-
-    return productos;
 }
 
 
 // Eliminar resumen una vez enviado el mail
 function borrarProductos() {
-    // Borra los productos del Local Storage
-    localStorage.removeItem("carrito");
 
-    // Borra los productos del carrito en la página
-    var carritoDiv = document.getElementById("contenido_resumen");
-    carritoDiv.innerHTML = ""; // Limpia el contenido del carrito en la página
+    // Borrar contenido de "carrito", "datosCliente" y "productosResumen" en localStorage
+    localStorage.removeItem("carrito");
+    localStorage.removeItem("datosCliente");
+    localStorage.removeItem("productosResumen");
+
+    // // Borra los productos del carrito en la página
+    // var carritoDiv = document.getElementById("contenido_resumen");
+    // carritoDiv.innerHTML = ""; // Limpia el contenido del carrito en la página
 
     // Opcional: Actualiza cualquier otro estado relacionado con el carrito que puedas tener en tu aplicación
 }
+
+
+
+
+
+
+
