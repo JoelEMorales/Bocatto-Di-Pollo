@@ -1,12 +1,13 @@
+require('dotenv').config({ path: '/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/.env' });
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const mercadopago = require("mercadopago");
 const path = require("path");
-const PORT = 5000
+const PORT = process.env.PORT
 
 
-require('dotenv').config({ path: '/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/.env' });
 
 
 
