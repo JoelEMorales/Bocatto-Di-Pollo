@@ -1,18 +1,44 @@
-// // Conéctate al servidor mediante WebSocket
-// const socket = io();
 
-// // Escucha el evento "paymentSuccess" y llama a tu función del lado del cliente
-// socket.on('paymentSuccess', function () {
-//   // Llama a tu función aquí
-//   tuFuncionDelLadoDelCliente();
-// });
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// // Tu función del lado del cliente
-// function tuFuncionDelLadoDelCliente() {
-//   // Implementa la lógica que deseas ejecutar cuando se recibe el evento
-//   console.log('Pago exitoso, ejecutando función del lado del cliente');
-// }
+// CODIGO PARA PAGINA success.js
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+// Importa la función desde enviarMail.js
+import { Email } from '/static/javascript/enviarMail.js';
+
+if (window.location.href.includes("/success")) {
+
+    // Puedes notificar al cliente sobre el éxito del pago aquí
+    Swal.fire({
+        position: "center",
+        title: "¡Pago exitoso!",
+        text: "Gracias por tu compra.",
+        icon: "success",
+        showConfirmButton: true,
+        // timer: 3000
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            // Envia email con los datos del comprador y de los productos
+            Email();
+
+            // Limpia el localStorage
+            localStorage.clear();
+
+            // Espera 3 segundos (3000 milisegundos) antes de redirigir
+            setTimeout(() => {
+                // Redirige a la página de inicio
+                window.location.href = 'http://localhost:5000';
+            }, 2000);
+
+        }
+    });
+}
 
 
 

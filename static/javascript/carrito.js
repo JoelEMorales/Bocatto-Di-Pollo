@@ -222,10 +222,9 @@ function quitarProducto(nombreProducto) {
     // Actualiza el carrito en el LocalStorage
     localStorage.setItem("carrito", JSON.stringify(obtengoCarrito));
 
-    // Recarga la página de resumen para reflejar los cambios
-    cargar_resumen();
   }
-
+  // Recarga la página de resumen para reflejar los cambios
+  cargar_resumen();
 }
 
 function guardarCarritoEnLocalStorage(carrito) {

@@ -1,6 +1,12 @@
 
 // ARCHIVO index.JS UBICADO EN : /home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static/client/index.js
 
+// Add SDK credentials
+// REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
+const mercadopago = new MercadoPago("MP_PUBLIC_KEY", {
+    locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+});
+
 
 export { mostrardatosCliente,nameGlobal, telGlobal, intEspecialGlobal, datosCliente };
 // import { obtenerProductosDesdeResumen } from "../javascript/enviarMail";
@@ -9,12 +15,14 @@ let intEspecialGlobal = "";
 let nameGlobal = "";
 let telGlobal = "";
 
+// Variable para sumar el precio total
+let precioTotal = 0;
+
 
 // Inicialización de datosCliente desde localStorage
 let datosCliente = JSON.parse(localStorage.getItem("datosCliente")) || {};
 
 function mostrardatosCliente(nombre, telefono, instrucciones) {
-    console.log("DATOS DEL CLIENTE: Nombre-" + nombre + ", Teléfono-" + telefono + ", Instrucciones-" + instrucciones);
 
     datosCliente = {nombre, telefono, instrucciones}
     localStorage.setItem("datosCliente", JSON.stringify(datosCliente));
@@ -45,38 +53,12 @@ function obtenerProductosDesdeResumen() {
     // Guarda los productos en el localStorage
     localStorage.setItem("productosResumen", JSON.stringify(productos));
 
-    let total = 0;
-    // Imprime los datos usando un bucle
-    console.log("DATOS GUARDADOS DEL RESUMEN:");
-    productos.forEach(function (producto) {
-        total += parseInt(producto.valor)
-        console.log("Nombre:", producto.nombre);
-        console.log("Cantidad:", producto.cantidad);
-        console.log("Valor:", producto.valor);
-        console.log("total:", total);
-        console.log("------------------------");
-    });
-
     return productos;
 }
 
 
-// Add SDK credentials
-// REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-const mercadopago = new MercadoPago("MP_ACCESS_TOKEN", {
-    locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
-});
-
-
-
-// Variable para sumar el precio total
-let precioTotal = 0;
-
-
 
 window.cargar_resumen = function () {
-
-    console.log("cargar_resumen: Iniciando...");
 
     const storedCart = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -105,19 +87,12 @@ window.cargar_resumen = function () {
     // Actualizar el contenido dentro del div 'contenido_resumen'
     const contenidoDiv = document.getElementById("contenido_resumen");
 
-    // Log para verificar si el elemento se encontró
-    console.log("Elemento contenido_resumen:", contenidoDiv);
-
     if (!contenidoDiv) {
         console.error("No se encontró el elemento con id 'contenido_resumen'");
         return;
     } else {
         contenidoDiv.innerHTML = ""; // Limpia cualquier contenido previo
     }
-
-
-
-    console.log("Datos de productosAgrupados:", productosAgrupados);
 
 
     // Recorre los productos agrupados y muestra la cantidad total
@@ -327,8 +302,6 @@ window.cargar_resumen = function () {
 
         } else {
 
-            console.log(nameGlobal, telGlobal, intEspecialGlobal);
-
             mostrardatosCliente(nameGlobal, telGlobal, intEspecialGlobal);
 
             obtenerProductosDesdeResumen();
@@ -350,24 +323,20 @@ window.cargar_resumen = function () {
     div_wallet_container.id = "wallet_container";
     colDivProcesar.appendChild(div_wallet_container);
 
-
-
-
-    console.log("cargar_resumen: Finalizado.");
 }
+
 
 // Código relacionado con Mercado Pago y Bricks aquí
 function generarPreferencia() {
     const checkoutButton = document.getElementById("checkout-btn");
 
     // Manejar llamada al backend y generar preferencia.
-    console.log("Botón de pago clickeado");
     checkoutButton.remove();
 
     const orderData = {
         quantity: 1,
         description: "Total a pagar",
-        price: precioTotal,
+        price: precioTotal / 2,
     };
 
     console.log("Datos del pedido:", orderData);
@@ -388,7 +357,7 @@ function generarPreferencia() {
         })
         .catch(function (error) {
             console.error("Error en la solicitud:", error);
-            alert("Unexpected error");
+            alert("Error inesperado");
             checkoutButton.disabled = false;
         });
 };
@@ -400,8 +369,6 @@ function createCheckoutButton(preferenceId) {
 
     const renderComponent = async (bricksBuilder) => {
         console.log("Inicializando MercadoPago Bricks...");
-
-        // if (window.checkoutButton) window.checkoutButton.unmount();
 
         await bricksBuilder.create(
             "wallet",
@@ -441,82 +408,6 @@ function createCheckoutButton(preferenceId) {
             }
         );
     };
+    
     window.checkoutButton = renderComponent(bricksBuilder);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     if (window.location.href.includes("http://localhost:5000/success")) {
-//         // Realiza la solicitud al servidor solo si la URL contiene "/success"
-//         fetch('http://localhost:5000/success')
-//             .then(response => {
-//                 if (!response.ok) {
-//                     throw new Error('Network response was not ok');
-//                 }
-//                 return response.json();
-//             })
-//             .then(data => {
-//                 // Realizar acciones en el cliente según la respuesta del servidor
-//                 if (data.success) {
-//                     // Redirección
-//                     window.location.href = 'http://localhost:5000';
-
-//                     // Notificar al cliente sobre el éxito del pago aquí
-//                     Swal.fire({
-//                         position: "center",
-//                         title: "¡Pago exitoso!",
-//                         text: "Gracias por tu compra.",
-//                         icon: "success",
-//                         showConfirmButton: false,
-//                         timer: 3000
-//                     });
-
-//                     // Enviar un correo electrónico al vendedor
-//                     enviar_email();
-
-//                     // Limpiar el localStorage
-//                     localStorage.clear();
-//                 }
-//             })
-//             .catch(error => {
-//                 console.error('Error:', error);
-//                 // Puedes manejar el error de manera apropiada, por ejemplo, mostrando un mensaje al usuario
-//                 Swal.fire({
-//                     position: "center",
-//                     title: "Error",
-//                     text: "Ocurrió un error al procesar el pago.",
-//                     icon: "error",
-//                     showConfirmButton: true
-//                 });
-//             });
-//     }
-// });
-
-
-

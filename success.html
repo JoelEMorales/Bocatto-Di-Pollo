@@ -63,8 +63,6 @@
             }
         });
     </script>
-    <!-- Puedes incluir aquí más información o enlaces adicionales
-        <button onclick="volverALocalhost()">Volver a la página principal</button> -->
 </body>
 
 <script type="text/javascript">
@@ -73,39 +71,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 
-<script type="module">
-    // Importa la función desde enviarMail.js
-    import { mostrardatosCliente } from '/static/client/index.js';
-    import { Email } from '/static/javascript/enviarMail.js';
-
-    if (window.location.href.includes("/success")) {
-
-        // Puedes notificar al cliente sobre el éxito del pago aquí
-        Swal.fire({
-            position: "center",
-            title: "¡Pago exitoso!",
-            text: "Gracias por tu compra.",
-            icon: "success",
-            showConfirmButton: true,
-            // timer: 3000
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                Email();
-
-                // Limpia el localStorage
-                localStorage.clear();
-
-                // Espera 3 segundos (3000 milisegundos) antes de redirigir
-                setTimeout(() => {
-                    // Redirige a la página de inicio
-                    window.location.href = 'http://localhost:5000';
-                }, 3000);
-
-            }
-        });
-    }
-</script>
+<script type="module" src="/static/javascript/success.js"></script>
 
 <script>var static_url = "{{ url_for('static', filename='') }}";</script>
 

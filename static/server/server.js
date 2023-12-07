@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mercadopago = require("mercadopago");
-const path = require("path")
+const path = require("path");
+const PORT = 5000
 
 
 require('dotenv').config({ path: '/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/.env' });
@@ -70,6 +71,6 @@ app.get('/feedback', function (req, res) {
   });
 });
 
-app.listen(5000, () => {
-  console.log("The server is now running on Port 5000");
+app.listen(PORT, () => {
+  console.log("El servidor esta corriendo en el puerto", PORT);
 });

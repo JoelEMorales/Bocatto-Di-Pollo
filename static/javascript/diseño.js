@@ -294,31 +294,4 @@ footer.innerHTML = `
                 </div>
             </div>
         </div>
-
-        <script>
-            const btn = document.getElementById("boton_enviar");
-
-            document
-                .getElementById("form")
-                .addEventListener("submit", function (event) {
-                    event.preventDefault();
-
-                    btn.innerHTML = "Cargando...";
-
-                    const serviceID = "default_service";
-                    const templateID = "template_z4pm6o9";
-
-                    emailjs.sendForm(serviceID, templateID, this).then(
-                        () => {
-                            btn.innerHTML = "Enviar";
-                            alert("Enviado!");
-                            form.reset(); // Esto restablece los campos del formulario
-                        },
-                        (err) => {
-                            btn.innerHTML = "Enviando";
-                            alert(JSON.stringify(err));
-                        }
-                    );
-                });
-        </script>
 `;

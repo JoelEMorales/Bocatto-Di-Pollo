@@ -73,6 +73,33 @@ function borrarProductos() {
 
 
 
+// Enviar email de consulta
+const btn = document.getElementById("boton_enviar");
+
+document.getElementById("form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        btn.innerHTML = "Cargando...";
+
+        const serviceID = "service_3s9yg03";
+        const templateID = "template_z4pm6o9";
+
+        emailjs.sendForm(serviceID, templateID, this).then(
+            () => {
+                btn.innerHTML = "Enviar";
+                Swal.fire({
+                    title: "¡Consulta enviada!",
+                    text: "Gracias por su mensaje, nos pondremos en contacto.",
+                    icon: "success"
+                });
+                form.reset(); // Esto restablece los campos del formulario
+            },
+            (err) => {
+                btn.innerHTML = "Enviando";
+                alert(JSON.stringify(err));
+            }
+        );
+});
 
 
 
