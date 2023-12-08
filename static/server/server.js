@@ -1,30 +1,33 @@
-require('dotenv').config({ path: '/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/.env' });
+require('dotenv').config({ path: '../../.env' });
 
 const express = require("express");
 const app = express();
+const path = require("path");
 const cors = require("cors");
 const mercadopago = require("mercadopago");
-const path = require("path");
 const PORT = process.env.PORT
+const baseUrl = process.env.BASE_URL;
 
 
 mercadopago.configure({
   access_token: process.env.MP_ACCESS_TOKEN
 });
 
-// app.use((req, res, next) => {
-//   res.setHeader("Content-Security-Policy", "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://sdk.mercadopago.com https://http2.mlstatic.com;");
-//   next();
-// });
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use('/static', express.static("/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static"));
-app.use(express.static("/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static"));
+
+// Configuración para servir archivos estáticos desde la carpeta "static"
+app.use('/static', express.static(path.join(__dirname, "../")));
+
+app.use(express.static(path.join(__dirname, "/static")));
 app.use(cors());
+
 app.get("/", function (req, res) {
-  res.status(200).sendFile("/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/index.html");
+  const filePath = path.join(__dirname, "..", "..", "index.html");
+  res.sendFile(filePath);
+  // res.status(200).sendFile(path.join(__dirname, "../../index.html"));
 });
+
 
 app.post("/create_preference", (req, res) => {
 
@@ -37,9 +40,9 @@ app.post("/create_preference", (req, res) => {
       }
     ],
     back_urls: {
-      "success": "http://localhost:5000/success",
-      "failure": "http://localhost:5000",
-      "pending": "http://localhost:5000"
+      "success": baseUrl + '/success',
+      "failure": baseUrl + '/',
+      "pending": baseUrl + '/'
     },
     auto_return: "approved",
   };
@@ -54,8 +57,8 @@ app.post("/create_preference", (req, res) => {
     });
 });
 
-app.get('/success', (req, res) =>{
-  res.sendFile("/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/success.html")
+app.get('/success', (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "..", "success.html"));
 });
 
 app.get('/feedback', function (req, res) {
@@ -69,3 +72,26 @@ app.get('/feedback', function (req, res) {
 app.listen(PORT, () => {
   console.log("El servidor esta corriendo en el puerto", PORT);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.use((req, res, next) => {
+//   res.setHeader("Content-Security-Policy", "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://sdk.mercadopago.com https://http2.mlstatic.com;");
+//   next();
+// });
