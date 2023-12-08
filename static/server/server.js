@@ -8,11 +8,6 @@ const path = require("path");
 const PORT = process.env.PORT
 
 
-
-
-
-
-
 mercadopago.configure({
   access_token: process.env.MP_ACCESS_TOKEN
 });
@@ -60,7 +55,6 @@ app.post("/create_preference", (req, res) => {
 });
 
 app.get('/success', (req, res) =>{
-
   res.sendFile("/home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/success.html")
 });
 

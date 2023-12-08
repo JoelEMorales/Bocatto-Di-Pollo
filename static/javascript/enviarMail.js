@@ -19,7 +19,7 @@ export function Email() {
     let total = 0;
 
     // Configura Email.js con tus credenciales
-    emailjs.init("CREDENCIALES_EMAILJS");
+    emailjs.init("bZL7G9gX0CBh9EfQH");
 
     // Prepara el contenido del correo
     let correoContenido = "Nombre del comprador: " + cliente.nombre + "\n\n";
