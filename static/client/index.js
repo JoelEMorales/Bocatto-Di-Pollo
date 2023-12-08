@@ -3,12 +3,16 @@
 
 // Add SDK credentials
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-const mercadopago = new MercadoPago("MP_PUBLIC_KEY", {
-    locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+let mercadopago;
+
+fetch("/configuracion-mercadopago").then(response => response.json()).then(config => {
+    mercadopago = new MercadoPago(config.publicKey, {
+        locale: config.locale,
+    });
 });
 
 
-export { mostrardatosCliente,nameGlobal, telGlobal, intEspecialGlobal, datosCliente };
+export { mostrardatosCliente, nameGlobal, telGlobal, intEspecialGlobal, datosCliente };
 // import { obtenerProductosDesdeResumen } from "../javascript/enviarMail";
 
 let intEspecialGlobal = "";
@@ -24,7 +28,7 @@ let datosCliente = JSON.parse(localStorage.getItem("datosCliente")) || {};
 
 function mostrardatosCliente(nombre, telefono, instrucciones) {
 
-    datosCliente = {nombre, telefono, instrucciones}
+    datosCliente = { nombre, telefono, instrucciones }
     localStorage.setItem("datosCliente", JSON.stringify(datosCliente));
 
     return datosCliente;
@@ -408,6 +412,6 @@ function createCheckoutButton(preferenceId) {
             }
         );
     };
-    
+
     window.checkoutButton = renderComponent(bricksBuilder);
 }

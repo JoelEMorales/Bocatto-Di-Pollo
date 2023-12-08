@@ -8,6 +8,19 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Variable para credenciales de Email.js
+let CREDENCIALES_EMAILJS;
+let service;
+let template;
+
+fetch("/credenciales-emailjs").then(response => response.json()).then(config => {
+    CREDENCIALES_EMAILJS = config.credencialEmail
+    service = config.serviceID
+    template = config.templateID
+});
+
+
+
 // Exporto la funcion para utilizarla en otros archivos
 export function Email() {
 
@@ -19,7 +32,9 @@ export function Email() {
     let total = 0;
 
     // Configura Email.js con tus credenciales
-    emailjs.init("CREDENCIALES_EMAILJS");
+    emailjs.init(CREDENCIALES_EMAILJS);
+
+
 
     // Prepara el contenido del correo
     let correoContenido = "Nombre del comprador: " + cliente.nombre + "\n\n";
@@ -77,28 +92,31 @@ function borrarProductos() {
 const btn = document.getElementById("boton_enviar");
 
 document.getElementById("form").addEventListener("submit", function (event) {
-        event.preventDefault();
+    event.preventDefault();
 
-        btn.innerHTML = "Cargando...";
+    btn.innerHTML = "Cargando...";
 
-        const serviceID = "service_3s9yg03";
-        const templateID = "template_z4pm6o9";
+    // Configura Email.js con tus credenciales
+    emailjs.init(CREDENCIALES_EMAILJS);
 
-        emailjs.sendForm(serviceID, templateID, this).then(
-            () => {
-                btn.innerHTML = "Enviar";
-                Swal.fire({
-                    title: "¡Consulta enviada!",
-                    text: "Gracias por su mensaje, nos pondremos en contacto.",
-                    icon: "success"
-                });
-                form.reset(); // Esto restablece los campos del formulario
-            },
-            (err) => {
-                btn.innerHTML = "Enviando";
-                alert(JSON.stringify(err));
-            }
-        );
+    const serviceID = service;
+    const templateID = template;
+
+    emailjs.sendForm(serviceID, templateID, this).then(
+        () => {
+            btn.innerHTML = "Enviar";
+            Swal.fire({
+                title: "¡Consulta enviada!",
+                text: "Gracias por su mensaje, nos pondremos en contacto.",
+                icon: "success"
+            });
+            form.reset(); // Esto restablece los campos del formulario
+        },
+        (err) => {
+            btn.innerHTML = "Enviando";
+            alert(JSON.stringify(err));
+        }
+    );
 });
 
 
