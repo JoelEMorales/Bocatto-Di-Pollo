@@ -10,7 +10,7 @@ const path = require("path");
 const cors = require("cors");
 const mercadopago = require("mercadopago");
 const PORT = process.env.PORT
-const baseUrl = process.env.BASE_URL;
+// const baseUrl = process.env.BASE_URL;
 const corsOptions = {
   origin: ['https://bocatto-di-pollo.onrender.com', 'http://localhost:5000'], // Reemplaza con el dominio correcto de tu aplicación
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -65,6 +65,7 @@ app.get("/credenciales-emailjs", (req, res) => {
 
 
 app.post("/create_preference", (req, res) => {
+  let baseUrl = `${req.protocol}://${req.get('host')}`;
 
   let preference = {
     items: [
@@ -75,9 +76,9 @@ app.post("/create_preference", (req, res) => {
       }
     ],
     back_urls: {
-      "success": baseUrl + '/success',
-      "failure": baseUrl + '/',
-      "pending": baseUrl + '/'
+      "success": `${baseUrl}/success`,
+      "failure": baseUrl,
+      "pending": baseUrl,
     },
     auto_return: "approved",
   };
