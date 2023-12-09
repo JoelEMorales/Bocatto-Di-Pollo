@@ -30,11 +30,11 @@ if (window.location.href.includes("/success")) {
             // Limpia el localStorage
             localStorage.clear();
 
-            // Espera 3 segundos (3000 milisegundos) antes de redirigir
+            // Espera 3 segundos (1000 milisegundos) antes de redirigir
             setTimeout(() => {
                 // Redirige a la página de inicio
                 window.location.href = 'http://localhost:5000';
-            }, 2000);
+            }, 1000);
 
         }
     });
