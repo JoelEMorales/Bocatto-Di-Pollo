@@ -10,6 +10,11 @@ const cors = require("cors");
 const mercadopago = require("mercadopago");
 const PORT = process.env.PORT
 const baseUrl = process.env.BASE_URL;
+const corsOptions = {
+  origin: ['https://bocatto-di-pollo.onrender.com', 'http://localhost:5000'], // Reemplaza con el dominio correcto de tu aplicación
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Habilita el intercambio de cookies a través de las solicitudes CORS
+};
 
 
 mercadopago.configure({
@@ -26,7 +31,7 @@ app.use(express.json());
 app.use('/static', express.static(path.join(__dirname, "../")));
 
 app.use(express.static(path.join(__dirname, "/static")));
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.get("/", function (req, res) {
   const filePath = path.join(__dirname, "..", "..", "index.html");
