@@ -14,7 +14,7 @@ function cargarPagina(pagina) {
 
         contenido.innerHTML = `
         <!-- welcome header -->
-        <div class="bg-image" id="home" style="background-image: url(static/fotosalfajores/baner-bocatto.png);"></div>
+        <div class="bg-image" style="background-image: url(static/fotosalfajores/baner-bocatto.png);"></div>
         <nav class="bg-text">
             <h1>Bocatto Di Pollo</h1>
             <h2 style="font-size: 25px">
@@ -23,7 +23,7 @@ function cargarPagina(pagina) {
             <p>La mejor experiencia culinaria te espera.</p>
         </nav>
 
-        <article class="w3-main w3-content w3-padding" style="max-width: 1200px">
+        <article id="principal" class="w3-main w3-content w3-padding" style="max-width: 1200px">
             <!-- QUE ES? -->
             <section class="w3-row w3-padding-top w3-white" id="descripcion">
                 <div class="w3-half w3-padding-large w3-hide-small">
@@ -266,7 +266,7 @@ function cargarPagina(pagina) {
                     style="height:800px">
 
                     <!-- Contenedor principal -->
-                    <div class="w3-container w3-center w3-responsive">
+                    <div id="productos" class="w3-container w3-center w3-responsive">
                         <div style="width: 90%; margin: 0 auto;">
                             <br><br><br><br><br><br><br>
                             <!-- Contenedor para centrar el texto -->

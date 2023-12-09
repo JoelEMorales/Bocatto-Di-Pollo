@@ -34,7 +34,6 @@ if (window.location.href.includes("/success")) {
                 // Redirige a la página de inicio
                 window.location.href = '/';
             }, 1000);
-
         }
     });
 }

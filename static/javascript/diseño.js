@@ -187,7 +187,7 @@ footer.innerHTML = `
                         </p>
                         <p class="mb-2">
                             <strong>Sábados</strong> | 07:30 - 14:30 --
-                            17:30 - 22:00
+                            Cerrado
                         </p>
                         <p class="mb-2"><strong>Domingo</strong> | Cerrado</p>
                         <p><strong>Ubicación</strong></p>

@@ -1,5 +1,5 @@
 
-// ARCHIVO index.JS UBICADO EN : /home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static/client/index.js
+// ARCHIVO index.JS UBICADO EN : /joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static/client/index.js
 
 // Add SDK credentials
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel

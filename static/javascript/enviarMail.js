@@ -1,5 +1,5 @@
 
-// ARCHIVO enviarMail.JS UBICADO EN : /home/joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static/javascript/enviarMail.js
+// ARCHIVO enviarMail.JS UBICADO EN : /joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static/javascript/enviarMail.js
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -91,33 +91,44 @@ function borrarProductos() {
 // Enviar email de consulta
 const btn = document.getElementById("boton_enviar");
 
-document.getElementById("form").addEventListener("submit", function (event) {
-    event.preventDefault();
+if (!window.location.href.includes("/success")) {
+    document.getElementById("form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        btn.innerHTML = "Cargando...";
 
-    btn.innerHTML = "Cargando...";
+        // Configura Email.js con tus credenciales
+        emailjs.init(CREDENCIALES_EMAILJS);
 
-    // Configura Email.js con tus credenciales
-    emailjs.init(CREDENCIALES_EMAILJS);
+        const serviceID = service;
+        const templateID = template;
 
-    const serviceID = service;
-    const templateID = template;
+        emailjs.sendForm(serviceID, templateID, this).then(
+            () => {
+                btn.innerHTML = "Enviar";
+                Swal.fire({
+                    title: "¡Consulta enviada!",
+                    text: "Gracias por su mensaje, nos pondremos en contacto.",
+                    icon: "success"
+                }).then((result) => {
+                    if (result.isConfirmed) {
 
-    emailjs.sendForm(serviceID, templateID, this).then(
-        () => {
-            btn.innerHTML = "Enviar";
-            Swal.fire({
-                title: "¡Consulta enviada!",
-                text: "Gracias por su mensaje, nos pondremos en contacto.",
-                icon: "success"
-            });
-            form.reset(); // Esto restablece los campos del formulario
-        },
-        (err) => {
-            btn.innerHTML = "Enviando";
-            alert(JSON.stringify(err));
-        }
-    );
-});
+                        this.reset(); // Esto restablece los campos del formulario
+
+                        // Cierra el modal 
+                        setTimeout(() => {
+                            // Redirige a la página de inicio
+                            window.location.href = '/';
+                        }, 500);
+                    }
+                });
+            },
+            (err) => {
+                btn.innerHTML = "Enviar";
+                alert(JSON.stringify(err));
+            }
+        );
+    });
+}
 
 
 
