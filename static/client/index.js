@@ -345,7 +345,7 @@ function generarPreferencia() {
 
     console.log("Datos del pedido:", orderData);
 
-    fetch("http://localhost:5000/create_preference", {
+    fetch("/create_preference", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
