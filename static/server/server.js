@@ -9,8 +9,7 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 const mercadopago = require("mercadopago");
-const PORT = process.env.PORT
-// const baseUrl = process.env.BASE_URL;
+const PORT = process.env.PORT;
 const corsOptions = {
   origin: ['https://bocatto-di-pollo.onrender.com', 'http://localhost:5000'], // Reemplaza con el dominio correcto de tu aplicación
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -24,6 +23,11 @@ mercadopago.configure({
 
 
 
+// Middleware para configurar las URLs de retorno
+app.use((req, res, next) => {
+  res.locals.baseUrl = `${req.protocol}://${req.get('host')}`;
+  next();
+});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -65,8 +69,6 @@ app.get("/credenciales-emailjs", (req, res) => {
 
 
 app.post("/create_preference", (req, res) => {
-  let baseUrl = `${req.protocol}://${req.get('host')}`;
-
   let preference = {
     items: [
       {
@@ -76,9 +78,9 @@ app.post("/create_preference", (req, res) => {
       }
     ],
     back_urls: {
-      "success": `${baseUrl}/success`,
-      "failure": baseUrl,
-      "pending": baseUrl,
+      "success": `${res.locals.baseUrl}/success`,
+      "failure": res.locals.baseUrl,
+      "pending": res.locals.baseUrl,
     },
     auto_return: "approved",
   };
