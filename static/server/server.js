@@ -1,4 +1,5 @@
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV !== 'production') {
+  // En entorno de desarrollo, carga las variables de entorno desde el archivo .env
   require('dotenv').config({ path: '../../.env' });
 }
 
