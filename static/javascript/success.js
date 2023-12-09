@@ -19,8 +19,7 @@ if (window.location.href.includes("/success")) {
         title: "¡Pago exitoso!",
         text: "Gracias por tu compra.",
         icon: "success",
-        showConfirmButton: true,
-        // timer: 3000
+        showConfirmButton: true
     }).then((result) => {
         if (result.isConfirmed) {
 
@@ -33,7 +32,7 @@ if (window.location.href.includes("/success")) {
             // Espera 3 segundos (1000 milisegundos) antes de redirigir
             setTimeout(() => {
                 // Redirige a la página de inicio
-                window.location.href = 'http://localhost:5000';
+                window.location.href = '/';
             }, 1000);
 
         }
