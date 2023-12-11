@@ -161,13 +161,13 @@ function contenido_producto(prodctID) {
         producto_info.ingredientes_producto =
             "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo molida</li><li>Pan Rallado</li><li>Huevo</li><li>Especias y Condimentos</li></ul>";
         producto_info.imgPrincipal1_producto =
-            "static/fotosalfajores/burger-1.jpg";
+            "static/fotosalfajores/burgerPolloSimple3.jpg";
         producto_info.imgPrincipal2_producto =
-            "static/fotosalfajores/burger-2.jpg";
+            "static/fotosalfajores/burger-1.jpg";
         producto_info.imgPrincipal3_producto =
             "static/fotosalfajores/burger-3.jpg";
-        producto_info.imagen1_producto = "static/fotosalfajores/burger-1.jpg";
-        producto_info.imagen2_producto = "static/fotosalfajores/burger-2.jpg";
+        producto_info.imagen1_producto = "static/fotosalfajores/burgerPolloSimple3.jpg";
+        producto_info.imagen2_producto = "static/fotosalfajores/burger-1.jpg";
         producto_info.imagen3_producto = "static/fotosalfajores/burger-3.jpg";
     } else if (prodctID === "producto5") {
         producto_info.tipo_producto = "kilo";
@@ -178,17 +178,17 @@ function contenido_producto(prodctID) {
         producto_info.ingredientes_producto =
             "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo Molida</li><li>Jamon</li><li>Queso</li><li>Pan Rallado</li><li>Huevo</li><li>Especias y Condimentos</li></ul>";
         producto_info.imgPrincipal1_producto =
-            "static/fotosalfajores/arrollado-2.JPG";
+            "static/fotosalfajores/burgerPolloSimple4.jpg";
         producto_info.imgPrincipal2_producto =
-            "static/fotosalfajores/arrollado.JPG";
+            "static/fotosalfajores/burgerPolloSimple1.jpg";
         producto_info.imgPrincipal3_producto =
-            "static/fotosalfajores/arrollado-3.jpg";
-        producto_info.imagen1_producto = "static/fotosalfajores/arrollado-2.JPG";
-        producto_info.imagen2_producto = "static/fotosalfajores/arrollado.JPG";
-        producto_info.imagen3_producto = "static/fotosalfajores/arrollado-3.jpg";
+            "static/fotosalfajores/burgerPollo1.jpg";
+        producto_info.imagen1_producto = "static/fotosalfajores/burgerPolloSimple4.jpg";
+        producto_info.imagen2_producto = "static/fotosalfajores/burgerPolloSimple1.jpg";
+        producto_info.imagen3_producto = "static/fotosalfajores/burgerPollo1.jpg";
     } else if (prodctID === "producto6") {
         producto_info.tipo_producto = "otro";
-        producto_info.nombre_cantidad = "Arrolladito J/Q:";
+        producto_info.nombre_cantidad = "Arrolladito de Pechuga:";
 
         producto_info.descripcion_producto =
             "<p style='text-align: left;'>Nuestros Arrolladitos de Jamón y Queso son una delicia artesanal, creada con la pasión y la dedicación de nuestras recetas familiares. Elaborados con finas capas de pollo, jamón y queso. ¡Una opción perfecta para compartir y disfrutar en cualquier ocasión!</P>";
@@ -196,14 +196,14 @@ function contenido_producto(prodctID) {
         producto_info.ingredientes_producto =
             "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de pollo</li><li>Jamon</li><li>Queso</li><li>Especias y Condimentos</li></ul>";
         producto_info.imgPrincipal1_producto =
-            "static/fotosalfajores/arrollado-2.JPG";
+            "static/fotosalfajores/rollitosDePollo1.jpg";
         producto_info.imgPrincipal2_producto =
-            "static/fotosalfajores/arrollado.JPG";
+            "static/fotosalfajores/rollitosDePollo2.jpg";
         producto_info.imgPrincipal3_producto =
-            "static/fotosalfajores/arrollado-3.jpg";
-        producto_info.imagen1_producto = "static/fotosalfajores/arrollado-2.JPG";
-        producto_info.imagen2_producto = "static/fotosalfajores/arrollado.JPG";
-        producto_info.imagen3_producto = "static/fotosalfajores/arrollado-3.jpg";
+            "static/fotosalfajores/rollitosDePollo3.jpg";
+        producto_info.imagen1_producto = "static/fotosalfajores/rollitosDePollo1.jpg";
+        producto_info.imagen2_producto = "static/fotosalfajores/rollitosDePollo2.jpg";
+        producto_info.imagen3_producto = "static/fotosalfajores/rollitosDePollo3.jpg";
     } else if (prodctID === "producto7") {
         producto_info.tipo_producto = "otro";
         producto_info.nombre_cantidad = "Pata Muslo:";
@@ -224,14 +224,14 @@ function contenido_producto(prodctID) {
         producto_info.imagen3_producto = "static/fotosalfajores/pata.muslo-3.jpg";
     } else if (prodctID === "producto8") {
         producto_info.tipo_producto = "kilo";
-        producto_info.nombre_cantidad = "Filet de Pechuga y Muslo:";
+        producto_info.nombre_cantidad = "Pechuga:";
 
         producto_info.descripcion_producto =
             "<p style='text-align: left;'>Un clásico de la cocina familiar.<br><br>Nuestros Filetes de Pechuga son el resultado de una selección cuidadosa de pechugas de pollo frescas y de la más alta calidad. Nos aseguramos de que cada filete sea tierno y jugoso, para que disfrutes de su sabor natural en cualquier receta que elijas preparar. Al adquirir nuestros Filetes de Pechuga, te garantizamos que estás obteniendo un producto fresco y delicioso, elaborado con pasión y dedicación para que tu experiencia culinaria sea siempre inolvidable.<br><br>Para nuestros Filetes de Muslo, escogemos meticulosamente las piezas de muslo de pollo más jugosas y sabrosas. Estos filetes son ideales para dar un toque extra de sabor a tus preparaciones. Al ser productos frescos y de primera calidad, podrás apreciar la diferencia en su textura y sabor al cocinarlos. Estamos comprometidos con brindarte los mejores productos para que disfrutes de una experiencia gastronómica única en cada platillo que prepares.</p>";
 
-        producto_info.opcion_producto = "opcion";
+        // producto_info.opcion_producto = "opcion";
         producto_info.ingredientes_producto =
-            "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de Pechuga</li><li>Filet de Muslo</li></ul>";
+            "<br><p style='text-align: left;'>¿Qué ingredientes lleva?</p><ul><li>Pechuga de Pechuga</li></ul>";
         producto_info.imgPrincipal1_producto =
             "static/fotosalfajores/pechuga-1.JPG";
         producto_info.imgPrincipal2_producto =

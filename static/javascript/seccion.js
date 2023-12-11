@@ -357,8 +357,8 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto4')" id="producto4">
                         <br>
-                        <img src="static/fotosalfajores/burger-2.jpg"
-                            alt="Chupa Chups De Pollo" style="width: 90%;
+                        <img src="static/fotosalfajores/burgerPolloSimple5.jpg"
+                            alt="Hamburguesa de Pollo Simple" style="width: 90%;
                         height: 350px;">
                         <h3 class="w3-large w3-padding">Hamburguesa Simple</h3>
                         <p>
@@ -372,8 +372,8 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto5')" id="producto5">
                         <br>
-                        <img src="static/fotosalfajores/burger-1.jpg"
-                            alt="Chupa Chups De Pollo" style="width: 90%;
+                        <img src="static/fotosalfajores/burgerPolloSimple4.jpg"
+                            alt="Hamburguesa de pollo rellena" style="width: 90%;
                         height: 350px;">
                         <h3 class="w3-large w3-padding">Hamburguesa con J/Q</h3>
                         <p>
@@ -387,7 +387,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto6')" id="producto6">
                         <br>
-                        <img src="static/fotosalfajores/mila-1.JPG" alt="Chupa Chups De Pollo"
+                        <img src="static/fotosalfajores/rollitosDePollo4.jpg" alt="Arrolladito de Pechuga"
                             style="width: 90%;
                         height: 350px;">
                         <h3 class="w3-large w3-padding">Arrolladito de Pechuga</h3>
@@ -420,10 +420,10 @@ function cargarContenido() {
                         <img src="static/fotosalfajores/pechuga-4.jpg"
                             alt="Filet De Pechuga y Muslo" style="width: 90%;
                             height: 350px;">
-                        <h3 class="w3-large w3-padding">Filet De Pechuga y Muslo</h3>
+                        <h3 class="w3-large w3-padding">Pechuga</h3>
                         <p>
                             <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">2000</span>
+                            <span style="font-size: 24px;" class="precio">3350</span>
                         </p>
                         <p>Precio por kilo</p>
                         <br>
