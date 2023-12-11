@@ -13,9 +13,9 @@ header.innerHTML = `
 
     <!-- MENU PANTALLAS GRANDES -->
     <div class="w3-right w3-padding-large d-none d-md-block">
-        <a href="#principal" onclick="cargarPagina('principal')" class="w3-bar-item w3-button">¿Quiénes somos?</a>
-        <a href="#productos" onclick="cargarPagina('productos')" class="w3-bar-item w3-button">Productos</a>
-        <a href="#galeria" onclick="cargarPagina('principal')" class="w3-bar-item w3-button">Galería</a>
+        <a href="/" class="w3-bar-item w3-button">¿Quiénes somos?</a>
+        <a href="productos" class="w3-bar-item w3-button">Productos</a>
+        <a href="galeria" class="w3-bar-item w3-button">Galería</a>
         <a href="#contacto" class="w3-bar-item w3-button">Contáctanos</a>
         <a class="w3-bar-item w3-button" id="main" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg" id="carrito-icono"></i></a>
     </div>
@@ -24,7 +24,7 @@ header.innerHTML = `
     <!-- Button to open the offcanvas sidebar -->
     <div class="navbar d-block d-md-none">
         <div class="container-fluid">
-            <a class="nav-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#nav_movil">
+            <a class="nav-item" type="button" onclick="openSidebarMovile()">
                 <i class="fa-solid fa-bars"></i>
             </a>
             <a href="/" class="navbar-brand">
@@ -34,32 +34,21 @@ header.innerHTML = `
         </div>
     </div>
 
-    <!-- Offcanvas Sidebar -->
-    <div class="offcanvas offcanvas-start bg-dark text-white" id="nav_movil" style="width: 70%;">
-        <div class="offcanvas-header">
-            <button type="button" class="btn-close text-reset ms-4" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="#principal" onclick="cargarPagina('principal');" class="nav-link ms-4" data-bs-dismiss="offcanvas">¿Quiénes somos?</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#productos" onclick="cargarPagina('productos');" class="nav-link ms-4" data-bs-dismiss="offcanvas">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#galeria" onclick="cargarPagina('principal');" class="nav-link ms-4" data-bs-dismiss="offcanvas">Galería</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contacto" class="nav-link ms-4" data-bs-dismiss="offcanvas">Contáctanos</a>
-                </li>
-            </ul>
-        </div>
+    <!-- Sidebar for movile-->
+    <div id="sidebarMovile">
+        <ul id="lista">
+            <li><a onclick="closeSidebarMovile()">× Cerrar</a></li>
+            <li><a href="javascript:void(0);" onclick="closeSidebarAndRedirect('/')">¿Quiénes somos?</a></li>
+            <li><a href="javascript:void(0);" onclick="closeSidebarAndRedirect('productos')">Productos</a></li>
+            <li><a href="javascript:void(0);" onclick="closeSidebarAndRedirect('galeria')">Galería</a></li>
+            <li><a href="javascript:void(0);" onclick="closeSidebarAndRedirect('#contacto')">Contáctanos</a></li>
+    </ul>
+        </ul>
     </div>
     
-    <!-- SECCIÓN CORREDIZA DEL CARRITO -->
-    <div id="mySidebar" class="sidebar" style="z-index: 2">
 
+    <!-- SECCIÓN CORREDIZA DEL CARRITO -->
+    <div id="mySidebar" class="sidebar">
         <!-- ENLACE AL CARRITO -->
         <div id="contHeader">
             <div id="titCarrito">

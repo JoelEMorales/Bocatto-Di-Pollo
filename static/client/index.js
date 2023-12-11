@@ -164,7 +164,7 @@ window.cargar_resumen = function () {
         quitarDiv.style.paddingTop = "10px"; // Ajusta el espaciado superior
         quitarDiv.className = "col";
         quitarDiv.innerHTML =
-            "<p><button onclick=\"quitarProducto('" +
+            "<p><button onclick=\"quitarProductoDelResumen('" +
             clave +
             "')\">Quitar</button></p>";
         productoDiv.appendChild(quitarDiv);
@@ -402,8 +402,8 @@ function createCheckoutButton(preferenceId) {
                                     text: "Se lo redigirá a la pagina de inicio",
                                     icon: "success"
                                 }).then(() => {
-                                    // Redirige a la página principal después de mostrar el mensaje
-                                    cargarPagina("principal");
+                                    // Cambiar la ubicación a la página de compra
+                                    window.location.href = '/';
                                 });
                             }
                         });

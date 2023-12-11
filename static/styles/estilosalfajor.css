@@ -309,3 +309,58 @@ img.hover-shadow {
 #div_lista_de_productos {
     padding-bottom: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* ESTILOS PARA SIDEBAR DE MOVILES  */
+
+
+#sidebarMovile {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: -250px;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 30px;
+    transition: left 0.5s ease;
+    color: #fff; /* Texto color marfil */
+}
+
+#sidebarMovile ul {
+    padding: 0;
+    list-style: none;
+}
+
+#sidebarMovile li {
+    padding: 8px;
+}
+
+#sidebarMovile a {
+    text-decoration: none;
+    color: #fff; /* Texto color marfil */
+    display: block;
+    padding: 8px;
+    transition: background-color 0.3s ease;
+}
+
+#sidebarMovile a:hover {
+    background-color: #28a745; /* Cambia de color al pasar el ratón */
+    color: #000; /* Texto color negro */
+}

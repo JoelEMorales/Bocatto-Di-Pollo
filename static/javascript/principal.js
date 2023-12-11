@@ -22,7 +22,7 @@ window.onscroll = function () {
 
 //---------------------------------------------------------------------------------------------------------
 
-//MENU DESPEGABLE CARRITO
+//MENU DESPEGABLE CARRITO NORMAL
 
 const sidebar = document.getElementById("mySidebar");
 const main = document.getElementById("main");
@@ -89,6 +89,41 @@ function actualizar_cantidad() {
 
 //---------------------------------------------------------------------------------------------------------
 
+//MENU DESPEGABLE SIDEBAR MOVILE
 
 
 
+// Función para abrir el sidebar
+function openSidebarMovile() {
+  document.getElementById('sidebarMovile').style.left = '0';
+  
+  // Agregar un evento de clic al documento para cerrar el sidebar si se hace clic fuera de él
+  document.addEventListener('click', closeSidebarOnOutsideClick);
+}
+
+// Función para cerrar el sidebar
+function closeSidebarMovile() {
+  document.getElementById('sidebarMovile').style.left = '-250px';
+  
+  // Eliminar el evento de clic del documento cuando el sidebar se cierra
+  document.removeEventListener('click', closeSidebarOnOutsideClick);
+}
+
+// Función para cerrar el sidebar cuando se hace clic fuera de él
+function closeSidebarOnOutsideClick(event) {
+  const sidebar = document.getElementById('sidebarMovile');
+  
+  // Verificar si el clic ocurrió fuera del sidebar y sus enlaces
+  if (!sidebar.contains(event.target) && event.target.closest('a') === null) {
+      closeSidebarMovile();
+  }
+}
+
+function closeSidebarAndRedirect(url) {
+  closeSidebarMovile();
+  
+  // Agregar un retraso de 300 milisegundos (puedes ajustar el valor según sea necesario)
+  setTimeout(function() {
+      window.location.href = url;
+  }, 300);
+}

@@ -8,6 +8,46 @@
 // Declarar una variable global para el carrito
 let carritoG = [];
 
+// Actualiza el localstorage carrito con el contenido nuevo
+function updateCarrito(update) {
+  localStorage.setItem("carrito", JSON.stringify(update));
+  // Actualizar la variable global carritoG
+  carritoG = update;
+}
+
+// Función para obtener el carrito desde Local Storage o crear uno nuevo
+function obtenerCarrito() {
+  const carritoJSON = localStorage.getItem("carrito");
+
+  // Verificar si la cadena JSON existe
+  if (carritoJSON) {
+    try {
+      // Intentar analizar la cadena JSON y convertirla en un objetos
+      const carrito = JSON.parse(carritoJSON);
+      return carrito;
+
+    } catch (error) {
+      // Manejar errores si ocurren durante el análisis del JSON
+      console.error("Error al analizar el JSON del carrito:", error);
+
+      // En caso de error, devolver un arreglo vacío
+      return [];
+    }
+  } else {
+    // Si no hay cadena JSON, devolver un arreglo vacío
+    console.error("No hay cadena JSON");
+    return [];
+  }
+}
+
+
+
+
+
+
+
+
+
 
 
 // Función para agregar un producto al carrito
@@ -48,17 +88,14 @@ function agregarProductoAlCarrito() {
   }
 
   // Actualizar el carrito en localStorage y mostrar productos
-  actualizarCarrito(carritoG);
+  updateCarrito(carritoG);
   mostrarProductosEnCarrito(carritoG);
   // Llamar a actualizarIconoCarrito sin retraso
   actualizarIconoCarrito();
 }
 
 
-// Función para actualizar el carrito en localStorage y en la variable global
-function actualizarCarrito(carritoG) {
-  localStorage.setItem("carrito", JSON.stringify(carritoG));
-}
+
 
 // Función para mostrar productos desde datos en lugar de HTML almacenado
 function mostrarProductosEnCarrito(carritoG) {
@@ -103,7 +140,7 @@ function obtenerHtmlProducto(nombre, cantidad, aclaracion, imagen, total) {
         <br>
         <a class="w3-left">Precio por kg: $</a><a class="w3-left" id="valorunidad">${total}</a>
       </div>
-      <button class="w3-button w3-text-white" type="button" onclick="quitarProductoDeProductoHTML(this)">Quitar</button>
+      <button class="w3-button w3-text-white" type="button" onclick="quitarProductoDelCarrito(this)">Quitar</button>
     </div>`;
 }
 
@@ -161,84 +198,93 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-// Función para obtener el carrito desde Local Storage o crear uno nuevo
-function obtenerCarrito() {
-  const carritoJSON = localStorage.getItem("carrito");
-
-  if (carritoJSON) {
-    try {
-      const carrito = JSON.parse(carritoJSON);
-      return carrito;
-    } catch (error) {
-      console.error("Error al analizar el JSON del carrito:", error);
-      return [];
-    }
-  } else {
-    return [];
-  }
-}
-
 // FUNCION - Borrar producto desde pagina pagina_compra.html
-function quitarProductoDeProductoHTML(boton) {
+function quitarProductoDelCarrito(remove) {
+
   // Obtener el producto
-  const productoAEliminar = boton.closest(".w3-row");
+  const productoAEliminar = remove.closest(".w3-row");
 
   // Obtener el nombre del producto
-  const nombreProducto = productoAEliminar.querySelector("#namecarrito").textContent;
+  const nameProduct = productoAEliminar.querySelector("#namecarrito").textContent;
+
+  // Obtener el carrito almacenado en el localStorage
+  let localStorageCarrito = obtenerCarrito();
+
+  // Filtrar el carrito para excluir el producto a eliminar
+  localStorageCarrito = localStorageCarrito.filter(producto => producto.nombre !== nameProduct);
+
+  // Guardar el carrito actualizado en el localStorage
+  updateCarrito(localStorageCarrito);
 
   // Eliminar el elemento del producto del DOM
   productoAEliminar.remove();
 
-  quitarProducto(nombreProducto);
-
   actualizarIconoCarrito();
+
+  if (window.location.href === `${window.location.origin}/resumen_compra`) {
+    // Recarga la página de resumen para reflejar los cambios
+    cargar_resumen();
+  };
 }
 
-function quitarProducto(nombreProducto) {
-  // Obtener el carrito del localStorage
-  let obtengoCarrito = obtenerCarrito();
+
+
+
+// function quitarProductoDelResumen(nombreProducto) {
+//   // Obtener el carrito del localStorage
+//   let obtengoCarrito = obtenerCarrito();
+
+//   // Filtrar el carrito para excluir el producto a eliminar
+//   obtengoCarrito = obtengoCarrito.filter(producto => producto.nombre !== nombreProducto);
+
+//   // Guardar el carrito actualizado en el localStorage
+//   guardarCarritoEnLocalStorage(obtengoCarrito);
+
+
+//   // Busca el índice del producto a eliminar
+//   let indice = -1;
+//   for (let i = 0; i < obtengoCarrito.length; i++) {
+//     if (obtengoCarrito[i].nombre === nombreProducto) {
+//       indice = i;
+//       break;
+//     }
+//   }
+
+//   // Si se encontró el producto, lo elimina del carrito
+//   if (indice !== -1) {
+//     obtengoCarrito.splice(indice, 1);
+
+//     // Actualiza el carrito en el LocalStorage
+//     localStorage.setItem("carrito", JSON.stringify(obtengoCarrito));
+
+//   }
+//   // Recarga la página de resumen para reflejar los cambios
+//   cargar_resumen();
+// }
+
+
+
+
+
+function quitarProductoDelResumen(nombreProducto) {
+  console.log("Nombre del producto a eliminar:", nombreProducto);
+  // Obtener el carrito almacenado en el localStorage
+  let a = obtenerCarrito();
 
   // Filtrar el carrito para excluir el producto a eliminar
-  obtengoCarrito = obtengoCarrito.filter(producto => producto.nombre !== nombreProducto);
+  a = a.filter(producto => producto.nombre !== nombreProducto);
 
   // Guardar el carrito actualizado en el localStorage
-  guardarCarritoEnLocalStorage(obtengoCarrito);
+  updateCarrito(a);
 
-
-  // Busca el índice del producto a eliminar
-  let indice = -1;
-  for (let i = 0; i < obtengoCarrito.length; i++) {
-    if (obtengoCarrito[i].nombre === nombreProducto) {
-      indice = i;
-      break;
-    }
-  }
-
-  // Si se encontró el producto, lo elimina del carrito
-  if (indice !== -1) {
-    obtengoCarrito.splice(indice, 1);
-
-    // Actualiza el carrito en el LocalStorage
-    localStorage.setItem("carrito", JSON.stringify(obtengoCarrito));
-
-  }
   // Recarga la página de resumen para reflejar los cambios
   cargar_resumen();
 }
 
-function guardarCarritoEnLocalStorage(carrito) {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-}
 
 
 
 
-// // function quitarProducto(nombreProducto) {
-// //   // Recupera el carrito del LocalStorage
-// //   var carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-// }
 
 // // FUNCION COMUN PARA LA ELIMINACION DE PRODUCTO
 // function eliminarProductoDelCarrito(nombreProducto) {
@@ -273,19 +319,29 @@ function guardarCarritoEnLocalStorage(carrito) {
 
 
 function redirigir_resumen() {
-  // Guardar la última modificación en el localStorage
-  actualizarCarrito(carritoG);
   console.log("redirigir_resumen: Iniciando...");
-  // console.log("Contenido del LocalStorage (carrito):", storedCart);
 
-  cargarPagina("resumen");
+  // Guardar la última modificación en el localStorage
+  updateCarrito(carritoG);
 
-  if (carritoG.length > 0) {
-    cargar_resumen();
-  } else {
-    console.log("redirigir_resumen: No hay contenido en el carrito. No se cargará el resumen.");
-  }
-
-  console.log("redirigir_resumen: Finalizado.");
+  // Redirigir a la página de resumen
+  window.location.href = '/resumen_compra';
 }
 
+
+
+
+if (window.location.href === `${window.location.origin}/resumen_compra`) {
+  // Este código se ejecutará en la página de resumen_compra después de que se cargue completamente
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("Página de resumen_compra cargada completamente.");
+
+    if (carritoG.length > 0) {
+      cargar_resumen();
+    } else {
+      console.log("No hay contenido en el carrito. No se cargará el resumen.");
+    }
+
+    console.log("redirigir_resumen: Finalizado.");
+  });
+};

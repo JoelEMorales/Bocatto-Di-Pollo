@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" type="text/css"
+            href="/static/styles/estilosalfajor.css" />
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet" />
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"
+            integrity="sha256-IW9RTty6djbi3+dyypxajC14pE6ZrP53DLfY9w40Xn4="
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        <!-- SDK MercadoPago.js -->
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+        <style>
+        body {
+            font-family: "Times New Roman", Georgia, Serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+        }
+    </style>
+    </head>
+
+    <body>
+        <!-- MENU DE CABECERA PARA MANEJO ENTRE PAGINAS + CARRITO -->
+        <header></header>
+
+        <main class="w3-row w3-padding w3-content w3-white w3-main"
+            style="max-width: 1200px">
+            <section>
+                <br /><br /><br />
+                <br /><br /><br />
+                <h2 style="text-align: center; padding: 40px">
+                    CARRITO<i class="fa-thin fa-shop"></i>
+                </h2>
+                <br /><br />
+                <article>
+                    <div>
+                        <div id="factura">
+                            <div class="row">
+                                <div class="col-md-5 col-4">
+                                    <p style="text-align: left">PRODUCTO</p>
+                                </div>
+                                <div class="col-md-2 col-3">
+                                    <p>Cantidad</p>
+                                </div>
+                                <div class="col-md-2 col-3">
+                                    <p>Precio por kg</p>
+                                </div>
+                                <div class="col-md-3 col-1"></div>
+                                <hr class="bg-gray col-11" style="height: 0.5px" />
+                            </div>
+
+                            <!-- DIV donde aparecerá el contenido del carrito -->
+                            <div id="contenido_resumen"></div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <!-- PIE DE PAGINA CON MAPA, HORARIOS, UBICACION Y CONTACTO -->
+        <footer></footer>
+
+    </body>
+
+    <script src="/static/javascript/diseño.js"></script>
+    <script src="/static/javascript/carrito.js"></script>
+    <script src="/static/javascript/principal.js"></script>
+    <script type="module" src="/static/client/index.js"></script>
+    <script src="/static/javascript/seccion.js"></script>
+    <script src="/static/javascript/galeriaCompra.js"></script>
+    <script src="/static/javascript/comprarProduct.js"></script>
+    <script type="module" src="/static/javascript/enviarMail.js"></script>
+
+</html>

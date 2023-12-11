@@ -41,11 +41,8 @@ function abrir_pagina_producto(prodctID) {
     localStorage.setItem('imgaen2_transferir', producto_info.imagen2_producto);
     localStorage.setItem('imgaen3_transferir', producto_info.imagen3_producto);
 
-    // cargar el HTML dentro de la etiqueta main
-    cargarPagina('compra');
-
-    // Luego de cargar la página, ejecutar el script para manipular los elementos
-    ejecutarScriptDespuesCargarPagina();
+    // Cambiar la ubicación a la página de compra
+    window.location.href = '/compra';
 }
 
 // Función que contiene el código para ejecutar después de cargar la página

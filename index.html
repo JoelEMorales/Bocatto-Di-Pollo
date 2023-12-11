@@ -21,7 +21,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <!-- SDK MercadoPago.js -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
-    
+
 
     <style>
         body {
@@ -62,6 +62,26 @@
                         'url("static/fotosalfajores/baner-bocatto.png")';
                 }
             }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Función para hacer scroll al elemento con ID "galeria"
+            function scrollToGaleria() {
+                const path = window.location.pathname;
+                if (path === "/galeria") {
+                    const galeriaElement = document.getElementById("galeria");
+                    if (galeriaElement) {
+                        window.scrollTo({
+                            top: galeriaElement.offsetTop,
+                            behavior: "smooth"
+                        });
+                    }
+                }
+            }
+
+            // Llama a la función cuando el DOM esté cargado
+            scrollToGaleria();
         });
     </script>
 </body>
