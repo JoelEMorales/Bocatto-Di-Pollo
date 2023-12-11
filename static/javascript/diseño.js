@@ -170,12 +170,12 @@ footer.innerHTML = `
                             <i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;bocattodipollo@gmail.com
                         </p>
                         <p class="mb-2">
-                            <strong>Lunes a Viernes</strong> | 07:30 - 14:30
+                            <strong>Lunes a Viernes</strong> | 08:00 - 14:30
                             -- 17:30 -
-                            22:00
+                            21:30
                         </p>
                         <p class="mb-2">
-                            <strong>Sábados</strong> | 07:30 - 14:30 --
+                            <strong>Sábados</strong> | 09:00 - 14:00 --
                             Cerrado
                         </p>
                         <p class="mb-2"><strong>Domingo</strong> | Cerrado</p>

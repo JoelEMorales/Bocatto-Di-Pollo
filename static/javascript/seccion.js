@@ -318,7 +318,7 @@ function cargarContenido() {
                         <h3 class="w3-large w3-padding" id="tittle-1">Milanesa De Pollo</h3>
                         <p>
                             <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">1450</span>
+                            <span style="font-size: 24px;" class="precio">2500</span>
                         </p>
                         <p>Precio por kilo</p>
                         <br>
@@ -333,7 +333,7 @@ function cargarContenido() {
                         <h3 class="w3-large w3-padding">Arrollado De Pollo</h3>
                         <p>
                             <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">1000</span>
+                            <span style="font-size: 24px;" class="precio">3650</span>
                         </p>
                         <p>Precio por kilo</p>
                         <br>
@@ -348,7 +348,7 @@ function cargarContenido() {
                         <h3 class="w3-large w3-padding">Milanesa Rellena</h3>
                         <p>
                             <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">1850</span>
+                            <span style="font-size: 24px;" class="precio">3050</span>
                         </p>
                         <p>Precio por kilo</p>
                         <br>
@@ -363,7 +363,7 @@ function cargarContenido() {
                         <h3 class="w3-large w3-padding">Hamburguesa Simple</h3>
                         <p>
                             <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">1950</span>
+                            <span style="font-size: 24px;" class="precio">2850</span>
                         </p>
                         <p>Precio por kilo</p>
                         <br>
@@ -378,7 +378,7 @@ function cargarContenido() {
                         <h3 class="w3-large w3-padding">Hamburguesa con J/Q</h3>
                         <p>
                             <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">2000</span>
+                            <span style="font-size: 24px;" class="precio">2950</span>
                         </p>
                         <p>Precio por kilo</p>
                         <br>
@@ -390,10 +390,10 @@ function cargarContenido() {
                         <img src="static/fotosalfajores/mila-1.JPG" alt="Chupa Chups De Pollo"
                             style="width: 90%;
                         height: 350px;">
-                        <h3 class="w3-large w3-padding">Arrolladito de J/Q</h3>
+                        <h3 class="w3-large w3-padding">Arrolladito de Pechuga</h3>
                         <p>
                             <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">2100</span>
+                            <span style="font-size: 24px;" class="precio">3050</span>
                         </p>
                         <p>Precio por kilo</p>
                         <br>
@@ -408,7 +408,7 @@ function cargarContenido() {
                         <h3 class="w3-large w3-padding">Pata Muslo</h3>
                         <p>
                             <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">1950</span>
+                            <span style="font-size: 24px;" class="precio">1490</span>
                         </p>
                         <p>Precio por kilo</p>
                         <br>
@@ -437,7 +437,7 @@ function cargarContenido() {
                         <h3 class="w3-large w3-padding">Pollo Entero</h3>
                         <p>
                             <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">2000</span>
+                            <span style="font-size: 24px;" class="precio">1370</span>
                         </p>
                         <p>Precio por kilo</p>
                         <br>
