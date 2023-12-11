@@ -16,9 +16,10 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-  origin: ['https://bocatto-di-pollo.onrender.com', 'http://localhost:5000'], // Reemplaza con el dominio correcto de tu aplicación
+  origin: ['https://bocatto-di-pollo.onrender.com', 'http://localhost:5000', 'https://events.mercadopago.com', 'https://www.mercadolibre.com'], // Reemplaza con el dominio correcto de tu aplicación
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Habilita el intercambio de cookies a través de las solicitudes CORS
+  optionsSuccessStatus: 204,
 };
 
 

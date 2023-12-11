@@ -28,7 +28,7 @@ const createPreference = (req, res) => {
             "failure": res.locals.baseUrl,
             "pending": res.locals.baseUrl,
         },
-        auto_return: "approved",
+        // auto_return: "approved", // Auto regreso si el pago fue exitoso
     };
 
     mercadopago.preferences.create(preference)
