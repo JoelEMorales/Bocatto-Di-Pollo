@@ -112,7 +112,6 @@ if (listaDeProductosGuardada) {
   // Mostrar productos desde la variable global
   mostrarProductosEnCarrito(carritoG);
 }
-console.log("Productos en el carrito después de la actualización:", carritoG);
 
 
 
@@ -164,11 +163,9 @@ function inicializarCarrito() {
 
 // Función para actualizar el ícono del carrito
 function actualizarIconoCarrito() {
-  console.log("Actualizando el ícono del carrito...");
   var productosEnCarrito = carritoG.length;
 
   console.log("Número de productos en el carrito:", productosEnCarrito);
-  console.log("Contenido del carrito:", carritoG);
 
   // Verificar si el carrito contiene al menos un producto
   if (productosEnCarrito > 0) {
@@ -229,7 +226,6 @@ function quitarProductoDelCarrito(remove) {
 
 
 function quitarProductoDelResumen(nombreProducto) {
-  console.log("Nombre del producto a eliminar:", nombreProducto);
   // Obtener el carrito almacenado en el localStorage
   let localSotorageCarrito = obtenerCarrito();
 
@@ -254,8 +250,6 @@ function quitarProductoDelResumen(nombreProducto) {
 
 
 function redirigir_resumen() {
-  console.log("redirigir_resumen: Iniciando...");
-
   // Guardar la última modificación en el localStorage
   updateCarrito(carritoG);
 
@@ -269,15 +263,12 @@ function redirigir_resumen() {
 if (window.location.href === `${window.location.origin}/resumen_compra`) {
   // Este código se ejecutará en la página de resumen_compra después de que se cargue completamente
   document.addEventListener("DOMContentLoaded", function () {
-    console.log("Página de resumen_compra cargada completamente.");
 
     if (carritoG.length > 0) {
       cargar_resumen();
     } else {
       console.log("No hay contenido en el carrito. No se cargará el resumen.");
     }
-
-    console.log("redirigir_resumen: Finalizado.");
   });
 };
 

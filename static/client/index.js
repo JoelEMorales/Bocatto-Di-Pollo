@@ -356,7 +356,6 @@ function generarPreferencia() {
             return response.json();
         })
         .then(function (preference) {
-            console.log("Preferencia creada:", preference);
             createCheckoutButton(preference.id);
         })
         .catch(function (error) {
