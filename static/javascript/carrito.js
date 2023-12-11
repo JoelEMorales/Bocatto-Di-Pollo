@@ -228,86 +228,21 @@ function quitarProductoDelCarrito(remove) {
 }
 
 
-
-
-// function quitarProductoDelResumen(nombreProducto) {
-//   // Obtener el carrito del localStorage
-//   let obtengoCarrito = obtenerCarrito();
-
-//   // Filtrar el carrito para excluir el producto a eliminar
-//   obtengoCarrito = obtengoCarrito.filter(producto => producto.nombre !== nombreProducto);
-
-//   // Guardar el carrito actualizado en el localStorage
-//   guardarCarritoEnLocalStorage(obtengoCarrito);
-
-
-//   // Busca el índice del producto a eliminar
-//   let indice = -1;
-//   for (let i = 0; i < obtengoCarrito.length; i++) {
-//     if (obtengoCarrito[i].nombre === nombreProducto) {
-//       indice = i;
-//       break;
-//     }
-//   }
-
-//   // Si se encontró el producto, lo elimina del carrito
-//   if (indice !== -1) {
-//     obtengoCarrito.splice(indice, 1);
-
-//     // Actualiza el carrito en el LocalStorage
-//     localStorage.setItem("carrito", JSON.stringify(obtengoCarrito));
-
-//   }
-//   // Recarga la página de resumen para reflejar los cambios
-//   cargar_resumen();
-// }
-
-
-
-
-
 function quitarProductoDelResumen(nombreProducto) {
   console.log("Nombre del producto a eliminar:", nombreProducto);
   // Obtener el carrito almacenado en el localStorage
-  let a = obtenerCarrito();
+  let localSotorageCarrito = obtenerCarrito();
 
   // Filtrar el carrito para excluir el producto a eliminar
-  a = a.filter(producto => producto.nombre !== nombreProducto);
+  localSotorageCarrito = localSotorageCarrito.filter(producto => producto.nombre !== nombreProducto);
 
   // Guardar el carrito actualizado en el localStorage
-  updateCarrito(a);
+  updateCarrito(localSotorageCarrito);
 
   // Recarga la página de resumen para reflejar los cambios
   cargar_resumen();
+  mostrarProductosEnCarrito(carritoG);
 }
-
-
-
-
-
-
-// // FUNCION COMUN PARA LA ELIMINACION DE PRODUCTO
-// function eliminarProductoDelCarrito(nombreProducto) {
-//   var carrito = obtenerCarrito();
-
-//   // Busca el índice del producto a eliminar
-//   var indice = -1;
-//   for (var i = 0; i < carrito.length; i++) {
-//     if (carrito[i].nombre === nombreProducto) {
-//       indice = i;
-//       break;
-//     }
-//   }
-
-//   // Si se encontró el producto, lo elimina del carrito
-//   if (indice !== -1) {
-//     carrito.splice(indice, 1);
-
-//     // Actualiza el carrito en el LocalStorage
-//     localStorage.setItem("carrito", JSON.stringify(carrito));
-//   }
-// }
-
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -345,3 +280,6 @@ if (window.location.href === `${window.location.origin}/resumen_compra`) {
     console.log("redirigir_resumen: Finalizado.");
   });
 };
+
+
+
