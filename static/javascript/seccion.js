@@ -18,7 +18,7 @@ function cargarContenido() {
                 // Agregar contenido adicional al main
                 contenido.innerHTML = `
                 <!-- welcome header -->
-                <div class="bg-image" style="background-image: url(static/fotosalfajores/baner-bocatto.png);"></div>
+                <div class="bg-image" style="background-image: url(static/img/baner-bocatto.png);"></div>
                 <nav class="bg-text">
                     <h1>Bocatto Di Pollo</h1>
                     <h2 style="font-size: 25px">
@@ -32,7 +32,7 @@ function cargarContenido() {
                     <section class="w3-row w3-padding-top w3-white" id="descripcion">
                         <div class="w3-half w3-padding-large w3-hide-small">
                             <br />
-                            <img src="static/fotosalfajores/mila-1.JPG" class="w3-round w3-image" alt="Table"
+                            <img src="static/img/mila-1.JPG" class="w3-round w3-image" alt="Table"
                                 style="width: 100%" />
                         </div>
         
@@ -149,7 +149,7 @@ function cargarContenido() {
                         <div class="w3-half w3-padding-large w3-hide-small">
                             <br />
                             <br />
-                            <img src="static/fotosalfajores/arrollado.JPG" class="w3-round w3-image" alt="Table"
+                            <img src="static/img/arrollado.JPG" class="w3-round w3-image" alt="Table"
                                 style="width: 100%; height: 780px" />
                         </div>
                     </section>
@@ -169,13 +169,13 @@ function cargarContenido() {
                             <!-- The slideshow/carousel -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="static/fotosalfajores/work-1.jpeg" alt="Los Angeles" class="d-block w-100" />
+                                    <img src="static/img/work-1.jpg" alt="Los Angeles" class="d-block" style="width:100%" />
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="static/fotosalfajores/work-2.jpeg" alt="Chicago" class="d-block w-100" />
+                                    <img src="static/img/work-2.jpg" alt="Chicago" class="d-block" style="width:100%" />
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="static/fotosalfajores/work-3.jpeg" alt="New York" class="d-block w-100" />
+                                    <img src="static/img/work-3.jpg" alt="New York" class="d-block" style="width:100%" />
                                 </div>
                             </div>
         
@@ -198,61 +198,61 @@ function cargarContenido() {
                             <h1>Galeria</h1>
                             <br /><br /><br />
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/pollo-1.JPG" alt="Pollo" />
+                                <img src="static/img/pollo-1.JPG" alt="Pollo" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/pata-1.JPG" alt="Pata de pollo" />
+                                <img src="static/img/pata-1.JPG" alt="Pata de pollo" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/mila-papa.JPG" alt="Milanesa" />
+                                <img src="static/img/mila-papa.JPG" alt="Milanesa" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/arrollado-2.JPG" alt="Arrollado" />
+                                <img src="static/img/arrollado-2.JPG" alt="Arrollado" />
                             </div>
                         </div>
                         <!-- Sequend Grid Photo Grid Alfajor -->
                         <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/mila-1.JPG" alt="Alfajor Negro" />
+                                <img src="static/img/mila-1.JPG" alt="Alfajor Negro" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/mila.elaboracion-4.jpg" alt="Alfajor Blanco" />
+                                <img src="static/img/mila.elaboracion-4.jpg" alt="Alfajor Blanco" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/arrollado-3.jpg" alt="Alfajor Blanco" />
+                                <img src="static/img/arrollado-3.jpg" alt="Alfajor Blanco" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/pechuga-1.JPG" alt="Alfajor Blanco" />
+                                <img src="static/img/pechuga-1.JPG" alt="Alfajor Blanco" />
                             </div>
                         </div>
                         <!-- Three Grid Photo Grid Alfajor -->
                         <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/burger-1.jpg" alt="Alfajor Negro" />
+                                <img src="static/img/burger-1.jpg" alt="Alfajor Negro" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/Mila-elaboracion-1.JPG" alt="Alfajor Blanco" />
+                                <img src="static/img/Mila-elaboracion-1.JPG" alt="Alfajor Blanco" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/mila-3.JPG" alt="Alfajor Blanco" />
+                                <img src="static/img/mila-3.JPG" alt="Alfajor Blanco" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/mila-4.JPG" class="crop" alt="Alfajor Blanco" />
+                                <img src="static/img/mila-4.JPG" class="crop" alt="Alfajor Blanco" />
                             </div>
                         </div>
                         <!-- Four Grid Photo Grid Alfajor -->
                         <div class="w3-row-padding w3-padding-16 w3-center w3-display-container">
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/pata.muslo-3.jpg" alt="Alfajor Negro" />
+                                <img src="static/img/pata.muslo-3.jpg" alt="Alfajor Negro" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/albondiga-2.jpg" alt="Alfajor Blanco" />
+                                <img src="static/img/albondiga-2.jpg" alt="Alfajor Blanco" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/pollo-2.JPG" alt="Alfajor Blanco" />
+                                <img src="static/img/pollo-2.JPG" alt="Alfajor Blanco" />
                             </div>
                             <div class="w3-quarter contenedor-img">
-                                <img src="static/fotosalfajores/pechuga-5.jpg" class="crop" alt="Alfajor Blanco" />
+                                <img src="static/img/pechuga-5.jpg" class="crop" alt="Alfajor Blanco" />
                             </div>
                         </div>
                     </section>
@@ -312,7 +312,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white"
                         onclick="abrir_pagina_producto('producto1')" id="producto1">
                         <br>
-                        <img src="static/fotosalfajores/Mila-elaboracion-1.JPG"
+                        <img src="static/img/Mila-elaboracion-1.JPG"
                             alt="Milanesa De Pollo" id="img-product-1" style="width: 90%;
                             height: 350px;">
                         <h3 class="w3-large w3-padding" id="tittle-1">Milanesa De Pollo</h3>
@@ -327,7 +327,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto2')" id="producto2">
                         <br>
-                        <img src="static/fotosalfajores/arrollado-3.jpg"
+                        <img src="static/img/arrollado-3.jpg"
                             alt="Arrollado De Pollo" style="width: 90%;
                         height: 350px;">
                         <h3 class="w3-large w3-padding">Arrollado De Pollo</h3>
@@ -342,7 +342,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto3')" id="producto3">
                         <br>
-                        <img src="static/fotosalfajores/mila-elaboracion-3.JPG"
+                        <img src="static/img/mila-elaboracion-3.JPG"
                             alt="Chupa Chups De Pollo" style="width: 90%;
                             height: 350px;">
                         <h3 class="w3-large w3-padding">Milanesa Rellena</h3>
@@ -357,7 +357,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto4')" id="producto4">
                         <br>
-                        <img src="static/fotosalfajores/burgerPolloSimple5.jpg"
+                        <img src="static/img/burgerPolloSimple5.jpg"
                             alt="Hamburguesa de Pollo Simple" style="width: 90%;
                         height: 350px;">
                         <h3 class="w3-large w3-padding">Hamburguesa Simple</h3>
@@ -372,7 +372,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto5')" id="producto5">
                         <br>
-                        <img src="static/fotosalfajores/burgerPolloSimple4.jpg"
+                        <img src="static/img/burgerPolloSimple4.jpg"
                             alt="Hamburguesa de pollo rellena" style="width: 90%;
                         height: 350px;">
                         <h3 class="w3-large w3-padding">Hamburguesa con J/Q</h3>
@@ -387,7 +387,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto6')" id="producto6">
                         <br>
-                        <img src="static/fotosalfajores/rollitosDePollo4.jpg" alt="Arrolladito de Pechuga"
+                        <img src="static/img/rollitosDePollo4.jpg" alt="Arrolladito de Pechuga"
                             style="width: 90%;
                         height: 350px;">
                         <h3 class="w3-large w3-padding">Arrolladito de Pechuga</h3>
@@ -402,7 +402,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto7')" id="producto7">
                         <br>
-                        <img src="static/fotosalfajores/pata.muslo-2.jpg" alt="Pata Muslo"
+                        <img src="static/img/pata.muslo-2.jpg" alt="Pata Muslo"
                             style="width: 90%;
                         height: 350px;">
                         <h3 class="w3-large w3-padding">Pata Muslo</h3>
@@ -417,7 +417,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto8')" id="producto8">
                         <br>
-                        <img src="static/fotosalfajores/pechuga-4.jpg"
+                        <img src="static/img/pechuga-4.jpg"
                             alt="Filet De Pechuga y Muslo" style="width: 90%;
                             height: 350px;">
                         <h3 class="w3-large w3-padding">Pechuga</h3>
@@ -432,7 +432,7 @@ function cargarContenido() {
                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
                         onclick="abrir_pagina_producto('producto9')" id="producto9">
                         <br>
-                        <img src="static/fotosalfajores/pollo-2.JPG" alt="Pollo Entero" style="width: 90%;
+                        <img src="static/img/pollo-2.JPG" alt="Pollo Entero" style="width: 90%;
                         height: 350px;">
                         <h3 class="w3-large w3-padding">Pollo Entero</h3>
                         <p>
