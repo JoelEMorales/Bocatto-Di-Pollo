@@ -54,7 +54,7 @@ export function Email() {
 
     // Configura el mensaje del correo
     const email = {
-        to: "joelelianmorales@gmail.com",
+        to: "corderoclaudiagraciela@gmail.com",
         subject: "Nuevo pedido de Bocatto Di Pollo",
         message: correoContenido,
     };

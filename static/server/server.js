@@ -8,22 +8,22 @@ const express = require("express");
 const paymentRoutes = require('./routes/payment.routes.js');
 const indexRoutes = require('./routes/index.routes.js');
 const emailsRoutes = require('./routes/emails.routes.js');
-const productRoutes = require('./routes//product.routes.js');
+// const productRoutes = require('./routes//product.routes.js');
 const morgan = require('morgan');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 const PORT = process.env.PORT;
 const path = require("path");
 const cors = require("cors");
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URL)
-.then(() => {
-  console.log("Conexcion exitosa con la BBDD!");
-})
-.catch((err) => 
-console.log("Hubo un error al conectarnos a la BBDD", { err })
-);
+// mongoose.connect(process.env.MONGODB_URL)
+// .then(() => {
+//   console.log("Conexcion exitosa con la BBDD!");
+// })
+// .catch((err) => 
+// console.log("Hubo un error al conectarnos a la BBDD", { err })
+// );
 
 const corsOptions = {
   origin: ['https://bocatto-di-pollo.onrender.com', 'http://localhost:5000', 'https://events.mercadopago.com', 'https://www.mercadolibre.com'], // Reemplaza con el dominio correcto de tu aplicación
@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, "/static")));
 app.use(indexRoutes);
 app.use(emailsRoutes);
 app.use(paymentRoutes);
-app.use(productRoutes);
+// app.use(productRoutes);
 
 
 
