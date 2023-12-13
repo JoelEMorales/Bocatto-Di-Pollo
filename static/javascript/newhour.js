@@ -2,7 +2,6 @@
 
 
 const mostrarHorarioNuevo = () => {
-    console.log("Script cargado correctamente");
     // obtengo fecha actual
     const fechaActual = new Date();
 
