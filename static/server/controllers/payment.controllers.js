@@ -95,7 +95,7 @@ const receiveWebhook = async (req, res) => {
             };
 
             let nameCliente = venta.nombre;
-            
+
             if (nameCliente === null){
                 nameCliente = cliente.nombre
             }
@@ -124,7 +124,7 @@ const receiveWebhook = async (req, res) => {
             // Configuración del correo electrónico
             const mailOptions = {
                 from: `Bocatto DI Pollo ${process.env.MY_GMAIL}`, // Reemplaza con tu dirección de correo electrónico
-                to: process.env.MY_GMAIL, // Reemplaza con la dirección de correo electrónico del destinatario
+                to: process.env.GMAIL_TO, // Reemplaza con la dirección de correo electrónico del destinatario
                 subject: 'Nuevo pedido recibido de Bocatto Di Pollo',
                 text: `<h1>Hola Claudia, tienes un nuevo pedido</h1>\n`,
                 html: `

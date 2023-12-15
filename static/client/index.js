@@ -429,20 +429,3 @@ function createCheckoutButton(preferenceId) {
 
     window.checkoutButton = renderComponent(bricksBuilder);
 }
-
-
-const transportationDataCustomer = () => {
-    //recupero los datos del localstorage
-    const dateClient = JSON.parse(localStorage.getItem("datosCliente")) || {};
-
-    // Ejemplo usando fetch
-    fetch('/notification', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            datosCliente: dateClient,
-        }),
-    });
-}
