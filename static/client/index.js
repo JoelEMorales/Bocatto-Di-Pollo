@@ -332,15 +332,29 @@ window.cargar_resumen = function () {
 
 // Código relacionado con Mercado Pago y Bricks aquí
 function generarPreferencia() {
+
+    const productStore = JSON.parse(localStorage.getItem("productosResumen")) || [];
+    let allProducts = [];
+
     const checkoutButton = document.getElementById("checkout-btn");
 
     // Manejar llamada al backend y generar preferencia.
     checkoutButton.remove();
 
+    productStore.forEach(function (producto) {
+        allProducts.push({
+            ProductAmount: producto.nombre + ": " + producto.cantidad + "kg",
+        });
+    });
+    console.log("productos guardados: ", allProducts);
+
+    // Crear una cadena de nombres de productos separados por comas
+    const NamesAmountProducts = allProducts.map(product => product.ProductAmount).join(", ");
+
     const orderData = {
-        quantity: 1,
-        description: "Total a pagar",
+        description: `Compra: ${NamesAmountProducts}`,
         price: precioTotal / 2,
+        quantity: 1,
     };
 
     console.log("Datos del pedido:", orderData);

@@ -5,7 +5,22 @@ if (process.env.NODE_ENV !== 'production') {
 
 const path = require("path");
 const mercadopago = require("mercadopago");
+const nodemailer = require('nodemailer');
 
+
+
+
+
+
+
+// Eliminar resumen una vez enviado el mail
+function borrarProductos() {
+
+    // Borrar contenido de "carrito", "datosCliente" y "productosResumen" en localStorage
+    localStorage.removeItem("carrito");
+    localStorage.removeItem("datosCliente");
+    localStorage.removeItem("productosResumen");
+}
 
 
 
@@ -28,7 +43,8 @@ const createPreference = (req, res) => {
             "failure": res.locals.baseUrl,
             "pending": res.locals.baseUrl,
         },
-        auto_return: "approved", // Auto regreso si el pago fue exitoso
+        notification_url: "https://bocatto-di-pollo.onrender.com/nofication",
+        // auto_return: "approved", // Auto regreso si el pago fue exitoso
     };
 
     mercadopago.preferences.create(preference)
@@ -42,6 +58,81 @@ const createPreference = (req, res) => {
             res.status(500).json({ error: 'Error en la creación de preferencia' });
         });
 };
+
+
+
+const receiveWebhook = async (req, res) => {
+    const payment = req.query;
+
+    try {
+        if (payment.type === "payment") {
+            const data = await mercadopago.payment.findById(payment['data.id']);
+            console.log("DATOS DE LA VENTA: ", data);
+
+            // Configuración del transporte de correo electrónico
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.MY_GMAIL, // Reemplaza con tu dirección de correo electrónico
+                    pass: process.env.KEY_APP_GMAIL // Reemplaza con tu contraseña
+                }
+            });
+
+            // Extraer datos necesarios de la respuesta de Mercado Pago
+            const venta = {
+                idCompra: data.body.id,
+                nombre: data.body.payer.first_name,
+                apellido: data.body.payer.last_name,
+                email: data.body.payer.email,
+                productos: data.body.description,
+                montoPagado: data.body.transaction_amount,
+                tipoPago: data.body.payment_type_id
+            };
+
+            // Crear el cuerpo del correo electrónico con los datos extraídos
+            const cuerpoCorreo = `
+            <b>ID de Compra:</b> ${venta.idCompra}<br><br>
+
+            <b>Nombre del cliente:</b> ${venta.nombre}<br><br>
+            
+            <b>Apellido del cliente:</b> ${venta.apellido}<br><br>
+
+            <b>Email:</b> ${venta.email}<br><br>
+
+            <b>Prodcutos:</b><br>
+            ${venta.productos}<br><br>
+
+            <b>Monto Pagado:</b> ${venta.montoPagado}<br><br>
+
+            <b>Tipo de Pago:</b> ${venta.tipoPago}<br><br>`;
+
+
+            // Configuración del correo electrónico
+            const mailOptions = {
+                from: `Bocatto DI Pollo ${process.env.MY_GMAIL}`, // Reemplaza con tu dirección de correo electrónico
+                to: process.env.MY_GMAIL, // Reemplaza con la dirección de correo electrónico del destinatario
+                subject: 'Nuevo pedido recibido de Bocatto Di Pollo',
+                text: `<h1>Hola Claudia, tienes un nuevo pedido</h1>\n`,
+                html: `
+                <h1>Se ha recibido un nuevo pago con los siguientes detalles:</h1>
+                <h3>Detalles del depido:</h3>\n${cuerpoCorreo}`,
+
+
+            };
+
+            // Envío del correo electrónico
+            await transporter.sendMail(mailOptions);
+            console.log('Correo electrónico enviado');
+            borrarProductos();
+        }
+
+        res.sendStatus("200");
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: error.message });
+    }
+}
+
 
 // Configuración de Mercado Pago en el lado del servidor para clave publica de client
 const configClientMercadopago = (req, res) => {
@@ -74,67 +165,6 @@ module.exports = {
     createPreference,
     configClientMercadopago,
     success,
-    feedback
+    feedback,
+    receiveWebhook
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const createOrder = async (req, res) => {
-
-//     mercadopago.configure({
-//         access_token: process.env.MP_ACCESS_TOKEN
-//     });
-
-//     const result = await mercadopago.preferences.create({
-//         items: [
-//             {
-//                 title: "compu",
-//                 unit_price: 10,
-//                 quantity: 1,
-//                 currency_i: "ARG"
-//             }
-//         ],
-//         back_urls: {
-//             "success": 'http://localhost:5000/success',
-//             "failure": 'http://localhost:5000',
-//             "pending": 'http://localhost:5000',
-//         },
-//         notification_url: 'http://localhost:5000/webhook',
-//     })
-
-//     console.log(result);
-
-//     res.send('creando orden');
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-// const receiveWebhook = async (req, res) =>{
-
-//     console.log(req.query);
-//     res.send("webhook");
-// }
-

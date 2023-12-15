@@ -8,8 +8,8 @@
 
 
 
-// Importa la función desde enviarMail.js
-import { Email } from '/static/javascript/enviarMail.js';
+// // Importa la función desde enviarMail.js
+// import { Email } from '/static/javascript/enviarMail.js';
 
 if (window.location.href.includes("/success")) {
 
@@ -23,8 +23,8 @@ if (window.location.href.includes("/success")) {
     }).then((result) => {
         if (result.isConfirmed) {
 
-            // Envia email con los datos del comprador y de los productos
-            Email();
+            // // Envia email con los datos del comprador y de los productos
+            // Email();
 
             // Limpia el localStorage
             localStorage.clear();

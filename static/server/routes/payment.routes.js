@@ -9,6 +9,7 @@ const createPreference = paymentControllers.createPreference;
 const successRedirection = paymentControllers.success;
 const configClientMercadopago = paymentControllers.configClientMercadopago;
 const feedback = paymentControllers.feedback;
+const receiveWebhook = paymentControllers.receiveWebhook
 
 
 
@@ -23,11 +24,11 @@ paymentRoutes.get('/success', successRedirection);
 
 paymentRoutes.get('/feedback', feedback);
 
+paymentRoutes.post('/nofication', receiveWebhook);
 
 
 
-
-paymentRoutes.post('/webhook', (req, res) => res.send('webhook'));
+// paymentRoutes.post('/webhook', (req, res) => res.send('receiveWebhook'));
 
 
 module.exports = paymentRoutes;
