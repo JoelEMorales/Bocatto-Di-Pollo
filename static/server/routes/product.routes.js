@@ -1,11 +1,11 @@
-const express = require("express");
-const path = require("path");
+// const express = require("express");
+// const path = require("path");
 
-const productRoutes = express.Router();
+// const productRoutes = express.Router();
 
-const products = require('../controllers/product.controllers');
+// const products = require('../controllers/product.controllers');
 
 
-productRoutes.get('/productosPrice', products);
+// productRoutes.get('/productosPrice', products);
 
-module.exports = productRoutes;
+// module.exports = productRoutes;

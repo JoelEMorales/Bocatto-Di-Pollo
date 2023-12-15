@@ -1,8 +1,8 @@
 
-const productModel = require("../schemas/schemas.js");
+// const productModel = require("../schemas/schemas.js");
 
-const products = (req, res) => {
-    res.send({data: 1})
-}
+// const products = (req, res) => {
+//     res.send({data: 1})
+// }
 
-module.exports = products;
+// module.exports = products;
