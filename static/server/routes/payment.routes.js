@@ -10,7 +10,10 @@ const successRedirection = paymentControllers.success;
 const configClientMercadopago = paymentControllers.configClientMercadopago;
 const feedback = paymentControllers.feedback;
 const receiveWebhook = paymentControllers.receiveWebhook
+const bodyParser = require('body-parser');
 
+
+paymentRoutes.use(bodyParser.json());
 
 
 

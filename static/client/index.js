@@ -333,26 +333,23 @@ window.cargar_resumen = function () {
 // Código relacionado con Mercado Pago y Bricks aquí
 function generarPreferencia() {
 
-    const productStore = JSON.parse(localStorage.getItem("productosResumen")) || [];
-    let allProducts = [];
-
     const checkoutButton = document.getElementById("checkout-btn");
-
     // Manejar llamada al backend y generar preferencia.
     checkoutButton.remove();
 
-    productStore.forEach(function (producto) {
-        allProducts.push({
-            ProductAmount: producto.nombre + ": " + producto.cantidad + "kg",
-        });
-    });
+    //recupero los datos del localstorage
+    const dateClient = JSON.parse(localStorage.getItem("datosCliente")) || {};
+    
+    const productStore = JSON.parse(localStorage.getItem("productosResumen")) || [];
+    
+    let allProducts = productStore.map(producto => ({
+        ProductAmount: `${producto.nombre}: ${producto.cantidad}kg`,
+    }));  
+
     console.log("productos guardados: ", allProducts);
 
-    // Crear una cadena de nombres de productos separados por comas
-    const NamesAmountProducts = allProducts.map(product => product.ProductAmount).join(", ");
-
     const orderData = {
-        description: `Compra: ${NamesAmountProducts}`,
+        description: `Compra: ${allProducts.map(product => product.ProductAmount).join(", ")}`,// Crear una cadena de nombres de productos separados por comas
         price: precioTotal / 2,
         quantity: 1,
     };
@@ -364,7 +361,10 @@ function generarPreferencia() {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(orderData),
+        body: JSON.stringify({
+            orderData,
+            datosCliente: dateClient,
+        }),
     })
         .then(function (response) {
             return response.json();
@@ -428,4 +428,21 @@ function createCheckoutButton(preferenceId) {
     };
 
     window.checkoutButton = renderComponent(bricksBuilder);
+}
+
+
+const transportationDataCustomer = () => {
+    //recupero los datos del localstorage
+    const dateClient = JSON.parse(localStorage.getItem("datosCliente")) || {};
+
+    // Ejemplo usando fetch
+    fetch('/notification', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            datosCliente: dateClient,
+        }),
+    });
 }
