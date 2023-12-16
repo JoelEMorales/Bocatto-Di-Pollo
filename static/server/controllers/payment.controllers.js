@@ -8,7 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
 const path = require("path");
 const mercadopago = require("mercadopago");
 const nodemailer = require('nodemailer');
-
+const PORT = process.env.PORT;
 
 // Recuperar datos del cliente desde la solicitud
 let cliente = {};
@@ -76,10 +76,12 @@ const receiveWebhook = async (req, res) => {
 
             // Configuración del transporte de correo electrónico
             const transporter = nodemailer.createTransport({
-                service: 'gmail',
+                host: 'smtp.gmail.com',
+                port: PORT,
+                secure: false,
                 auth: {
-                    user: process.env.MY_GMAIL, // Reemplaza con tu dirección de correo electrónico
-                    pass: process.env.KEY_APP_GMAIL // Reemplaza con tu contraseña
+                    user: process.env.EMAIL, // Reemplaza con tu dirección de correo electrónico
+                    pass: process.env.EMAIL_PASSWORD // Reemplaza con tu contraseña
                 }
             });
 
@@ -123,9 +125,9 @@ const receiveWebhook = async (req, res) => {
 
             // Configuración del correo electrónico
             const mailOptions = {
-                from: `Bocatto DI Pollo ${process.env.MY_GMAIL}`, // Reemplaza con tu dirección de correo electrónico
-                to: process.env.GMAIL_TO, // Reemplaza con la dirección de correo electrónico del destinatario
-                subject: 'Nuevo pedido recibido de Bocatto Di Pollo',
+                from: `Bocatto DI Pollo ${process.env.EMAIL}`, // Reemplaza con tu dirección de correo electrónico
+                to: process.env.EMAIL_TO, // Reemplaza con la dirección de correo electrónico del destinatario
+                subject: 'Nuevo pedido de Bocatto Di Pollo',
                 text: `<h1>Hola Claudia, tienes un nuevo pedido</h1>\n`,
                 html: `
                 <h1>Se ha recibido un nuevo pago con los siguientes detalles:</h1>
