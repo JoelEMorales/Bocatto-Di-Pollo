@@ -134,7 +134,7 @@ const receiveWebhook = async (req, res) => {
 
             <b>Monto Pagado:</b> ${venta.montoPagado}<br><br>
 
-            <b>Tipo de Pago:</b> ${venta.tipoPago}<br><br>`;
+            <b>Tipo de Pago:</b> $ ${venta.tipoPago}<br><br>`;
 
 
             // Configuración del correo electrónico
@@ -145,7 +145,7 @@ const receiveWebhook = async (req, res) => {
                 text: `<h1>Hola Claudia, tienes un nuevo pedido</h1>\n`,
                 html: `
                 <h1>Se ha recibido un nuevo pago con los siguientes detalles:</h1>
-                <h3>Detalles del depido:</h3>\n${cuerpoCorreo}`,
+                <h3>Detalles del pedido:</h3>\n${cuerpoCorreo}`,
             };
 
             // Envío del correo electrónico

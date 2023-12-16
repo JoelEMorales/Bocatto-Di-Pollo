@@ -41,15 +41,6 @@ function obtenerCarrito() {
 }
 
 
-
-
-
-
-
-
-
-
-
 // Función para agregar un producto al carrito
 function agregarProductoAlCarrito() {
   // Obtener información del producto a agregar
@@ -83,8 +74,12 @@ function agregarProductoAlCarrito() {
         total: precio * cantidadDeCajas,
       });
     }
+    
   } else {
-    alert("Debes seleccionar una cantidad.");
+    Swal.fire({
+      text: "¡Debes seleccionar una cantidad!",
+      icon: "warning"
+    });
   }
 
   // Actualizar el carrito en localStorage y mostrar productos
@@ -167,15 +162,20 @@ function actualizarIconoCarrito() {
 
   console.log("Número de productos en el carrito:", productosEnCarrito);
 
+  
   // Verificar si el carrito contiene al menos un producto
   if (productosEnCarrito > 0) {
-    // Cambiar el ícono a un ícono diferente (por ejemplo, un ícono de carrito lleno)
-    document.getElementById("carrito-icono").classList.remove("fa-cart-shopping");
-    document.getElementById("carrito-icono").classList.add("fa-cart-plus");
+    // Cambiar la clase a una clase diferente (por ejemplo, una clase de carrito lleno)
+    document.querySelectorAll(".carrito-icono").forEach(function (element) {
+      element.classList.remove("fa-cart-shopping");
+      element.classList.add("fa-cart-plus");
+    });
   } else {
-    // Si el carrito está vacío, restaurar el ícono original (fa-shopping-cart)
-    document.getElementById("carrito-icono").classList.remove("fa-cart-plus");
-    document.getElementById("carrito-icono").classList.add("fa-cart-shopping");
+    // Si el carrito está vacío, restaurar la clase original (fa-shopping-cart)
+    document.querySelectorAll(".carrito-icono").forEach(function (element) {
+      element.classList.remove("fa-cart-plus");
+      element.classList.add("fa-cart-shopping");
+    });
   }
 }
 

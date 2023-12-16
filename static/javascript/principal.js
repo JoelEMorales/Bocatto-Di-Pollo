@@ -65,7 +65,9 @@ function closeNav() {
 // Función para cerrar la barra lateral al hacer clic fuera de ella
 function closeNavOutside(event) {
   // Verificar si el clic no ocurrió dentro de la barra lateral o el botón
-  if (!sidebar.contains(event.target) && event.target.id !== "btn_resumen" && event.target.id !== "btn_comprar" && event.target.id !== "carrito-icono" && event.target.id !== "main") {
+  const isCarritoIcono = event.target.classList.contains("carrito-icono");
+
+  if (!sidebar.contains(event.target) && event.target.id !== "btn_resumen" && event.target.id !== "btn_comprar" && !isCarritoIcono && event.target.id !== "main") {
     closeNav();
   }
 }
@@ -77,8 +79,6 @@ window.addEventListener("resize", function () {
     openNav(); // Llamar a la función openNav() solo si la barra lateral no está cerrada
   }
 });
-// // Llamada inicial para establecer el diseño según el tamaño de la pantalla
-// openNav();
 
 
 function actualizar_cantidad() {
