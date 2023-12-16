@@ -77,7 +77,7 @@ const receiveWebhook = async (req, res) => {
             // Configuración del transporte de correo electrónico
             const transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
-                port: PORT,
+                port: 587,
                 secure: false,
                 auth: {
                     user: process.env.EMAIL, // Reemplaza con tu dirección de correo electrónico
@@ -132,13 +132,11 @@ const receiveWebhook = async (req, res) => {
                 html: `
                 <h1>Se ha recibido un nuevo pago con los siguientes detalles:</h1>
                 <h3>Detalles del depido:</h3>\n${cuerpoCorreo}`,
-
-
             };
 
             // Envío del correo electrónico
             await transporter.sendMail(mailOptions);
-            console.log('Correo electrónico enviado');
+            console.log('¡¡Correo electrónico enviado!!');
         }
 
         res.sendStatus("200");
