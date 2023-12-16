@@ -27,7 +27,7 @@ paymentRoutes.get('/success', successRedirection);
 
 paymentRoutes.get('/feedback', feedback);
 
-paymentRoutes.post('/nofication', receiveWebhook);
+paymentRoutes.post('/notification', receiveWebhook);
 
 
 

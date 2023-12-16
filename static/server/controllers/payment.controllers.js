@@ -48,7 +48,7 @@ const createPreference = (req, res) => {
             "failure": res.locals.baseUrl,
             "pending": res.locals.baseUrl,
         },
-        notification_url: "https://bocatto-di-pollo.onrender.com/nofication",
+        notification_url: "https://bocatto-di-pollo.onrender.com/notification",
         auto_return: "approved", // Auto regreso si el pago fue exitoso
     };
 
