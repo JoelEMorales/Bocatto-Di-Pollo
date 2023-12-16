@@ -8,7 +8,9 @@ if (process.env.NODE_ENV !== 'production') {
 const path = require("path");
 const mercadopago = require("mercadopago");
 const nodemailer = require('nodemailer');
-const PORT = process.env.PORT;
+const { google } = require('googleapis')
+
+// const PORT = process.env.PORT;
 
 // Recuperar datos del cliente desde la solicitud
 let cliente = {};
@@ -49,7 +51,7 @@ const createPreference = (req, res) => {
             "pending": res.locals.baseUrl,
         },
         notification_url: "https://bocatto-di-pollo.onrender.com/notification",
-        auto_return: "approved", // Auto regreso si el pago fue exitoso
+        // auto_return: "approved", // Auto regreso si el pago fue exitoso
     };
 
     mercadopago.preferences.create(preference)
@@ -74,14 +76,26 @@ const receiveWebhook = async (req, res) => {
             const data = await mercadopago.payment.findById(payment['data.id']);
             console.log("DATOS DE LA VENTA: ", data);
 
+            const oAuth2Client = new google.auth.OAuth2(
+                process.env.OAUTH_CLIENT_ID,
+                process.env.OAUTH_CLIENT_SECRET,
+                process.env.REDIRECT_URI
+            );
+
+            oAuth2Client.setCredentials({ refresh_token: process.env.OAUTH_REFRESH_TOKEN })
+
+            const accessToken = await oAuth2Client.getAccessToken()
             // Configuración del transporte de correo electrónico
             const transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 587,
-                secure: false,
+                service: 'gmail',
                 auth: {
+                    type: 'OAuth2',
                     user: process.env.EMAIL, // Reemplaza con tu dirección de correo electrónico
-                    pass: process.env.EMAIL_PASSWORD // Reemplaza con tu contraseña
+                    pass: process.env.EMAIL_PASSWORD, // Reemplaza con tu contraseña
+                    clientId: process.env.OAUTH_CLIENT_ID,
+                    clientSecret: process.env.OAUTH_CLIENT_SECRET,
+                    refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+                    accessToken: accessToken
                 }
             });
 
@@ -98,7 +112,7 @@ const receiveWebhook = async (req, res) => {
 
             let nameCliente = venta.nombre;
 
-            if (nameCliente === null){
+            if (nameCliente === null) {
                 nameCliente = cliente.nombre
             }
             // Crear el cuerpo del correo electrónico con los datos extraídos
