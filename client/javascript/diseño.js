@@ -8,7 +8,7 @@ const header_resumen = document.getElementById("header_resumen");
 header.innerHTML = `
 <nav class="w3-bar w3-white w3-padding w3-card w3-wide" id="navbar">
     <a href="/" class="w3-button w3-bar-item w3-hover-white d-none d-md-block">
-        <img src="static/img/logo-bocatto.jpg" alt="Logo" style="height: 50px; width: 50px">
+        <img src="client/static/img/logo-bocatto.jpg" alt="Logo" style="height: 50px; width: 50px">
     </a>
 
     <!-- MENU PANTALLAS GRANDES -->
@@ -28,7 +28,7 @@ header.innerHTML = `
                 <i class="fa-solid fa-bars"></i>
             </a>
             <a href="/" class="navbar-brand">
-                <img src="static/img/logo-bocatto.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+                <img src="client/static/img/logo-bocatto.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
             </a>
             <a class="w3-bar-item w3-button" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg carrito-icono"></i></a>
         </div>
@@ -88,7 +88,7 @@ header.innerHTML = `
 //         <!-- Logo a la izquierda -->
 //         <div class="w3-button w3-bar-item w3-hover-white d-none d-md-block">
 //             <img
-//             src="../static/img/logo-bocatto.jpg"
+//             src="../client/static/img/logo-bocatto.jpg"
 //             alt="Logo" class="img-fluid"
 //             style="max-width: 50px" />
 //         </div>
@@ -112,7 +112,7 @@ header.innerHTML = `
 
 //                 <a href="/" class="navbar-brand">
 //                     <img
-//                     src="../static/img/logo-bocatto.jpg"
+//                     src="../client/static/img/logo-bocatto.jpg"
 //                     alt="Avatar Logo"
 //                     style="width: 40px" class="rounded-pill" />
 //                 </a>

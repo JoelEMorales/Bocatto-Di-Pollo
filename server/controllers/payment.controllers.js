@@ -2,7 +2,7 @@
 
 if (process.env.NODE_ENV !== 'production') {
     // En entorno de desarrollo, carga las variables de entorno desde el archivo .env
-    require('dotenv').config({ path: '../../../.env' });
+    require('dotenv').config({ path: '../../.env' });
 }
 
 const path = require("path");
@@ -134,9 +134,9 @@ const receiveWebhook = async (req, res) => {
             <b>Prodcutos:</b><br>
             ${venta.productos}<br><br>
 
-            <b>Monto Pagado:</b> ${venta.montoPagado}<br><br>
+            <b>Monto Pagado:</b> $ ${venta.montoPagado}<br><br>
 
-            <b>Tipo de Pago:</b> $ ${venta.tipoPago}<br><br>`;
+            <b>Tipo de Pago:</b> ${venta.tipoPago}<br><br>`;
 
 
             // Configuración del correo electrónico
@@ -174,7 +174,7 @@ const configClientMercadopago = (req, res) => {
 
 // Luego de pago realizado redirigir a success.html
 const success = (req, res) => {
-    res.sendFile(path.join(__dirname, "../../../", "success.html"));
+    res.sendFile(path.join(__dirname, "../../", "success.html"));
 }
 
 const feedback = (req, res) => {

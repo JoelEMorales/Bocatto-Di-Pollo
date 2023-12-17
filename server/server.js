@@ -1,7 +1,7 @@
 
 if (process.env.NODE_ENV !== 'production') {
   // En entorno de desarrollo, carga las variables de entorno desde el archivo .env
-  require('dotenv').config({ path: '../../.env' });
+  require('dotenv').config({ path: '../.env' });
 }
 
 const express = require("express");
@@ -47,8 +47,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Configuración para servir archivos estáticos desde la carpeta "static"
-app.use('/static', express.static(path.join(__dirname, "../")));
-app.use(express.static(path.join(__dirname, "/static")));
+app.use('/client', express.static(path.join(__dirname, "../client")));
+app.use(express.static(path.join(__dirname, "../client")));
 
 app.use(indexRoutes);
 app.use(emailsRoutes);

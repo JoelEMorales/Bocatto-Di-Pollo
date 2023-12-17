@@ -1,5 +1,5 @@
 
-// ARCHIVO enviarMail.JS UBICADO EN : /joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/static/javascript/enviarMail.js
+// ARCHIVO enviarMail.JS UBICADO EN : /joelmorles/Documents/PROYECTO-GITHUB/Bocatto-Di-Pollo/client/static/javascript/enviarMail.js
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -9,7 +9,7 @@
 
 
 // // Importa la función desde enviarMail.js
-// import { Email } from '/static/javascript/enviarMail.js';
+// import { Email } from '/client/static/javascript/enviarMail.js';
 
 if (window.location.href.includes("/success")) {
 

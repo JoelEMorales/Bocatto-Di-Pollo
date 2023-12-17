@@ -16,7 +16,7 @@ const mostrarHorarioNuevo = () => {
                 position: "top",
                 title: "Horarios Especiales!!",
                 html: "Sabado 23/12 - 08:00 am | 14:00 pm<br><br>Sabado 24/12 - Cerrado<br><br>Sabado 30/12 - Cerrado",
-                imageUrl: "static/img/felicesFiestas.jpg",
+                imageUrl: "client/static/img/felicesFiestas.jpg",
                 imageWidth: 400,
                 imageHeight: 400,
                 imageAlt: "Felices Fiestas!!"

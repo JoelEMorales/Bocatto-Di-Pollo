@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" type="text/css" href="/static/styles/estilosalfajor.css" />
+    <link rel="stylesheet" type="text/css" href="/client/static/styles/estilosalfajor.css" />
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" />
@@ -44,7 +44,7 @@
 <body>
     <main class="pag-inicial" id="contenido">
         <!-- welcome header -->
-        <div class="bg-image" style="background-image: url(static/img/baner-bocatto.png);"></div>
+        <div class="bg-image" style="background-image: url(client/static/img/baner-bocatto.png);"></div>
         <nav class="bg-text">
             <h1>Bocatto Di Pollo</h1>
             <h2 style="font-size: 25px">
@@ -64,15 +64,15 @@
                 // Verifica que el elemento exista antes de intentar acceder a su propiedad 'style'
                 if (bgImage) {
                     bgImage.style.backgroundImage =
-                        'url("static/img/baner-bocatto.png")';
+                        'url("client/static/img/baner-bocatto.png")';
                 }
             }
         });
     </script>
 </body>
 
-<script type="module" src="/static/javascript/success.js"></script>
-<script type="module" src="/static/client/index.js"></script>
-<script type="module" src="/static/javascript/enviarMail.js"></script>
+<script type="module" src="/client/javascript/success.js"></script>
+<script type="module" src="/client/index.js"></script>
+<script type="module" src="/client/javascript/enviarMail.js"></script>
 
 </html>
