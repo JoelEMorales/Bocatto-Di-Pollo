@@ -238,6 +238,7 @@ function quitarProductoDelResumen(nombreProducto) {
   // Recarga la página de resumen para reflejar los cambios
   cargar_resumen();
   mostrarProductosEnCarrito(carritoG);
+  actualizarIconoCarrito();
 }
 
 

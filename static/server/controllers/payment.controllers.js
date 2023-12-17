@@ -110,18 +110,20 @@ const receiveWebhook = async (req, res) => {
                 tipoPago: data.body.payment_type_id
             };
 
-            let nameCliente = venta.nombre;
+            // Asignar el nombre del cliente, utilizando el valor de "cliente.nombre" si "venta.nombre" es nulo
+            const nameClient = venta.nombre !== null ? venta.nombre : cliente.nombre;
 
-            if (nameCliente === null) {
-                nameCliente = cliente.nombre
-            }
+            // Asignar el apellido del cliente, utilizando el valor de "venta.apellido" si no es nulo; de lo contrario, utiliza "nameClient"
+            const apellidoClient = venta.apellido !== null ? venta.apellido : nameClient;
+
+
             // Crear el cuerpo del correo electrónico con los datos extraídos
             const cuerpoCorreo = `
             <b>ID de Compra:</b> ${venta.idCompra}<br><br>
 
-            <b>Nombre del cliente:</b> ${nameCliente}<br><br>
+            <b>Nombre del cliente:</b> ${nameClient}<br><br>
             
-            <b>Apellido del cliente:</b> ${venta.apellido}<br><br>
+            <b>Apellido del cliente:</b> ${apellidoClient}<br><br>
 
             <b>Telefono:<b> ${cliente.telefono}<br><br>
 
