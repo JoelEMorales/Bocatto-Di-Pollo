@@ -14,7 +14,7 @@ header.innerHTML = `
     <!-- MENU PANTALLAS GRANDES -->
     <div class="w3-right w3-padding-large d-none d-md-block">
         <a href="/" class="w3-bar-item w3-button">¿Quiénes somos?</a>
-        <a href="productos" class="w3-bar-item w3-button">Productos</a>
+        <a href="/allProducts" class="w3-bar-item w3-button">Productos</a>
         <a href="galeria" class="w3-bar-item w3-button">Galería</a>
         <a href="#contacto" class="w3-bar-item w3-button">Contáctanos</a>
         <a class="w3-bar-item w3-button" id="main" onclick="openNav()"><i class="fa-solid fa-cart-shopping fa-lg carrito-icono"></i></a>
@@ -39,7 +39,7 @@ header.innerHTML = `
         <ul id="lista">
             <li><a onclick="closeSidebarMovile()">× Cerrar</a></li>
             <li><a href="javascript:void(0);" onclick="closeSidebarAndRedirect('/')">¿Quiénes somos?</a></li>
-            <li><a href="javascript:void(0);" onclick="closeSidebarAndRedirect('productos')">Productos</a></li>
+            <li><a href="javascript:void(0);" onclick="closeSidebarAndRedirect('/allProducts')">Productos</a></li>
             <li><a href="javascript:void(0);" onclick="closeSidebarAndRedirect('galeria')">Galería</a></li>
             <li><a href="javascript:void(0);" onclick="closeSidebarAndRedirect('#contacto')">Contáctanos</a></li>
     </ul>

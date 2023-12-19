@@ -7,19 +7,15 @@
 
 
 //BOTON PARA OBTENER DATOS DEL PRODUCTO SELECCIONADO ANTES DE CARGAR EL NUEVO HTML EN EL MAIN
-function abrir_pagina_producto(prodctID) {
+function abrir_pagina_producto(prodctID, tittle, price) {
 
-    // Obtener el título del producto de la página principal
-    var div_producto = document.getElementById(prodctID);
-    var titulo = div_producto.querySelector("h3");
-    var contenido_titulo = titulo.textContent;
-
-    // Obtener el precio del producto de la página principal
-    var precio = div_producto.querySelector(".precio");
-    var contenido_precio = precio.textContent;
+    let id = prodctID;
+    let contenido_titulo = tittle;
+    let contenido_precio = price;
+    
 
     // Obtener información del producto según el ID
-    var producto_info = contenido_producto(prodctID);
+    var producto_info = contenido_producto(id);
 
 
 

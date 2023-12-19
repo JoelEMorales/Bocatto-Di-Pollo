@@ -51,7 +51,7 @@ const createPreference = (req, res) => {
             "pending": res.locals.baseUrl,
         },
         notification_url: "https://bocatto-di-pollo.onrender.com/notification",
-        // auto_return: "approved", // Auto regreso si el pago fue exitoso
+        auto_return: "approved", // Auto regreso si el pago fue exitoso
     };
 
     mercadopago.preferences.create(preference)

@@ -5,20 +5,18 @@ const indexRoutes = express.Router();
 
 const indexControllers = require('../controllers/index.controllers');
 
-const archivoPrincipal = indexControllers.archivoPrincipal;
-const resumenHtml = indexControllers.resumenHtml;
-const compraHtml = indexControllers.compraHtml;
 
+indexRoutes.get("/", indexControllers.archivoPrincipal);
 
-indexRoutes.get("/", archivoPrincipal);
+// indexRoutes.get("/productos", archivoPrincipal);
 
-indexRoutes.get("/productos", archivoPrincipal);
+indexRoutes.get("/galeria", indexControllers.archivoPrincipal);
 
-indexRoutes.get("/galeria", archivoPrincipal);
+indexRoutes.get("/compra", indexControllers.compraHtml);
 
-indexRoutes.get("/compra", compraHtml);
+indexRoutes.get("/resumen_compra", indexControllers.resumenHtml);
 
-indexRoutes.get("/resumen_compra", resumenHtml);
+indexRoutes.get("/allProducts", indexControllers.productsHTML);
 
 module.exports = indexRoutes;
 

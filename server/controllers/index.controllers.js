@@ -17,8 +17,14 @@ const resumenHtml = (req, res) => {
     res.sendFile(filePath);
 }
 
+const productsHTML = (req, res) => {
+    const filePath = path.join(__dirname, '../../', 'products.html');
+    res.sendFile(filePath);
+}
+
 module.exports = {
     archivoPrincipal,
     resumenHtml,
     compraHtml,
+    productsHTML,
 };

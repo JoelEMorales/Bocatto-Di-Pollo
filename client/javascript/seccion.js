@@ -265,7 +265,7 @@ function cargarContenido() {
         // Cambiar clase para obtener otros estilos CSS
         document.getElementById("contenido").className = "pag-inicial";
         // Utilizar fetch para cargar el contenido de index.html
-        fetch('')
+        fetch('/prueba')
             .then(response => response.text())
             .then(data => {
                 // Agregar contenido adicional al main
@@ -309,139 +309,9 @@ function cargarContenido() {
                         </div>
                     </div>
 
-                    <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white"
-                        onclick="abrir_pagina_producto('producto1')" id="producto1">
-                        <br>
-                        <img src="client/static/img/Mila-elaboracion-1.JPG"
-                            alt="Milanesa De Pollo" id="img-product-1" style="width: 90%;
-                            height: 350px;">
-                        <h3 class="w3-large w3-padding" id="tittle-1">Milanesa De Pollo</h3>
-                        <p>
-                            <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">2500</span>
-                        </p>
-                        <p>Precio por kilo</p>
-                        <br>
-                    </div>
-
-                    <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                        onclick="abrir_pagina_producto('producto2')" id="producto2">
-                        <br>
-                        <img src="client/static/img/arrollado-3.jpg"
-                            alt="Arrollado De Pollo" style="width: 90%;
-                        height: 350px;">
-                        <h3 class="w3-large w3-padding">Arrollado De Pollo</h3>
-                        <p>
-                            <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">3650</span>
-                        </p>
-                        <p>Precio por kilo</p>
-                        <br>
-                    </div>
-
-                    <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                        onclick="abrir_pagina_producto('producto3')" id="producto3">
-                        <br>
-                        <img src="client/static/img/mila-elaboracion-3.JPG"
-                            alt="Chupa Chups De Pollo" style="width: 90%;
-                            height: 350px;">
-                        <h3 class="w3-large w3-padding">Milanesa Rellena</h3>
-                        <p>
-                            <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">3050</span>
-                        </p>
-                        <p>Precio por kilo</p>
-                        <br>
-                    </div>
-
-                    <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                        onclick="abrir_pagina_producto('producto4')" id="producto4">
-                        <br>
-                        <img src="client/static/img/burgerPolloSimple5.jpg"
-                            alt="Hamburguesa de Pollo Simple" style="width: 90%;
-                        height: 350px;">
-                        <h3 class="w3-large w3-padding">Hamburguesa Simple</h3>
-                        <p>
-                            <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">2850</span>
-                        </p>
-                        <p>Precio por kilo</p>
-                        <br>
-                    </div>
-
-                    <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                        onclick="abrir_pagina_producto('producto5')" id="producto5">
-                        <br>
-                        <img src="client/static/img/burgerPolloSimple4.jpg"
-                            alt="Hamburguesa de pollo rellena" style="width: 90%;
-                        height: 350px;">
-                        <h3 class="w3-large w3-padding">Hamburguesa con J/Q</h3>
-                        <p>
-                            <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">2950</span>
-                        </p>
-                        <p>Precio por kilo</p>
-                        <br>
-                    </div>
-
-                    <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                        onclick="abrir_pagina_producto('producto6')" id="producto6">
-                        <br>
-                        <img src="client/static/img/rollitosDePollo4.jpg" alt="Arrolladito de Pechuga"
-                            style="width: 90%;
-                        height: 350px;">
-                        <h3 class="w3-large w3-padding">Arrolladito de Pechuga</h3>
-                        <p>
-                            <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">3050</span>
-                        </p>
-                        <p>Precio por kilo</p>
-                        <br>
-                    </div>
-
-                    <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                        onclick="abrir_pagina_producto('producto7')" id="producto7">
-                        <br>
-                        <img src="client/static/img/pata.muslo-2.jpg" alt="Pata Muslo"
-                            style="width: 90%;
-                        height: 350px;">
-                        <h3 class="w3-large w3-padding">Pata Muslo</h3>
-                        <p>
-                            <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">1490</span>
-                        </p>
-                        <p>Precio por kilo</p>
-                        <br>
-                    </div>
-
-                    <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                        onclick="abrir_pagina_producto('producto8')" id="producto8">
-                        <br>
-                        <img src="client/static/img/pechuga-4.jpg"
-                            alt="Filet De Pechuga y Muslo" style="width: 90%;
-                            height: 350px;">
-                        <h3 class="w3-large w3-padding">Pechuga</h3>
-                        <p>
-                            <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">3350</span>
-                        </p>
-                        <p>Precio por kilo</p>
-                        <br>
-                    </div>
-
-                    <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
-                        onclick="abrir_pagina_producto('producto9')" id="producto9">
-                        <br>
-                        <img src="client/static/img/pollo-2.JPG" alt="Pollo Entero" style="width: 90%;
-                        height: 350px;">
-                        <h3 class="w3-large w3-padding">Pollo Entero</h3>
-                        <p>
-                            <span style="font-size: 20px;">$</span>
-                            <span style="font-size: 24px;" class="precio">1370</span>
-                        </p>
-                        <p>Precio por kilo</p>
-                        <br>
-                    </div>
+                    <div id="containerAllProducts">
+                    </div>  
+                                      
                 </section>
                 <br><br>
             </article>
@@ -573,3 +443,151 @@ window.addEventListener("load", cargarContenido);
 // document.addEventListener("DOMContentLoaded", function () {
 //     cargarPagina("principal");
 // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white"
+//                         onclick="abrir_pagina_producto('producto1')" id="producto1">
+//                         <br>
+//                         <img src="client/static/img/Mila-elaboracion-1.JPG"
+//                             alt="Milanesa De Pollo" id="img-product-1" style="width: 90%;
+//                             height: 350px;">
+//                         <h3 class="w3-large w3-padding" id="tittle-1">Milanesa De Pollo</h3>
+//                         <p>
+//                             <span style="font-size: 20px;">$</span>
+//                             <span style="font-size: 24px;" class="precio">2500</span>
+//                         </p>
+//                         <p>Precio por kilo</p>
+//                         <br>
+//                     </div>
+
+//                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+//                         onclick="abrir_pagina_producto('producto2')" id="producto2">
+//                         <br>
+//                         <img src="client/static/img/arrollado-3.jpg"
+//                             alt="Arrollado De Pollo" style="width: 90%;
+//                         height: 350px;">
+//                         <h3 class="w3-large w3-padding">Arrollado De Pollo</h3>
+//                         <p>
+//                             <span style="font-size: 20px;">$</span>
+//                             <span style="font-size: 24px;" class="precio">3650</span>
+//                         </p>
+//                         <p>Precio por kilo</p>
+//                         <br>
+//                     </div>
+
+//                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+//                         onclick="abrir_pagina_producto('producto3')" id="producto3">
+//                         <br>
+//                         <img src="client/static/img/mila-elaboracion-3.JPG"
+//                             alt="Chupa Chups De Pollo" style="width: 90%;
+//                             height: 350px;">
+//                         <h3 class="w3-large w3-padding">Milanesa Rellena</h3>
+//                         <p>
+//                             <span style="font-size: 20px;">$</span>
+//                             <span style="font-size: 24px;" class="precio">3050</span>
+//                         </p>
+//                         <p>Precio por kilo</p>
+//                         <br>
+//                     </div>
+
+//                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+//                         onclick="abrir_pagina_producto('producto4')" id="producto4">
+//                         <br>
+//                         <img src="client/static/img/burgerPolloSimple5.jpg"
+//                             alt="Hamburguesa de Pollo Simple" style="width: 90%;
+//                         height: 350px;">
+//                         <h3 class="w3-large w3-padding">Hamburguesa Simple</h3>
+//                         <p>
+//                             <span style="font-size: 20px;">$</span>
+//                             <span style="font-size: 24px;" class="precio">2850</span>
+//                         </p>
+//                         <p>Precio por kilo</p>
+//                         <br>
+//                     </div>
+
+//                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+//                         onclick="abrir_pagina_producto('producto5')" id="producto5">
+//                         <br>
+//                         <img src="client/static/img/burgerPolloSimple4.jpg"
+//                             alt="Hamburguesa de pollo rellena" style="width: 90%;
+//                         height: 350px;">
+//                         <h3 class="w3-large w3-padding">Hamburguesa con J/Q</h3>
+//                         <p>
+//                             <span style="font-size: 20px;">$</span>
+//                             <span style="font-size: 24px;" class="precio">2950</span>
+//                         </p>
+//                         <p>Precio por kilo</p>
+//                         <br>
+//                     </div>
+
+//                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+//                         onclick="abrir_pagina_producto('producto6')" id="producto6">
+//                         <br>
+//                         <img src="client/static/img/rollitosDePollo4.jpg" alt="Arrolladito de Pechuga"
+//                             style="width: 90%;
+//                         height: 350px;">
+//                         <h3 class="w3-large w3-padding">Arrolladito de Pechuga</h3>
+//                         <p>
+//                             <span style="font-size: 20px;">$</span>
+//                             <span style="font-size: 24px;" class="precio">3050</span>
+//                         </p>
+//                         <p>Precio por kilo</p>
+//                         <br>
+//                     </div>
+
+//                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+//                         onclick="abrir_pagina_producto('producto7')" id="producto7">
+//                         <br>
+//                         <img src="client/static/img/pata.muslo-2.jpg" alt="Pata Muslo"
+//                             style="width: 90%;
+//                         height: 350px;">
+//                         <h3 class="w3-large w3-padding">Pata Muslo</h3>
+//                         <p>
+//                             <span style="font-size: 20px;">$</span>
+//                             <span style="font-size: 24px;" class="precio">1490</span>
+//                         </p>
+//                         <p>Precio por kilo</p>
+//                         <br>
+//                     </div>
+
+//                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+//                         onclick="abrir_pagina_producto('producto8')" id="producto8">
+//                         <br>
+//                         <img src="client/static/img/pechuga-4.jpg"
+//                             alt="Filet De Pechuga y Muslo" style="width: 90%;
+//                             height: 350px;">
+//                         <h3 class="w3-large w3-padding">Pechuga</h3>
+//                         <p>
+//                             <span style="font-size: 20px;">$</span>
+//                             <span style="font-size: 24px;" class="precio">3350</span>
+//                         </p>
+//                         <p>Precio por kilo</p>
+//                         <br>
+//                     </div>
+
+//                     <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white width: 100%; height: 100%; object-fit: cover"
+//                         onclick="abrir_pagina_producto('producto9')" id="producto9">
+//                         <br>
+//                         <img src="client/static/img/pollo-2.JPG" alt="Pollo Entero" style="width: 90%;
+//                         height: 350px;">
+//                         <h3 class="w3-large w3-padding">Pollo Entero</h3>
+//                         <p>
+//                             <span style="font-size: 20px;">$</span>
+//                             <span style="font-size: 24px;" class="precio">1370</span>
+//                         </p>
+//                         <p>Precio por kilo</p>
+//                         <br>
+//                     </div>
