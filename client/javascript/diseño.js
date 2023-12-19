@@ -72,7 +72,7 @@ header.innerHTML = `
                 <div class="col">
                     <button id="btn_resumen" class="w3-block w3-green w3-hover-lightgreen w3-padding-small" onclick="redirigir_resumen()">Resumen</button>
                 </div>
-                <div href="javascript:void(0);" onclick="closeSidebarAndRedirect('productos')" class="col">
+                <div href="javascript:void(0);" onclick="closeSidebarAndRedirect('/allProducts')" class="col">
                     <button id="btn_comprar" class="w3-block w3-green w3-hover-lightgreen w3-padding-small">Seguir comprando</button>
                 </div>
             </div>
