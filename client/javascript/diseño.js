@@ -206,6 +206,22 @@ footer.innerHTML = `
                 </div>
             </div>
 
+            <div class="container-fluid bg-dark text-white max-width pt-3 mt-5">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <dl>
+                            <dt>Diseñador web</dt>
+                            <dd>- Joel Morales | joelelianmorales@gmail.com</dd>
+                        </dl>
+                    </div>
+                        
+                    <div class="col-12 col-sm-6">
+                        <dl>
+                            <dt class="text-end">Acceso restringido</dt>
+                            <a href="/" class="text-end nav-link">- Control</a>
+                        </dl>
+                    </div>
+                </div>
             <!-- The Modal -->
             <div class="modal" id="myModal" style="text-align: left">
                 <div class="modal-dialog">
