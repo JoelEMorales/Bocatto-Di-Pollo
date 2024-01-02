@@ -8,7 +8,8 @@ const express = require("express");
 const paymentRoutes = require('./routes/payment.routes.js');
 const indexRoutes = require('./routes/index.routes.js');
 const emailsRoutes = require('./routes/emails.routes.js');
-const productRoutes = require('./routes//product.routes.js');
+const productRoutes = require('./routes/product.routes.js');
+const loginRoutes = require('./routes/login.routes.js')
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
@@ -41,10 +42,9 @@ app.use((req, res, next) => {
   next();
 });
 
-
-app.use(cors(corsOptions));
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors(corsOptions));
 
 // Configuración para servir archivos estáticos desde la carpeta "static"
 app.use('/client', express.static(path.join(__dirname, "../client")));
@@ -54,6 +54,7 @@ app.use(indexRoutes);
 app.use(emailsRoutes);
 app.use(paymentRoutes);
 app.use(productRoutes);
+app.use(loginRoutes);
 
 
 

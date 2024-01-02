@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function obtenerProductos() {
         try {
-            const response = await fetch("/productosP");
+            const response = await fetch("/showProducts");
             const resJSON = await response.json();
             return resJSON.result;
         } catch (error) {

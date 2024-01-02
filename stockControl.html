@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/client/static/img/logo-bocatto.jpg" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Tienda</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        #formularioNuevoProducto {
+            display: none;
+            /* El formulario está oculto inicialmente */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Productos de la tienda</h1>
+
+    <button id="mostrarFormularioBtn">Agregar Producto</button>
+    <button id="volver">Volver</button>
+    <!-- Mostrar productos y precios -->
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio de venta</th>
+                <th>Fecha de actualizacion</th>
+                <th>Precio del kilo</th>
+                <th>Operaciones</th>
+            </tr>
+        </thead>
+        <tbody id="conteinerProduct">
+            <!-- <tr>
+                <td>Producto 1</td>
+                <td id="precio1">10.00</td>
+            </tr>
+            <tr>
+                <td>Producto 2</td>
+                <td id="precio2">20.00</td>
+            </tr> -->
+            <!-- Agrega más productos según sea necesario -->
+        </tbody>
+    </table>
+
+
+
+
+
+    <!-- <div class="w3-third w3-margin-bottom hover-shadow w3-button w3-hover-white" onclick="abrir_pagina_producto('producto1')" id="producto1">
+        <br>
+        <img src="client/static/img/Mila-elaboracion-1.JPG" alt="Milanesa De Pollo" id="img-product-1" style="width: 90%;
+                            height: 350px;">
+        <h3 class="w3-large w3-padding" id="tittle-1">Milanesa De Pollo</h3>
+        <p>
+            <span style="font-size: 20px;">$</span>
+            <span style="font-size: 24px;" class="precio" id="p">2500</span>
+        </p>
+        <p>Precio por kilo</p>
+        <br>
+    </div> -->
+
+    <!-- <section id="containerAllProducts">
+
+    </section> -->
+
+
+
+
+    <form id="formularioNuevoProducto" autocomplete="on">
+        <div class="mb-3 mt-3">
+            <label for="nombreProducto" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombreProducto" placeholder="Nombre del producto"
+                name="nombreProducto">
+        </div>
+        <div class="mb-3">
+            <label for="precioProducto" class="form-label">Precio:</label>
+            <input type="number" step="0.01" class="form-control" id="precioProducto" placeholder="Precio"
+                name="precioProducto">
+        </div>
+        <div class="mb-3">
+            <label for="imgProducto" class="form-label">Ruta de imagen:</label>
+            <input type="text" class="form-control" id="imgProducto" placeholder="Imagen" name="imgProducto">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+
+    <form id="formUpdateProducto" style="display: none;" autocomplete="on">
+        <div class="mb-3 mt-3">
+            <label for="nombreProducto" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nameUpdateProduct" placeholder="Nombre del producto"
+                name="nombreProducto">
+        </div>
+        <div class="mb-3">
+            <label for="precioProducto" class="form-label">Precio:</label>
+            <input type="number" step="0.01" class="form-control" id="priceUpdateProduct" placeholder="Precio"
+                name="precioProducto">
+        </div>
+        <div class="mb-3">
+            <label for="imgProducto" class="form-label">Ruta de imagen:</label>
+            <input type="text" class="form-control" id="imgUpdateProducto" placeholder="Imagen" name="imgProducto">
+        </div>
+
+        <button type="submit" onclick="updateProduct()" id="update" class="btn btn-primary">Actualizar</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Products();
+        });
+
+        document.getElementById('volver').addEventListener('click', function () {
+            window.location.href = '/index.html';
+        });
+    </script>
+
+</body>
+
+<script src="/client/javascript/stockControl.js"></script>
+
+</html>

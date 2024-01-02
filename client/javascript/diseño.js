@@ -218,10 +218,12 @@ footer.innerHTML = `
                     <div class="col-12 col-sm-6">
                         <dl>
                             <dt class="text-end">Acceso restringido</dt>
-                            <a href="/" class="text-end nav-link">- Control</a>
+                            <a onclick="login()" class="text-end nav-link">- Control</a>
                         </dl>
                     </div>
                 </div>
+            </div>
+
             <!-- The Modal -->
             <div class="modal" id="myModal" style="text-align: left">
                 <div class="modal-dialog">
