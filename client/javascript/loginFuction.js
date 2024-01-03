@@ -55,7 +55,7 @@ function login() {
                                 // Inicio de sesión exitoso
                                 Swal.fire({
                                     title: '¡Inicio de Sesión Exitoso!',
-                                    text: `¡Bienvenido, ${responseData.name || 'Usuario'}! Has iniciado sesión correctamente.`,
+                                    text: `¡Bienvenido, ${responseData.data.name || 'Usuario'}! Has iniciado sesión correctamente.`,
                                     icon: 'success'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
