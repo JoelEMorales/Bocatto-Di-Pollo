@@ -10,7 +10,7 @@ const mostrarHorarioNuevo = () => {
     fechaInicio.setDate(fechaActual.getDate() - 21)
 
     // verifico si es la fecha deseada
-    if (fechaActual >= fechaInicio && fechaActual.getMonth() === 11 && fechaActual.getDate() <= 24 ){
+    if (fechaActual >= fechaInicio && fechaActual.getMonth() === 11 && fechaActual.getDate() <= 31) {
         setTimeout(() => {
             Swal.fire({
                 position: "top",
@@ -20,7 +20,19 @@ const mostrarHorarioNuevo = () => {
                 imageWidth: 400,
                 imageHeight: 400,
                 imageAlt: "Felices Fiestas!!"
-              });
+            });
+        }, 500);
+    } else if (fechaActual.getMonth() === 0 && fechaActual.getDate() >= 1 && fechaActual.getDate() <= 8) {
+        setTimeout(() => {
+            Swal.fire({
+                position: "top",
+                title: "Cerrado por vacaciones!!",
+                html: "Volvemos el lunes 8 de enero con los horarios habituales",
+                imageUrl: "client/static/img/vacaciones.png",
+                imageWidth: 400,
+                imageHeight: 300,
+                imageAlt: "Felices Vacaciones!!"
+            });
         }, 500);
     }
 };
