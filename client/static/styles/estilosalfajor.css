@@ -20,7 +20,7 @@ p {
 /*BARRA MENU SCROLL CORREDIZO*/
 @media only screen and (min-width: 767px) {
     #navbar {
-        position: fixed;
+        position: relative;
         top: 0;
         width: 100%;
         z-index: 2; /* Asegúrate de que la barra de menú esté por encima de otros elementos */
