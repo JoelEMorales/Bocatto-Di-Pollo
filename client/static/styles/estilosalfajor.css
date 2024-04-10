@@ -18,7 +18,7 @@ p {
 
 /*----------------------------------------------------------------------------------------*/
 /*BARRA MENU SCROLL CORREDIZO*/
-@media only screen and (min-width: 767px) {
+@media only screen and (max-width: 767px) {
     #navbar {
         position: relative;
         top: 0;
