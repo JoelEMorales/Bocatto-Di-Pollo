@@ -18,17 +18,18 @@ p {
 
 /*----------------------------------------------------------------------------------------*/
 /*BARRA MENU SCROLL CORREDIZO*/
-#navbar {
-    position: fixed;
-    top: 0;
-    transition: top 0.3s;
-    z-index: 2;
+@media only screen and (max-width: 767px) {
+    #navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 2; /* Asegúrate de que la barra de menú esté por encima de otros elementos */
+        transition: top 0.3s; /* Añadido para la transición en el scroll */
+    }
 
-
-}
-
-.navbar-hidden {
-    top: -100px;
+    #navbar.navbar-hidden {
+        top: -100px; /* Controla la ocultación de la barra de menú */
+    }
 }
 
 
