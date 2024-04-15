@@ -10,14 +10,14 @@
 // JavaScript para controlar la visibilidad de la barra de menú en dispositivos de escritorio
 if (window.matchMedia("(min-width: 768px)").matches) {
   var prevScrollpos = window.pageYOffset;
-  window.onscroll = function() {
-      var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-          document.getElementById("navbar").style.top = "0";
-      } else {
-          document.getElementById("navbar").style.top = "-100px";
-      }
-      prevScrollpos = currentScrollPos;
+  window.onscroll = function () {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("navbar").style.top = "0";
+    } else {
+      document.getElementById("navbar").style.top = "-100px";
+    }
+    prevScrollpos = currentScrollPos;
   }
 }
 
@@ -98,7 +98,7 @@ function actualizar_cantidad() {
 // Función para abrir el sidebar
 function openSidebarMovile() {
   document.getElementById('sidebarMovile').style.left = '0';
-  
+
   // Agregar un evento de clic al documento para cerrar el sidebar si se hace clic fuera de él
   document.addEventListener('click', closeSidebarOnOutsideClick);
 }
@@ -106,7 +106,7 @@ function openSidebarMovile() {
 // Función para cerrar el sidebar
 function closeSidebarMovile() {
   document.getElementById('sidebarMovile').style.left = '-250px';
-  
+
   // Eliminar el evento de clic del documento cuando el sidebar se cierra
   document.removeEventListener('click', closeSidebarOnOutsideClick);
 }
@@ -114,18 +114,18 @@ function closeSidebarMovile() {
 // Función para cerrar el sidebar cuando se hace clic fuera de él
 function closeSidebarOnOutsideClick(event) {
   const sidebar = document.getElementById('sidebarMovile');
-  
+
   // Verificar si el clic ocurrió fuera del sidebar y sus enlaces
   if (!sidebar.contains(event.target) && event.target.closest('a') === null) {
-      closeSidebarMovile();
+    closeSidebarMovile();
   }
 }
 
 function closeSidebarAndRedirect(url) {
   closeSidebarMovile();
-  
+
   // Agregar un retraso de 300 milisegundos (puedes ajustar el valor según sea necesario)
-  setTimeout(function() {
-      window.location.href = url;
+  setTimeout(function () {
+    window.location.href = url;
   }, 300);
 }

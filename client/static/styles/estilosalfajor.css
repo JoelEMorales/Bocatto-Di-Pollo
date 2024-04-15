@@ -25,7 +25,8 @@ p {
         top: 0;
         width: 100%;
         z-index: 2;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Agrega una sombra para mejorar la apariencia */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Agrega una sombra para mejorar la apariencia */
     }
 }
 
@@ -308,7 +309,8 @@ img.hover-shadow {
     margin: 10px;
     padding-right: 20px;
 }
-#iconX a{
+
+#iconX a {
     font-size: x-large;
 }
 
@@ -353,7 +355,8 @@ img.hover-shadow {
     overflow-x: hidden;
     padding-top: 30px;
     transition: left 0.5s ease;
-    color: #fff; /* Texto color marfil */
+    color: #fff;
+    /* Texto color marfil */
 }
 
 #sidebarMovile ul {
@@ -367,13 +370,16 @@ img.hover-shadow {
 
 #sidebarMovile a {
     text-decoration: none;
-    color: #fff; /* Texto color marfil */
+    color: #fff;
+    /* Texto color marfil */
     display: block;
     padding: 8px;
     transition: background-color 0.3s ease;
 }
 
 #sidebarMovile a:hover {
-    background-color: #28a745; /* Cambia de color al pasar el ratón */
-    color: #000; /* Texto color negro */
+    background-color: #28a745;
+    /* Cambia de color al pasar el ratón */
+    color: #000;
+    /* Texto color negro */
 }
